@@ -194,8 +194,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Tutorial_GPIO_Digital_Out_LED_21900416_GyeonhealAn.c</PathWithFileName>
-      <FilenameWithoutPath>Tutorial_GPIO_Digital_Out_LED_21900416_GyeonhealAn.c</FilenameWithoutPath>
+      <PathWithFileName>..\Tutorial_GPIO_Digital_InOut_LED_Button_student.c</PathWithFileName>
+      <FilenameWithoutPath>Tutorial_GPIO_Digital_InOut_LED_Button_student.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -228,6 +228,38 @@
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\include\ecRCC.h</PathWithFileName>
       <FilenameWithoutPath>ecRCC.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>HAL</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>4</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\include\ecGPIO.c</PathWithFileName>
+      <FilenameWithoutPath>ecGPIO.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>5</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\include\ecGPIO.h</PathWithFileName>
+      <FilenameWithoutPath>ecGPIO.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

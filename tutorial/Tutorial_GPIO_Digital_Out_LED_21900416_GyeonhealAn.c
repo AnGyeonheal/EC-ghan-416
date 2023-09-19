@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @author  SSSLAB
-	* @Mod		 2021-8-12 by YKKIM  	
-  * @brief   Embedded Controller:  Tutorial Digital Out
-  *					 - Turn on LED LD2
+* @author  SSS LAB
+* @Mod		 2023-9-19 by GH 	
+* @brief   Embedded Controller:  Tutorial Digital In
+*					 - Turn on LED LD2 while Button B1 is pressing
   * 
   ******************************************************************************
 */
