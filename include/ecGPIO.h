@@ -43,7 +43,7 @@ Description      : Distributed to Students for LAB_GPIO
 #endif /* __cplusplus */
 	 
 void GPIO_init(GPIO_TypeDef *Port, int pin, unsigned int mode);
-void GPIO_write(GPIO_TypeDef *Port, int pin, int Output);
+void GPIO_write(GPIO_TypeDef *Port, int pin, unsigned int Output);
 int  GPIO_read(GPIO_TypeDef *Port, int pin);
 void GPIO_mode(GPIO_TypeDef* Port, int pin, unsigned int mode);
 void GPIO_ospeed(GPIO_TypeDef* Port, int pin, unsigned int speed);

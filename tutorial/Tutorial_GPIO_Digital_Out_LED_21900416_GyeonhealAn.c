@@ -34,7 +34,7 @@ int main(void) {
 		GPIOA->OTYPER &= ~ (1UL<<LED_PIN);											// Clear '00'  0:Push-Pull 
 			
 		// GPIO Pull-Up/Pull-Down Register 
-		GPIOA->PUPDR  &=  ~(3<<LED_PIN*2);											// 00: none
+		GPIOA->PUPDR  &=  ~(3UL<<LED_PIN*2);											// 00: none
 		GPIOA->PUPDR |= 0<<(LED_PIN*2);
 		
 		// GPIO Output Speed Register 

@@ -64,3 +64,7 @@ int GPIO_read(GPIO_TypeDef *Port, int pin){
 	return bitVal;
 }
 
+void GPIO_write(GPIO_TypeDef *Port, int pin, unsigned int Output){
+	Port->ODR &= ~(1UL << pin);
+	Port->ODR |= (Output << pin);
+}
