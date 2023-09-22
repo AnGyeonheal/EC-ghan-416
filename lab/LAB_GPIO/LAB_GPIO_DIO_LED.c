@@ -5,16 +5,22 @@
 #include "ecGPIO.h"
 void setup(void);
 	
-int main(void) { 
+int main(void) {
+	unsigned int OUT = 1;
 	// Initialiization
 	setup();
-	char a = HIGH;
+
 	// Inifinite Loop 
 	while(1){
-		if(GPIO_read(GPIOC, BUTTON_PIN)!=0){
-			a^=LOW;
+		GPIO_write(GPIOA, LED_PIN, OUT);
+
+		while(1){
+			if(GPIO_read(GPIOC, BUTTON_PIN) == 0){
+				OUT ^= 1;
+				break;
+			}
 		}
-		GPIO_write(GPIOA, LED_PIN, a);
+		
 	}
 }
 
