@@ -11,7 +11,20 @@ int main(void) {
 	
 	// Inifinite Loop 
 	while(1){
-		
+		if(GPIO_read(GPIOA, LED_PIN)!=0){
+			if(GPIO_read(GPIOC, BUTTON_PIN)!=0)
+				GPIO_write(GPIOA,LED_PIN,LOW);
+			else{
+				GPIO_write(GPIOA,LED_PIN,LOW);
+			}
+		}
+		else{
+			if(GPIO_read(GPIOC, BUTTON_PIN)!=0)
+				GPIO_write(GPIOA,LED_PIN,HIGH);
+			else{
+				GPIO_write(GPIOA,LED_PIN,HIGH);
+			}
+		}
 	}
 }
 
