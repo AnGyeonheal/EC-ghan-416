@@ -57,6 +57,7 @@ void GPIO_pupd(GPIO_TypeDef *Port, int pin, unsigned int pupd){
 	Port->PUPDR |= pupd << (2*pin);
 }
 
+
 int GPIO_read(GPIO_TypeDef *Port, int pin){
 	int bitVal = 0;
 	bitVal = Port->IDR >> pin & 1UL;
