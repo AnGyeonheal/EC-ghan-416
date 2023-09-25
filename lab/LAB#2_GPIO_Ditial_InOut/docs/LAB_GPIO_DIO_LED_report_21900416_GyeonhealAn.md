@@ -18,7 +18,7 @@ In this lab, we are required to create a simple program that toggle multiple LED
 
 - **MCU**
   
-  <img src="https://github.com/AnGyeonheal/CAE_Ansys/assets/118132313/54fb6dab-f852-4c8d-8ec7-069915b6f63a" alt="image" style="zoom: 33%;" />
+  <img src="https://github.com/AnGyeonheal/CAE_Ansys/assets/118132313/54fb6dab-f852-4c8d-8ec7-069915b6f63a" alt="image" style="zoom: 50%;" />
   
   - NUCLEO-F411RE
   
