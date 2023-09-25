@@ -23,14 +23,14 @@
 
 
 int main(void) {	
-	/* Part 1. RCC GPIOA Register Setting */
+	/* Part 1. RCC GPIO_A Register Setting */
 		RCC_GPIOA_enable();
 		RCC_GPIOC_enable();
 		
 	/* Part 2. GPIO Register Setting for OUTPUT*/			
 		// GPIO Mode Register
-		GPIOA->MODER &= ~(3UL<<(LED_PIN*2)); 										// Clear '00' for Pin 5
-		GPIOA->MODER |= 1UL<<(LED_PIN); 										// Set '01' for Pin 5
+		GPIOA->MODER &= ~(3UL<<(LED_PIN*2)); 										// Clear "00" for Pin 5
+		GPIOA->MODER |= 1UL<<(LED_PIN); 										// Set "01" for Pin 5
 		
 		// GPIO Output Type Register  
 		GPIOA->OTYPER &= 1UL<<LED_PIN;									 	// 0:Push-Pull   
@@ -57,7 +57,7 @@ int main(void) {
 	/* Part 4. Deal loop  */	
 		while(1){
 			unsigned int btVal=0;
-			//Read bit value of Button
+			//Read BIT value of Button
 			btVal=(GPIOC->IDR) & (1UL << BUTTON_PIN);	
 			if(btVal == 0)
 				GPIOA->ODR |= (1UL << LED_PIN);	 		
