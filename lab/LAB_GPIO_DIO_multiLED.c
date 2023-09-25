@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------\
 @ Embedded Controller by Young-Keun Kim - Handong Global University
-Author           : Gyeonheal An
+Author           : GyeonhealAn
 Created          : 05-03-2021
 Modified         : 09-25-2023
 Language/ver     : C++ in Keil uVision
