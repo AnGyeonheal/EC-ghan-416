@@ -106,7 +106,7 @@ Apply 'H' to any 7-segment pin 'a'~'g' and observe if that LED is turned on or o
 **ecGPIO.h**
 
 ```c
-void sevensegment_init(void); 
+void seven_segment_init(void); 
 void sevensegment_decoder(uint8_t  num);
 ```
 
