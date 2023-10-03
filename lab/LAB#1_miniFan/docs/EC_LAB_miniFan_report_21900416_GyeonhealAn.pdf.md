@@ -141,9 +141,9 @@ unsigned char pwmOut = 0;
 typedef struct {
   uint32_t out[2][2];     // output = FSM[state].out[input][PWM or LED]
   uint32_t next[2];       // next_state = FSM[state].next[input]
-} State_t;
+} State_P1;
 
-State_t FSM[2] = {
+State_P1 FSM[2] = {
   { {{0  , LOW }, {160, HIGH}}, {S0, S1} },
   { {{160, HIGH}, {0  , LOW }}, {S1, S0} } 
 };
@@ -225,9 +225,9 @@ typedef struct {
 	unsigned int next[4];       // next_state = FSM[state].next[input]
 	unsigned int led[4];        // output = FSM[state].out[input]
   	unsigned int fan[4];
-} State_t;
+} State_P1;
 
-State_t FSM[3] = {
+State_P1 FSM[3] = {
   { {S0, S0, S1, S1},{LOW, LOW, LOW, HIGH},{0, 0, 0, 128} },
   { {S1, S1, S2, S2},{HIGH, HIGH, HIGH, HIGH},{0, 128, 0, 255} },
   { {S2, S2, S0, S0}, {HIGH, HIGH, LOW, LOW}, {0, 255, 0, 0} }
