@@ -30,28 +30,31 @@ In this lab, you are required to create a simple program to control a 7-segment 
 
 **Software**
 
-- Keil uVision, CMSIS, EC_HAL library
+- IDE: Clion(with PlatformIO core plugin)
+  Library: STM32Cube library package(Official), EC_HAL library
+  Compiler: GNU Arm Embedded Toolchain
+  Debugger: ST-Link
 
 ### ii. Exercise
 
-| **Port/Pin**   | **Description**              | **Register setting**          |
-| -------------- | ---------------------------- | ----------------------------- |
-| Port A Pin 5   | Clear Pin5 mode              | GPIOA->MODER &=~(3<<(5*2))    |
-| Port A Pin 5   | Set Pin5 mode = Output       | GPIOA->MODER \|=____________  |
-| Port A Pin 6   | Clear Pin6 mode              | GPIOA->MODER &=~___________   |
-| Port A Pin 6   | Set Pin6 mode = Output       | GPIOA->MODER \|=____________  |
-| Port A Pin Y   | Clear PinY mode              | GPIOA->MODER &=~___________   |
-| Port A Pin Y   | Set PinY mode = Output       | GPIOA->MODER \|=____________  |
-| Port A Pin 5~9 | Clear Pin5~9 mode            | GPIOA->MODER &=~___________   |
-|                | Set Pin5~9 mode = Output     | GPIOA->MODER \|=____________  |
-| Port X Pin Y   | Clear Pin Y mode             | GPIOX->MODER &=~___________   |
-|                | Set Pin Y mode = Output      | GPIOX->MODER \|=____________  |
-| Port A Pin5    | Set Pin5 otype=push-pull     | GPIOA->OTYPER =____________   |
-| Port A PinY    | Set PinY otype=push-pull     | GPIOA-> OTYPER =____________  |
-| Port A Pin5    | Set Pin5 ospeed=Fast         | GPIOA->OSPEEDR =____________  |
-| Port A PinY    | Set PinY ospeed=Fast         | GPIOA-> OSPEEDR =____________ |
-| Port A Pin 5   | Set Pin5 PUPD=no pullup/down | GPIOA->OTYPER =____________   |
-| Port A Pin Y   | Set PinY PUPD=no pullup/down | GPIOA-> OTYPER =____________  |
+| Port/ Pin      | Description                  | Register Setting                 |
+| -------------- | ---------------------------- | -------------------------------- |
+| Port A Pin 5   | Clear Pin5 mode              | GPIOA->MODER &=~(3<<(5*2))       |
+| Port A Pin 5   | Set Pin5 mode = Output       | GPIOA->MODER \|= (1<<5*2)        |
+| Port A Pin 6   | Clear Pin6 mode              | GPIOA->MODER &=~ ~(3<<(6*2))     |
+| Port A Pin 6   | Set Pin6 mode = Output       | GPIOA->MODER \|= (1<<6*2)        |
+| Port A Pin Y   | Clear PinY mode              | GPIOA->MODER &=~(3<<(Y*2))       |
+| Port A Pin Y   | Set PinY mode = Output       | GPIOA->MODER \|= 1<<(Y*2)        |
+| Port A Pin 5~9 | Clear Pin5~9 mode            | GPIOA->MODER &=~(0x3FF<<(5*2))   |
+|                | Set Pin5~9 mode = Output     | GPIOA->MODER \|=  (0x155<<(5*2)) |
+| Port X Pin Y   | Clear Pin Y mode             | GPIOX->MODER &=~(3<<(Y*2))       |
+|                | Set Pin Y mode = Output      | GPIOX->MODER \|= (1<<(Y*2)       |
+| Port A Pin 5   | Set Pin5 otype=push-pull     | GPIOA->OTYPER \|= (0<<5)         |
+| Port A Pin Y   | Set PinY otype=push-pull     | GPIOA-> OTYPER \|= (0<<Y)        |
+| Port A Pin 5   | Set Pin5 ospeed=Fast         | GPIOA->OSPEEDR \|= (2<<(5*2))    |
+| Port A Pin Y   | Set PinY ospeed=Fast         | GPIOA-> OSPEEDR \|=(2<<(Y*2))    |
+| Port A Pin 5   | Set Pin5 PUPD=no pullup/down | GPIOA->PUPDR \|= (0<<(5*2))      |
+| Port A Pin Y   | Set PinY PUPD=no pullup/down | GPIOA->PUPDR \|= (0<<(Y*2))      |
 
 ## II. Problem 1: Connecting 7-Segment Display
 
@@ -83,7 +86,19 @@ Apply 'H' to any 7-segment pin 'a'~'g' and observe if that LED is turned on or o
 
 2. **What are the common cathode and common anode of 7-segment display?**
 
+   Common cathode 7-segment display
 
+   - In a common cathode display, all the cathodes (negative terminals) of the LED segments are connected together and shared as a common connection.
+   - The anodes (positive terminals) of each segment are connected to individual pins or lines.
+   - To light up a particular segment in a common cathode display, you apply a positive voltage (typically 5V or 3.3V) to the anode of that segment while grounding the common cathode.
+   - When you ground the common cathode, the LED segments with a positive voltage on their anodes will light up, displaying the desired character.
+
+   Common anode 7-Segment display
+
+   - In a common anode display, all the anodes (positive terminals) of the LED segments are connected together and shared as a common connection.
+   - The cathodes (negative terminals) of each segment are connected to individual pins or lines.
+   - To light up a particular segment in a common anode display, you apply ground (0V) to the cathode of that segment while applying a positive voltage (typically 5V or 3.3V) to the common anode.
+   - When you apply a positive voltage to the common anode, the LED segments with their cathodes grounded will light up, displaying the desired character.
 
 3. **Does the LED of a 7-segment display (common anode) pin turn ON when 'HIGH' is given to the LED pin from the MCU?**
 
