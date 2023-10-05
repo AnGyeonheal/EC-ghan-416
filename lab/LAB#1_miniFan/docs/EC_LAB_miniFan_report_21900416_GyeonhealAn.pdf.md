@@ -132,7 +132,7 @@ const int pwmPin = 11;
 const int btnPin = 3;
 
 unsigned char state = S0;
-unsigned char nextstate = S0;
+unsigned char next_state = S0;
 unsigned char input = 0;
 unsigned char ledOut = LOW;
 unsigned char pwmOut = 0;
@@ -140,10 +140,10 @@ unsigned char pwmOut = 0;
 // State table definition
 typedef struct {
   uint32_t out[2][2];     // output = FSM[state].out[input][PWM or LED]
-  uint32_t next[2];       // nextstate = FSM[state].next[input]
-} State_t;
+  uint32_t next[2];       // next_state = FSM[state].next[input]
+} State_P1;
 
-State_t FSM[2] = {
+State_P1 FSM[2] = {
   { {{0  , LOW }, {160, HIGH}}, {S0, S1} },
   { {{160, HIGH}, {0  , LOW }}, {S1, S0} } 
 };
@@ -180,9 +180,9 @@ void nextState(){
   pwmOut = FSM[state].out[input][PWM];
   ledOut = FSM[state].out[input][LED];
   
-  nextstate = FSM[state].next[input];
+  next_state = FSM[state].next[input];
   
-  state = nextstate;
+  state = next_state;
   input = 0;
 }
 ```
@@ -209,7 +209,7 @@ float distance;
 unsigned long duration;
 unsigned char btn_input = 0;
 unsigned char state = S0;
-unsigned char nextstate = S0;
+unsigned char next_state = S0;
 unsigned char input = 0;
 unsigned char ledOut = LOW;
 unsigned char fanOut = 0;
@@ -222,12 +222,12 @@ Pin numbers for input devices and output devices that can be identified in 3-2 w
 
 ```c
 typedef struct {
-	unsigned int next[4];       // nextstate = FSM[state].next[input]
+	unsigned int next[4];       // next_state = FSM[state].next[input]
 	unsigned int led[4];        // output = FSM[state].out[input]
   	unsigned int fan[4];
-} State_t;
+} State_P1;
 
-State_t FSM[3] = {
+State_P1 FSM[3] = {
   { {S0, S0, S1, S1},{LOW, LOW, LOW, HIGH},{0, 0, 0, 128} },
   { {S1, S1, S2, S2},{HIGH, HIGH, HIGH, HIGH},{0, 128, 0, 255} },
   { {S2, S2, S0, S0}, {HIGH, HIGH, LOW, LOW}, {0, 255, 0, 0} }
@@ -342,8 +342,8 @@ The pressed() function is a function executed through attachInterrupt when a but
 
 ```c
 void nextState() {
-	nextstate = FSM[state].next[input];
-	state = nextstate;
+	next_state = FSM[state].next[input];
+	state = next_state;
 
 	// Intialize button pressed
 	btn_input = 0;

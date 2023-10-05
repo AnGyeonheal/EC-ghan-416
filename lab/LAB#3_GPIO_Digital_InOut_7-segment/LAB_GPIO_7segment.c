@@ -1,43 +1,59 @@
-/**
-******************************************************************************
-* @author  SSSLAB
-* @Mod		 2022-08-12 by YKKIM  	
-* @brief   Embedded Controller:  Tutorial Digital In/Out 7-segment Display
-* 
-******************************************************************************
-*/
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 10-03-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : LAB_GPIO_7segment
+/----------------------------------------------------------------*/
 
 #include "stm32f4xx.h"
 #include "ecRCC.h"
 #include "ecGPIO.h"
 
+unsigned char state = S0;
+unsigned  char next_state = S0;
+unsigned int input = 1;
+
 void setup(void);
-	
-int main(void) {	
-	// Initialiization --------------------------------------------------------
+
+int main(void) {
+    int delay=0;
+
+	// Initialization --------------------------------------------------------
 	setup();
-	
-	// Inifinite Loop ----------------------------------------------------------
+    //------------------------ problem 2 ------------------------
+    // seven_segment_decode(S0);
+    // GPIO_write(GPIOB, pin_dp, HIGH);      // DP
+
+    //------------------------ problem 3 ------------------------
+    sevensegment_display(S0);
+
+	// Infinite Loop ----------------------------------------------------------
 	while(1){
-		GPIO_write(GPIOA, 5, HIGH);
-		GPIO_write(GPIOA, 6, HIGH);
-		GPIO_write(GPIOA, 7, HIGH);
-		GPIO_write(GPIOB, 6, HIGH);
-		GPIO_write(GPIOC, 7, HIGH);
-		GPIO_write(GPIOA, 9, HIGH);
-		GPIO_write(GPIOA, 8, HIGH);
-		GPIO_write(GPIOB, 10, HIGH);
+
+        if((GPIO_read(GPIOC, BUTTON_PIN) == 0) && (delay > 100000)){
+            input = 0;
+            next_state = FSM[state].next[input];
+            state = next_state;
+            // ---------------- problee 2 ----------------
+            // seven_segment_decode(state);
+            // ---------------- problem 3 ----------------
+            sevensegment_display(state);
+
+            delay = 0;
+            input = 1;
+        }
+        delay++;
 	}
 }
 
-void setup(void){
-	RCC_HSI_init();
-	GPIO_init(GPIOA, 5, OUTPUT);
-	GPIO_init(GPIOA, 6, OUTPUT);
-	GPIO_init(GPIOA, 7, OUTPUT);
-	GPIO_init(GPIOB, 6, OUTPUT);
-	GPIO_init(GPIOC, 7, OUTPUT);
-	GPIO_init(GPIOA, 9, OUTPUT);
-	GPIO_init(GPIOA, 8, OUTPUT);
-	GPIO_init(GPIOB, 10, OUTPUT);
+void setup(void)
+{
+    RCC_HSI_init();
+    GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
+    GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
+    // seven_segment_init();
+    sevensegment_display_init();
 }
