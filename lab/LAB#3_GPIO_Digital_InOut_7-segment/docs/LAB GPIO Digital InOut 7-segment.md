@@ -1,12 +1,12 @@
 # [LAB#3] GPIO Digital InOut 7-segment
 
-**Date: Sep.26.2023**
+**Date: Dec.6.2023**
 
 **Author: 21900416 Gyeonheal An**
 
 **Github: https://github.com/AnGyeonheal/Embedded_Control**
 
-**Demo Video: **https://www.youtube.com/shorts/HLNItlFfu7U
+**Demo Video: **https://www.youtube.com/watch?v=A_POSQJDsKc&ab_channel=%ED%95%9C%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90%EC%95%88%EA%B2%AC%ED%9E%90
 
 ## I. Introduction
 
@@ -76,7 +76,7 @@ Apply 'H' to any 7-segment pin 'a'~'g' and observe if that LED is turned on or o
 
 ### ii. Connection Diagram
 
-
+![image](https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/4d21c291-ccd9-4616-877f-f42c7c4ada23)
 
 ### iii. Discussion
 
@@ -93,18 +93,18 @@ Apply 'H' to any 7-segment pin 'a'~'g' and observe if that LED is turned on or o
    - In a common cathode display, all the cathodes (negative terminals) of the LED segments are connected together and shared as a common connection.
    - The anodes (positive terminals) of each segment are connected to individual pins or lines.
    - To light up a particular segment in a common cathode display, you apply a positive voltage (typically 5V or 3.3V) to the anode of that segment while grounding the common cathode.
-   - When you ground the common cathode, the LED segments with a positive voltage on their anodes will light up, displaying the desired character.
+   - When we ground the common cathode, the LED segments with a positive voltage on their anodes will light up, displaying the desired character.
 
    Common anode 7-Segment display
 
    - In a common anode display, all the anodes (positive terminals) of the LED segments are connected together and shared as a common connection.
    - The cathodes (negative terminals) of each segment are connected to individual pins or lines.
    - To light up a particular segment in a common anode display, you apply ground (0V) to the cathode of that segment while applying a positive voltage (typically 5V or 3.3V) to the common anode.
-   - When you apply a positive voltage to the common anode, the LED segments with their cathodes grounded will light up, displaying the desired character.
+   - When we apply a positive voltage to the common anode, the LED segments with their cathodes grounded will light up, displaying the desired character.
 
 3. **Does the LED of a 7-segment display (common anode) pin turn ON when 'HIGH' is given to the LED pin from the MCU?**
 
-   
+   No. It turn ON when 'LOW' is given to the LED pin for MCU
 
 ## III. Problem 2: Display 0~9 with button press
 
@@ -140,6 +140,8 @@ void sevensegment_decoder(uint8_t  num);
 
 ### iii. Code
 
+**main.c**
+
 ```c
 /*----------------------------------------------------------------\
 @ Embedded Controller by Young-Keun Kim - Handong Global University
@@ -167,11 +169,11 @@ int main(void) {
 	// Initialization --------------------------------------------------------
 	setup();
     //------------------------ problem 2 ------------------------
-    // seven_segment_decode(S0);
-    // GPIO_write(GPIOB, pin_dp, HIGH);      // DP
+    seven_segment_decode(S0);
+    GPIO_write(GPIOB, pin_dp, HIGH);      // DP
 
     //------------------------ problem 3 ------------------------
-    sevensegment_display(S0);
+    // sevensegment_display(S0);
 
 	// Infinite Loop ----------------------------------------------------------
 	while(1){
@@ -180,10 +182,10 @@ int main(void) {
             input = 0;
             next_state = FSM[state].next[input];
             state = next_state;
-            // ---------------- problee 2 ----------------
-            // seven_segment_decode(state);
+            // ---------------- problem 2 ----------------
+            seven_segment_decode(state);
             // ---------------- problem 3 ----------------
-            sevensegment_display(state);
+            // sevensegment_display(state);
 
             delay = 0;
             input = 1;
@@ -202,7 +204,41 @@ void setup(void)
 }
 ```
 
+The basic setting of GPIO pins was performed through the setup function, the initialization was performed through the step_segment_decode() function, and the DP also fixed the output to zero. Loop() switches to the next state when the button is pressed and after the delay time passes, and outputs the output of the corresponding state. Then, prepare to receive the next button input by initializing the next delay and input.
+
+![image](https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/61ff9dcb-272e-4173-ae6a-7dcbfaf2b8e6)
+
+This is FSM state graph of 7-segment with out Decoder.
+
 **GPIO.c**
+
+```c
+State_P1 FSM[10] = {
+        {{S1, S0}, {0,0,0,0,0,0,1}},    // 0
+        {{S2, S1}, {1,0,0,1,1,1,1}},    // 1
+        {{S3, S2}, {0,0,1,0,0,1,0}},    // 2
+        {{S4, S3}, {0,0,0,0,1,1,0}},    // 3
+        {{S5, S4}, {1,0,0,1,1,0,0}},    // 4
+        {{S6, S5}, {0,1,0,0,1,0,0}},    // 5
+        {{S7, S6}, {1,1,0,0,0,0,0}},    // 6
+        {{S8, S7}, {0,0,0,1,1,1,1}},    // 7
+        {{S9, S8}, {0,0,0,0,0,0,0}},    // 8
+        {{S0, S9}, {0,0,0,1,1,0,0}}     // 9
+
+};
+```
+
+The above FSM graph was implemented as a structure. And this was called from the header file below.
+
+```c
+// GPIO.h
+typedef struct{
+    unsigned int next[2];
+    unsigned int out[7];
+} State_P1;
+
+extern State_P1 FSM[10];  // {{next_state}, {a,b,c,d,e,f,g}}  FSM[state].next[Button_input] 
+```
 
 ```c
 void seven_segment_init(void){
@@ -267,13 +303,15 @@ void seven_segment_decode(uint8_t state){
 }
 ```
 
+The function "sevent_segment_decode()" takes the output corresponding to the input state from the FSM structure and outputs it to the LED.
+
 ### iv. Results
 
-Experiment images and results
+Circuit of 7-segment without Decode 
 
-> Show experiment images /results
+> <img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/de24160e-2650-4ae3-82f8-3d30f499aa5f" alt="image" style="zoom:50%;" />
 
-Add [demo video link](https://github.com/ykkimhgu/course-doc/blob/master/course/lab/link/README.md)
+[Demo Video](https://www.youtube.com/watch?v=A_POSQJDsKc&ab_channel=%ED%95%9C%EB%8F%99%EB%8C%80%ED%95%99%EA%B5%90%EC%95%88%EA%B2%AC%ED%9E%90)
 
 ## III. Problem 3: Using both 7-Segment Decoder and 7-segment display
 
@@ -285,21 +323,11 @@ Then, you need only 4 Digital out pins of MCU to display from 0 to 9.
 
 ![img](https://424033796-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MgmrEstOHxu62gXxq1t%2Fuploads%2FOLBpZY2YOH4KNgHnb7du%2Fimage.png?alt=media&token=97cf1fb5-c747-40e4-b43a-4f743400bfa5)
 
+![image](https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/c9dd30f7-e84e-45b6-9819-f71868ca8fb6)
+
 ### ii. Connection Diagram
 
-
-
-1. Work on the same project and code.
-
-- i.e. : project “**LAB_GPIO_7segment”.** and source file named as “**LAB_GPIO_7segment.c”**
-
-void sevensegment_display_init(void); 
-
-void sevensegment_display(uint8_t  num);
-
-1. First, check if every number, 0 to 9, can be displayed properly
-
-2. Then, create a code to display the number from 0 to 9 with each button press. After the number '9', it should start from '0' again.
+![image](https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/031ea146-bc20-4f7e-b450-5329f288d243)
 
 ### iii. Configuration
 
@@ -309,12 +337,84 @@ void sevensegment_display(uint8_t  num);
 | PC13                       | PA7, PB6, PC7, PA9                            |
 | PULL-UP                    | Push-Pull, No Pull-up-Pull-down, Medium Speed |
 
+### iv. Code
+
+```c
+State_P2 FSM_D[10] = {
+        {{S1, S0}, {0,0,0,0}},    // 0
+        {{S2, S1}, {0,0,0,1,}},    // 1
+        {{S3, S2}, {0,0,1,0,}},    // 2
+        {{S4, S3}, {0,0,1,1,}},    // 3
+        {{S5, S4}, {0,1,0,0,}},    // 4
+        {{S6, S5}, {0,1,0,1,}},    // 5
+        {{S7, S6}, {0,1,1,0,}},    // 6
+        {{S8, S7}, {0,1,1,1,}},    // 7
+        {{S9, S8}, {1,0,0,0,}},    // 8
+        {{S0, S9}, {1,0,0,1,}}     // 9
+
+};
+```
+
+The above FSM graph was implemented as a structure. And this was called from the header file below.
+
+```c
+// GPIO.h
+typedef struct{
+    unsigned int next[2];
+    unsigned int out[4];
+} State_P2;
+
+extern State_P2 FSM_D[10];	
+// {{next_state}, {D,C,B,A}}  FSM[state].next[Button_input]
+```
+
+```c
+void sevensegment_display_init(void){
+    RCC_HSI_init();
+
+    GPIO_init(GPIOA, pin_D, OUTPUT);
+    GPIO_init(GPIOB, pin_C, OUTPUT);
+    GPIO_init(GPIOC, pin_B, OUTPUT);
+    GPIO_init(GPIOA, pin_A, OUTPUT);
+
+    GPIO_otype(GPIOA, pin_D, EC_PUSH_PULL);
+    GPIO_otype(GPIOB, pin_C, EC_PUSH_PULL);
+    GPIO_otype(GPIOC, pin_B, EC_PUSH_PULL);
+    GPIO_otype(GPIOA, pin_A, EC_PUSH_PULL);
+
+    GPIO_pupd(GPIOA, pin_D, EC_NONE);
+    GPIO_pupd(GPIOB, pin_C, EC_NONE);
+    GPIO_pupd(GPIOC, pin_B, EC_NONE);
+    GPIO_pupd(GPIOA, pin_A, EC_NONE);
+
+    GPIO_ospeed(GPIOA, pin_D, EC_MEDIUM);
+    GPIO_ospeed(GPIOB, pin_C, EC_MEDIUM);
+    GPIO_ospeed(GPIOC, pin_B, EC_MEDIUM);
+    GPIO_ospeed(GPIOA, pin_A, EC_MEDIUM);
+}
+```
+
+It initialize the GPIO pins
+
+```c
+void sevensegment_display(uint8_t  state){
+    unsigned int D, C, B, A;
+
+    D = FSM_D[state].out[0];
+    C = FSM_D[state].out[1];
+    B = FSM_D[state].out[2];
+    A = FSM_D[state].out[3];
+
+    GPIO_write(GPIOA, pin_c, D);
+    GPIO_write(GPIOB, pin_d, C);
+    GPIO_write(GPIOC, pin_e, B);
+    GPIO_write(GPIOA, pin_f, A);
+
+}
+```
+
+The function "sevensegment_display()" takes the output corresponding to the input state from the FSM_D structure and outputs it to the LED.
+
 ## IV. Reference
 
-Complete list of all references used (github, blog, paper, etc)
-
-
-
-## V. Troubleshooting
-
-(Option) You can write Troubleshooting section
+https://ykkim.gitbook.io/ec/ec-course/lab/lab-gpio-digital-inout-7segment
