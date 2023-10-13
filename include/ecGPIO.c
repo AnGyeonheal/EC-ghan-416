@@ -157,7 +157,6 @@ void seven_segment_decode(uint8_t state){
 }
 
 void sevensegment_display_init(void){
-    RCC_HSI_init();
 
     GPIO_init(GPIOA, pin_D, OUTPUT);
     GPIO_init(GPIOB, pin_C, OUTPUT);

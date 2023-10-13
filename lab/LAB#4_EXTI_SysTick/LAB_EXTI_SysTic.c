@@ -5,14 +5,14 @@ Created          : 05-03-2021
 Modified         : 10-14-2023
 Language/ver     : C++ in Keil uVision
 
-Description      : LAB_EXTI.c
+Description      : LAB_EXTI_SysTick.c
 /----------------------------------------------------------------*/
 
 #include "stm32f4xx.h"
 #include "ecRCC.h"
 #include "ecGPIO.h"
 #include "ecEXTI.h"
-#include "ecSysTick.h""
+#include "ecSysTick.h"
 
 #define LED_PIN	5
 #define BUTTON_PIN 13
@@ -22,54 +22,42 @@ Description      : LAB_EXTI.c
 unsigned char state = S0;
 unsigned  char next_state = S0;
 unsigned int input = 1;
-unsigned int delay = 0;
+int count = 0;
 
 void setup(void);
 void EXTI15_10_IRQHandler(void);
-void sevensegment_switch(void);
 // Initialiization 
 
 
 int main(void) {
-	setup();
-	while (1) {
-        delay ++;
+    // Initialiization --------------------------------------------------------
+    setup();
+
+    // Inifinite Loop ----------------------------------------------------------
+    while(1){
+        sevensegment_display(count);
+        delay_ms(1000);
+        count++;
+        if (count >9) count =0;
+        SysTick_reset();
     }
 }
 
 void setup(void)
 {
-	RCC_PLL_init();
-	SysTick_init();
-	GPIO_init(GPIOC, BUTTON_PIN, INPUT);
-	GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
-	// Priority Highest(0) External Interrupt 
-	EXTI_init(GPIOC, BUTTON_PIN, FALL, 0);
-	sevensegment_display_init();
+    RCC_PLL_init();
+    SysTick_init();
+    sevensegment_display_init();
+    GPIO_init(GPIOC, BUTTON_PIN, INPUT);
+    GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
+    EXTI_init(GPIOC, BUTTON_PIN, FALL, 0);
+
 }
 
-//EXTI for Pin 13
 void EXTI15_10_IRQHandler(void) {
 
     if (is_pending_EXTI(BUTTON_PIN) == 1) {
-        while(1){
-            delay++;
-            if(delay > 500000) break;
-        }
-        sevensegment_switch();
+        count = 9;
         clear_pending_EXTI(BUTTON_PIN);
-        delay = 0;
     }
-
-}
-
-void sevensegment_switch(void){
-	
-	input = 0;
-	next_state = FSM[state].next[input];
-	state = next_state;
-
-	sevensegment_display(state);
-	input = 1;
-
 }
