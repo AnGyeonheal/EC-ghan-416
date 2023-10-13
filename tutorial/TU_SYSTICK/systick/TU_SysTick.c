@@ -67,8 +67,13 @@ void SysTick_Handler(void){
 
 void setup(void)
 {
+	
+	// HSI is used as system clock         
+	// RCC_HSI_init();
+		
 	RCC_PLL_init();                         // System Clock = 84MHz	
 	GPIO_init(GPIOA, LED_PIN, OUTPUT);    // calls RCC_GPIOA_enable()	
+	
 }
 
 

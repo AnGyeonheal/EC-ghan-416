@@ -27,24 +27,10 @@ Project File Date:  10/10/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-TU_SysTick.c(8): warning: no previous extern declaration for non-static variable 'msTicks' [-Wmissing-variable-declarations]
-volatile uint32_t msTicks = 0;
-                  ^
-TU_SysTick.c(8): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-volatile uint32_t msTicks = 0;
-         ^
-TU_SysTick.c(9): warning: no previous extern declaration for non-static variable 'curTicks' [-Wmissing-variable-declarations]
-volatile uint32_t curTicks;
-                  ^
-TU_SysTick.c(9): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-volatile uint32_t curTicks;
-         ^
-2 warnings generated.
-compiling TU_SysTick.c...
 linking...
-Program Size: Code=1440 RO-data=440 RW-data=4 ZI-data=1652  
+Program Size: Code=1328 RO-data=440 RW-data=4 ZI-data=1652  
 FromELF: creating hex file...
-".\Objects\systick.axf" - 0 Error(s), 2 Warning(s).
+".\Objects\systick.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -70,11 +56,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
 Build Time Elapsed:  00:00:00
 </pre>
 </body>
