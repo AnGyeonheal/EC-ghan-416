@@ -59,7 +59,6 @@ void EXTI15_10_IRQHandler(void) {
         clear_pending_EXTI(BUTTON_PIN);
         delay = 0;
     }
-
 }
 
 void sevensegment_switch(void){

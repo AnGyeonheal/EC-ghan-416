@@ -55,7 +55,7 @@ void delay_ms (uint32_t mesc){
 	msTicks = 0;
 }
 
-//void delay_ms(uint32_t msec){
+// void delay_ms(uint32_t msec){
 //	uint32_t now=SysTick_val(); 
 //	if (msec>5000) msec=5000;
 //	if (msec<1) msec=1;
