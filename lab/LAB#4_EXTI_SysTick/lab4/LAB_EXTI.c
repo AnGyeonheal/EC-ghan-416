@@ -33,7 +33,6 @@ void sevensegment_switch(void);
 int main(void) {
 	setup();
 	while (1) {
-        delay ++;
     }
 }
 
@@ -54,7 +53,7 @@ void EXTI15_10_IRQHandler(void) {
     if (is_pending_EXTI(BUTTON_PIN) == 1) {
         while(1){
             delay++;
-            if(delay > 500000) break;
+            if(delay > 3000000) break;
         }
         sevensegment_switch();
         clear_pending_EXTI(BUTTON_PIN);
@@ -64,12 +63,10 @@ void EXTI15_10_IRQHandler(void) {
 }
 
 void sevensegment_switch(void){
-	
 	input = 0;
 	next_state = FSM[state].next[input];
 	state = next_state;
 
 	sevensegment_display(state);
 	input = 1;
-
 }

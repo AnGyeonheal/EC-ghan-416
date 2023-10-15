@@ -55,7 +55,6 @@ void setup(void)
 }
 
 void EXTI15_10_IRQHandler(void) {
-
     if (is_pending_EXTI(BUTTON_PIN) == 1) {
         count = 9;
         clear_pending_EXTI(BUTTON_PIN);
