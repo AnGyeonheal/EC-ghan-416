@@ -106,7 +106,6 @@ unsigned int delay = 0;
 int main(void) {
 	setup();
 	while (1) {
-        delay ++;
     }
 }
 ```
@@ -139,7 +138,7 @@ void EXTI15_10_IRQHandler(void) {
     if (is_pending_EXTI(BUTTON_PIN) == 1) {
         while(1){
             delay++;
-            if(delay > 500000) break;
+            if(delay > 3000000) break;
         }
         sevensegment_switch();
         clear_pending_EXTI(BUTTON_PIN);
