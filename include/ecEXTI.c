@@ -39,7 +39,7 @@ void EXTI_init(GPIO_TypeDef *Port, int Pin, int trig_type,int priority){
 	else 			EXTI_IRQn = EXTI15_10_IRQn;
 								
 	NVIC_SetPriority(EXTI_IRQn, priority);	// EXTI priority
-	NVIC_EnableIRQ(EXTI_IRQn); 	// EXTI IRQ enable
+	NVIC_EnableIRQ(EXTI_IRQn); 	            // EXTI IRQ enable
 }
 
 
@@ -47,7 +47,7 @@ void EXTI_enable(uint32_t pin) {
 	EXTI->IMR |= 1UL << pin;     // not masked (i.e., Interrupt enabled)
 }
 void EXTI_disable(uint32_t pin) {
-	EXTI->IMR |= 0UL<<pin;     // masked (i.e., Interrupt disabled)
+	EXTI->IMR &= ~(1UL << pin);     // masked (i.e., Interrupt disabled)
 }
 
 uint32_t is_pending_EXTI(uint32_t pin){
