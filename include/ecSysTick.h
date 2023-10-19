@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 10-14-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : SysTick.h
+/----------------------------------------------------------------*/
+
 #ifndef __EC_SYSTICK_H
 #define __EC_SYSTICK_H
 
@@ -16,7 +26,8 @@ void SysTick_counter();
 void delay_ms(uint32_t msec);
 void SysTick_reset(void);
 uint32_t SysTick_val(void);
-
+void SysTick_enable(void);
+void SysTick_disable(void);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

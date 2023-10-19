@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 10-14-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : EXTI.h
+/----------------------------------------------------------------*/
+
 #ifndef __EC_EXTI_H
 #define __EC_EXTI_H
 

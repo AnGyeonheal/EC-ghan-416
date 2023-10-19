@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 10-14-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : EXTI.c
+/----------------------------------------------------------------*/
+
 #include "ecGPIO.h"
 #include "ecSysTick.h"
 #include "ecEXTI.h"
@@ -57,5 +67,5 @@ uint32_t is_pending_EXTI(uint32_t pin){
 
 
 void clear_pending_EXTI(uint32_t pin){
-	EXTI->PR |= 0UL << pin;     // clear EXTI pending 
+	EXTI->PR |= 1UL << pin;     // clear EXTI pending 
 }

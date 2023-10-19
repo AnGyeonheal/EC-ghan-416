@@ -1,6 +1,14 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 10-14-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : SysTick.c
+/----------------------------------------------------------------*/
+
 #include "ecSysTick.h"
-
-
 
 #define MCU_CLK_PLL 84000000
 #define MCU_CLK_HSI 16000000
@@ -77,3 +85,11 @@ uint32_t SysTick_val(void) {
 //	msTicks++;
 //	if(msTicks%1000 == 0) count++;
 //}	
+
+void SysTick_enable(void) {
+	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
+}
+
+void SysTick_disable(void) {
+	SysTick->CTRL = 0;
+}
