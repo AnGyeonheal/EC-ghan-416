@@ -35,12 +35,32 @@ void SysTick_counter();
 TU_Timer_PWM_student.c(24): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
         TIM_TypeDef *TIMx;
                      ^
-2 warnings generated.
+TU_Timer_PWM_student.c(69): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+3 warnings generated.
 compiling TU_Timer_PWM_student.c...
+../../include/ecEXTI.c(12): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecEXTI.c(13): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecEXTI.c(30): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SYSCFG->EXTICR[Pin/4] |= (EXTICR_port << (Pin%4*4));                                                                                            // set 4 bits
+                              ~~  ~~~~~~~~~~~~^~~~~~~~~~~~
+../../include/ecEXTI.c(22): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        int EXTICR_port;
+            ^
+4 warnings generated.
+compiling ecEXTI.c...
 linking...
 Program Size: Code=1596 RO-data=440 RW-data=4 ZI-data=1644  
 FromELF: creating hex file...
-".\Objects\TU_PWM.axf" - 0 Error(s), 2 Warning(s).
+".\Objects\TU_PWM.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -71,7 +91,7 @@ Package Vendor: Keil
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
