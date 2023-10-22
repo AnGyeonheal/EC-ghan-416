@@ -135,7 +135,7 @@ void PWM_period_us(PinName_t pinName,  uint32_t usec){
 	
 
 // 1. Set Counter Period in usec
-	TIM_period_us(___, _____); 	//YOUR CODE GOES HERE
+	TIM_period_us(TIMx, usec); 	//YOUR CODE GOES HERE
 	
 }
 
@@ -162,14 +162,14 @@ void PWM_pulsewidth(PinName_t pinName, uint32_t pulse_width_ms){
 
 	
 // 3. Configure prescaler PSC
-	float fclk = _______________					// fclk=fsys/(psc+1);
-	uint32_t value = ____________					// pulse_width_ms *fclk - 1;
+	float fclk = fsys / (psc+1);					// fclk=fsys/(psc+1);
+	uint32_t value = pulse_width_ms * fclk - 1;					// pulse_width_ms *fclk - 1;
 
 	switch(chN){
 		case 1: TIMx->CCR1 = value; break;
-		// REPEAT for CHn=2,  3, 4
-		// REPEAT for CHn=2,  3, 4
-		// REPEAT for CHn=2,  3, 4
+		case 2: TIMx->CCR2 = value;	break;
+		case 3: TIMx->CCR3 = value;	break;
+		case 4: TIMx->CCR4 = value;	break;
 		default: break;
 	}
 }
@@ -200,7 +200,7 @@ void PWM_pulsewidth_us(PinName_t pinName, uint32_t pulse_width_us){
 
 	
 // 3. Configure prescaler PSC
-	float fclk = _______________					// fclk=fsys/(psc+1);
+	float fclk = fsys / (psc+1);					// fclk=fsys/(psc+1);
 	uint32_t value = ____________					// pulse_width_ms *fclk - 1;
 	
 	switch(chN){

@@ -592,6 +592,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\include\ecTIM.h</FilePath>
             </File>
+            <File>
+              <FileName>ecPWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecPWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecPWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecPWM.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
