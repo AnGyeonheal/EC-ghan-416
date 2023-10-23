@@ -1,4 +1,4 @@
-./objects/timerinterrupt.o: timerinterrupt.c \
+./objects/pwm_test.o: PWM_test.c \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
@@ -11,4 +11,4 @@
   ..\..\include\ecPinNames.h ..\..\include\ecGPIO.h \
   ..\..\include\ecRCC.h ..\..\include\ecSysTick.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
-  ..\..\include\ecTIM.h ..\..\include\ecPWM.h ..\..\include\ecEXTI.h
+  ..\..\include\ecTIM.h ..\..\include\ecPWM.h

@@ -1,11 +1,12 @@
 --cpu=Cortex-M4.fp.sp
-".\objects\timerinterrupt.o"
+".\objects\lab_pwm_rcmotor.o"
 ".\objects\ecexti.o"
 ".\objects\ecgpio.o"
 ".\objects\ecpinnames.o"
 ".\objects\ecrcc.o"
 ".\objects\ecsystick.o"
 ".\objects\ectim.o"
+".\objects\ecpwm.o"
 ".\objects\startup_stm32f411xe.o"
 ".\objects\system_stm32f4xx.o"
 --strict --scatter ".\Objects\LAB5.sct"

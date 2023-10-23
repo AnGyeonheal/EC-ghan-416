@@ -22,57 +22,32 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 C:\Users\hilla\source\repos\Embedded_Control_GH\lab\LAB#5_Timer_PWM\LAB5.uvprojx
-Project File Date:  10/20/2023
+Project File Date:  10/23/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-timerinterrupt.c(8): warning: no previous extern declaration for non-static variable '_count' [-Wmissing-variable-declarations]
-uint32_t _count = 0;
-         ^
-timerinterrupt.c(8): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t _count = 0;
-^
-timerinterrupt.c(44): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
-2 warnings generated.
-compiling timerinterrupt.c...
-../../include/ecTIM.c(68): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-                ARRval = Sys_CLK/PSCval/1000000 * usec;         // 1MHz*usec
-                       ~ ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-../../include/ecTIM.c(59): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
-                PSCval = (Sys_CLK / 1000000);                                                                   // 84 or 16     --> f_cnt = 1MHz
-                          ^~~~~~~
-../../include/ecTIM.c(47): note: initialize the variable 'Sys_CLK' to silence this warning
-        uint32_t Sys_CLK;
-                        ^
-                         = 0
-../../include/ecTIM.c(97): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-                PSCval = Sys_CLK/1000;                                                                  // 840 or 160   --> f_cnt = 100kHz
-                       ~ ~~~~~~~^~~~~
-../../include/ecTIM.c(105): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-                PSCval = Sys_CLK/1000;                                                                  // 840 or 160   --> f_cnt = 10kHz
-                       ~ ~~~~~~~^~~~~
-../../include/ecTIM.c(106): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-                ARRval = Sys_CLK / PSCval / 1000 * msec;                // 100kHz*msec
-                       ~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-../../include/ecTIM.c(97): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
-                PSCval = Sys_CLK/1000;                                                                  // 840 or 160   --> f_cnt = 100kHz
-                         ^~~~~~~
-../../include/ecTIM.c(85): note: initialize the variable 'Sys_CLK' to silence this warning
-        uint32_t Sys_CLK;
-                        ^
-                         = 0
-../../include/ecTIM.c(122): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-        uint32_t IRQn_reg =0;
-                 ^
-7 warnings generated.
-compiling ecTIM.c...
+LAB_PWM_RCmotor.c(7): warning: In file included from...
+../../include\ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+LAB_PWM_RCmotor.c(11): warning: In file included from...
+../../include\ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_PWM_RCmotor.c(27): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+      PWM_duty(PWM_PIN, 0.1*i);
+      ~~~~~~~~          ~~~^~
+LAB_PWM_RCmotor.c(31): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+      PWM_duty(PWM_PIN, 0.1*i);
+      ~~~~~~~~          ~~~^~
+4 warnings generated.
+compiling LAB_PWM_RCmotor.c...
 linking...
-Program Size: Code=2056 RO-data=440 RW-data=4 ZI-data=1652  
+Program Size: Code=5140 RO-data=440 RW-data=4 ZI-data=1644  
 FromELF: creating hex file...
-".\Objects\LAB5.axf" - 0 Error(s), 9 Warning(s).
+".\Objects\LAB5.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -98,12 +73,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

@@ -15,7 +15,7 @@
 
 /* PWM initialization */
 // Default: 84MHz PLL, 1MHz CK_CNT, 50% duty ratio, 1msec period
-void PWM_init(PinName_t pinName){
+void PWM_init(PinName_t pinName){                   // 1. Setting AF, AFR, PSC
 
 // 0. Match TIMx from  Port and Pin 	
 	GPIO_TypeDef *port;
@@ -59,7 +59,7 @@ void PWM_init(PinName_t pinName){
 		TIMx->CCMR1 &= ~TIM_CCMR1_OC1M;                     // Clear ouput compare mode bits for channel 1
 		TIMx->CCMR1 |= TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1M_2; // OC1M = 110 for PWM Mode 1 output on ch1. #define TIM_CCMR1_OC1M_1          (0x2UL << TIM_CCMR1_OC1M_Pos)
 		TIMx->CCMR1	|= TIM_CCMR1_OC1PE;                     // Output 1 preload enable (make CCR1 value changable)
-		TIMx->CCR1  = ccVal; 																// Output Compare Register for channel 1 (default duty ratio = 50%)		
+		TIMx->CCR1  = ccVal; 								// Output Compare Register for channel 1 (default duty ratio = 50%)
 		TIMx->CCER &= ~TIM_CCER_CC1P;                       // select output polarity: active high	
 		TIMx->CCER  |= TIM_CCER_CC1E;												// Enable output for ch1
 	}
@@ -135,7 +135,7 @@ void PWM_period_us(PinName_t pinName,  uint32_t usec){
 	
 
 // 1. Set Counter Period in usec
-	TIM_period_us(TIMx, usec); 	//YOUR CODE GOES HERE
+	TIM_period_us(TIMx, usec); 	
 	
 }
 
@@ -162,14 +162,14 @@ void PWM_pulsewidth(PinName_t pinName, uint32_t pulse_width_ms){
 
 	
 // 3. Configure prescaler PSC
-	float fclk = fsys / (psc+1);					// fclk=fsys/(psc+1);
+	float fclk = fsys/(psc+1);					// fclk=fsys/(psc+1);
 	uint32_t value = pulse_width_ms * fclk - 1;					// pulse_width_ms *fclk - 1;
 
 	switch(chN){
 		case 1: TIMx->CCR1 = value; break;
-		case 2: TIMx->CCR2 = value;	break;
-		case 3: TIMx->CCR3 = value;	break;
-		case 4: TIMx->CCR4 = value;	break;
+		case 2: TIMx->CCR2 = value; break;
+		case 3: TIMx->CCR3 = value; break;
+		case 4: TIMx->CCR4 = value; break;
 		default: break;
 	}
 }
@@ -201,13 +201,13 @@ void PWM_pulsewidth_us(PinName_t pinName, uint32_t pulse_width_us){
 	
 // 3. Configure prescaler PSC
 	float fclk = fsys / (psc+1);					// fclk=fsys/(psc+1);
-	uint32_t value = ____________					// pulse_width_ms *fclk - 1;
+	uint32_t value = pulse_width_us * fclk -1;					// pulse_width_ms *fclk - 1;
 	
 	switch(chN){
 		case 1: TIMx->CCR1 = value; break;
-		// REPEAT for CHn=2,  3, 4
-		// REPEAT for CHn=2,  3, 4
-		// REPEAT for CHn=2,  3, 4
+        case 2: TIMx->CCR2 = value; break;
+        case 3: TIMx->CCR3 = value; break;
+        case 4: TIMx->CCR4 = value; break;
 		default: break;
 	}
 }
@@ -225,13 +225,12 @@ void PWM_duty(PinName_t pinName, float duty){
 
 	
 // 1. Configure prescaler PSC
-	float value = ___________________;    								// (ARR+1)*dutyRatio + 1               
+	float value = (TIMx->ARR + 1) * duty + 1;    								// (ARR+1)*dutyRatio + 1
    
-  	if(chN == 1)      { TIMx->CCR1 = value; }          //set channel      
-	// REPEAT for CHn=2,  3, 4
-	// REPEAT for CHn=2,  3, 4
-	// REPEAT for CHn=2,  3, 4
-
+  if(chN == 1)      	{TIMx->CCR1 = value;}          //set channel      
+	else if(chN == 2)   {TIMx->CCR2 = value;}
+  else if(chN == 2)   {TIMx->CCR3 = value;}
+  else if(chN == 2)   {TIMx->CCR4 = value;}
 }
 
 // DO NOT MODIFY HERE
