@@ -82,7 +82,7 @@ void TIM_period_ms(TIM_TypeDef* TIMx, uint32_t msec){
 	if (TIMx == TIM2 || TIMx == TIM5){
 		uint32_t ARRval;
 		
-		PSCval = Sys_CLK / (uint16_t)10000;									// 840 or 160	--> f_cnt = 100kHz
+		PSCval = Sys_CLK / (uint16_t)100000;									// 840 or 160	--> f_cnt = 100kHz
 		ARRval = Sys_CLK / PSCval / 1000 * msec;		                        // 100kHz*msec
 		TIMx->PSC = PSCval - 1;
 		TIMx->ARR = ARRval - 1;
@@ -90,7 +90,7 @@ void TIM_period_ms(TIM_TypeDef* TIMx, uint32_t msec){
 	else{
 		uint16_t ARRval;
 
-		PSCval = Sys_CLK / (uint16_t)10000;									// 840 or 160	--> f_cnt = 100kHz
+		PSCval = Sys_CLK / (uint16_t)100000;									// 840 or 160	--> f_cnt = 100kHz
 		ARRval = Sys_CLK / PSCval / 1000 * msec;		                        // 100kHz*msec
 		TIMx->PSC = PSCval - 1;
 		TIMx->ARR = ARRval - 1;

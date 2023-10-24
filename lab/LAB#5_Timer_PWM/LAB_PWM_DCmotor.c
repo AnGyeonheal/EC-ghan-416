@@ -21,8 +21,7 @@ void EXTI15_10_IRQHandler(void);
 
 uint32_t count = 0;
 float period = 1;
-float duty = 0;
-float n = 1;
+float duty = 0.75;
 static int stop = 0;
 
 int main(void) {
@@ -35,7 +34,7 @@ int main(void) {
             PWM_duty(PWM_PIN, (duty / period));
         }
         else if(stop == 1){
-            PWM_duty(PWM_PIN, (0 / period));
+            PWM_duty(PWM_PIN, (1 / period));
         }
     }
 }
@@ -43,19 +42,15 @@ int main(void) {
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
         count++;
-        if(count > 2000){
-            if(n == 1){
-                duty = 0.25;
-                n=2;
-            }
-            else if (n == 2){
-                duty = 0.75;
-                n=1;
-            }
+        if(count > 2000 && count < 4000){
+            duty = 0.25;
+        }
+        else if(count > 4000){
+            duty = 0.75;
             count = 0;
         }
-        clear_UIF(TIM3);            // Clear UI flag by writing 0
     }
+    clear_UIF(TIM3);            // Clear UI flag by writing 0
 }
 
 void EXTI15_10_IRQHandler(void) {
@@ -80,4 +75,3 @@ void setup(void) {
     PWM_period_ms(PWM_PIN, period);
 
 }
-

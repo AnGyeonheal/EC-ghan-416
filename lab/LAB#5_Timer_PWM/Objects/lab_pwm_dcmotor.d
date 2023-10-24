@@ -1,5 +1,4 @@
-./objects/ecrcc.o: ..\..\include\ecRCC.c \
-  C:\Users\heal\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
+./objects/lab_pwm_dcmotor.o: LAB_PWM_DCmotor.c \
   C:\Users\heal\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\heal\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
@@ -8,4 +7,7 @@
   C:\Users\heal\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Users\heal\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
   C:\Users\heal\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
-  ..\..\include\ecRCC.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
+  ..\..\include\ecPinNames.h ..\..\include\ecGPIO.h \
+  ..\..\include\ecRCC.h ..\..\include\ecTIM.h ..\..\include\ecPWM.h \
+  ..\..\include\ecEXTI.h

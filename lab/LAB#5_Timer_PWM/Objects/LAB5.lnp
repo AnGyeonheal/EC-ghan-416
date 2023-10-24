@@ -1,5 +1,5 @@
 --cpu=Cortex-M4.fp.sp
-".\objects\lab_pwm_rcmotor.o"
+".\objects\lab_pwm_dcmotor.o"
 ".\objects\ecexti.o"
 ".\objects\ecgpio.o"
 ".\objects\ecpinnames.o"

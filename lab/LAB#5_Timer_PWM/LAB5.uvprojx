@@ -454,9 +454,9 @@
           </GroupOption>
           <Files>
             <File>
-              <FileName>LAB_PWM_RCmotor.c</FileName>
+              <FileName>LAB_PWM_DCmotor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\LAB_PWM_RCmotor.c</FilePath>
+              <FilePath>.\LAB_PWM_DCmotor.c</FilePath>
             </File>
           </Files>
         </Group>
