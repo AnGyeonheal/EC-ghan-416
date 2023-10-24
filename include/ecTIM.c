@@ -16,19 +16,18 @@
 void TIM_init(TIM_TypeDef* TIMx, uint32_t msec){ 
 	
 // 1. Enable Timer CLOCK
-	if(TIMx ==TIM1) RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
-	else if(TIMx ==TIM2) RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
-	else if(TIMx ==TIM3) RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
-	else if(TIMx == TIM4) RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+	if(TIMx ==TIM1)         RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+	else if(TIMx ==TIM2)    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+	else if(TIMx ==TIM3)    RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	else if(TIMx == TIM4)   RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 	else if(TIMx == TIM5)	RCC->APB1ENR |= RCC_APB1ENR_TIM5EN;
 	else if(TIMx == TIM9)	RCC->APB2ENR |= RCC_APB2ENR_TIM9EN;
-	else if(TIMx == TIM11) RCC->APB2ENR |= RCC_APB2ENR_TIM11EN;
+	else if(TIMx == TIM11)  RCC->APB2ENR |= RCC_APB2ENR_TIM11EN;
 
 	
 // 2. Set CNT period
 	TIM_period_ms(TIMx, msec); 
-	
-	
+
 // 3. CNT Direction
 	TIMx->CR1 &= ~TIM_CR1_DIR;					// Upcounter	
 	
@@ -36,13 +35,9 @@ void TIM_init(TIM_TypeDef* TIMx, uint32_t msec){
 	TIMx->CR1 |= TIM_CR1_CEN;		
 }
 
-
-//	Q. Which combination of PSC and ARR for msec unit?
-// 	Q. What are the possible range (in sec ?)
 void TIM_period_us(TIM_TypeDef *TIMx, uint32_t usec){   
 	// Period usec = 1 to 1000
 
-	// 1us(1MHz, ARR=1) to 65msec (ARR=0xFFFF)
 	uint16_t PSCval;
 	uint32_t Sys_CLK;
 	
@@ -73,14 +68,7 @@ void TIM_period_us(TIM_TypeDef *TIMx, uint32_t usec){
 
 
 void TIM_period_ms(TIM_TypeDef* TIMx, uint32_t msec){ 
-	// Period msec = 1 to 6000
-	
-	// 0.1ms(10kHz, ARR = 1) to 6.5sec (ARR = 0xFFFF)
-	// uint16_t PSCval = 8400;
-	// uint16_t ARRval = ______________;  			// 84MHz/1000ms
 
-	// TIMx->PSC = PSCval - 1;
-	// TIMx->ARR = ___________;
 	uint16_t PSCval;
 	uint32_t Sys_CLK;
 	
@@ -94,21 +82,20 @@ void TIM_period_ms(TIM_TypeDef* TIMx, uint32_t msec){
 	if (TIMx == TIM2 || TIMx == TIM5){
 		uint32_t ARRval;
 		
-		PSCval = Sys_CLK/1000000;									// 840 or 160	--> f_cnt = 100kHz
-		ARRval = Sys_CLK / PSCval / 1000 * msec;		// 100kHz*msec
+		PSCval = Sys_CLK / (uint16_t)10000;									// 840 or 160	--> f_cnt = 100kHz
+		ARRval = Sys_CLK / PSCval / 1000 * msec;		                        // 100kHz*msec
 		TIMx->PSC = PSCval - 1;
 		TIMx->ARR = ARRval - 1;
 	}
 	else{
 		uint16_t ARRval;
 
-		PSCval = Sys_CLK/1000;									// 840 or 160	--> f_cnt = 100kHz
-		ARRval = Sys_CLK / PSCval / 1000 * msec;		// 100kHz*msec
+		PSCval = Sys_CLK / (uint16_t)10000;									// 840 or 160	--> f_cnt = 100kHz
+		ARRval = Sys_CLK / PSCval / 1000 * msec;		                        // 100kHz*msec
 		TIMx->PSC = PSCval - 1;
 		TIMx->ARR = ARRval - 1;
 	}
 }
-
 
 // Update Event Interrupt
 void TIM_UI_init(TIM_TypeDef* TIMx, uint32_t msec){
@@ -120,14 +107,14 @@ void TIM_UI_init(TIM_TypeDef* TIMx, uint32_t msec){
 	
 // 3. NVIC Setting
 	uint32_t IRQn_reg =0;
-	if(TIMx == TIM1)       IRQn_reg = TIM1_UP_TIM10_IRQn;			// It's different because of its good performance and many functions
-	else if(TIMx == TIM2)  IRQn_reg = TIM2_IRQn;
-	else if(TIMx == TIM3)	 IRQn_reg = TIM3_IRQn;
-	else if(TIMx == TIM4)	 IRQn_reg = TIM4_IRQn;
-	else if(TIMx == TIM5)	 IRQn_reg = TIM5_IRQn;
-	else if(TIMx == TIM9)	 IRQn_reg = TIM1_BRK_TIM9_IRQn;
-	else if(TIMx == TIM10) IRQn_reg = TIM1_UP_TIM10_IRQn;
-	else if(TIMx == TIM11) IRQn_reg = TIM1_TRG_COM_TIM11_IRQn;
+	if(TIMx == TIM1)        IRQn_reg = TIM1_UP_TIM10_IRQn;			// It's different because of its good performance and many functions
+	else if(TIMx == TIM2)   IRQn_reg = TIM2_IRQn;
+	else if(TIMx == TIM3)   IRQn_reg = TIM3_IRQn;
+    else if(TIMx == TIM4)	IRQn_reg = TIM4_IRQn;
+	else if(TIMx == TIM5)	IRQn_reg = TIM5_IRQn;
+	else if(TIMx == TIM9)	IRQn_reg = TIM1_BRK_TIM9_IRQn;
+	else if(TIMx == TIM10)  IRQn_reg = TIM1_UP_TIM10_IRQn;
+	else if(TIMx == TIM11)  IRQn_reg = TIM1_TRG_COM_TIM11_IRQn;
 	
 	NVIC_EnableIRQ(IRQn_reg);				
 	NVIC_SetPriority(IRQn_reg,2);

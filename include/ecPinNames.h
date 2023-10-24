@@ -37,10 +37,10 @@ typedef enum {
 
 typedef enum {
     PA_0  = 0x00,
-    PA_1  = 0x01,    
+    PA_1  = 0x01,
     PA_2  = 0x02,
     PA_3  = 0x03,
-    PA_4  = 0x04,    
+    PA_4  = 0x04,
     PA_5  = 0x05,
     PA_6  = 0x06,
     PA_7  = 0x07,
@@ -52,7 +52,7 @@ typedef enum {
     PA_13 = 0x0D,
     PA_14 = 0x0E,
     PA_15 = 0x0F,
-    
+
     PB_0  = 0x10,
     PB_1  = 0x11,
     PB_2  = 0x12,
