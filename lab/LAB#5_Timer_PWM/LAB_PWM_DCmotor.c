@@ -12,7 +12,7 @@
 
 // Definition Button Pin & PWM Port, Pin
 #define BUTTON_PIN 13
-PinName_t PWM_PIN = PA_1;
+PinName_t PWM_PIN = PA_0;
 
 void setup(void);
 
@@ -20,10 +20,10 @@ void TIM3_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
 
 uint32_t count = 0;
-float period = 20;
-float n = 0;
+float period = 1;
 float duty = 0;
-int dir = 0;											// dir = 0 , 1
+float n = 1;
+static int stop = 0;
 
 int main(void) {
     // Initialization --------------------------------------------------
@@ -31,23 +31,26 @@ int main(void) {
 
     // Infinite Loop ---------------------------------------------------
     while (1) {
-        PWM_duty(PWM_PIN, (duty / period));
+        if(stop == 0){
+            PWM_duty(PWM_PIN, (duty / period));
+        }
+        else if(stop == 1){
+            PWM_duty(PWM_PIN, (0 / period));
+        }
     }
 }
 
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
         count++;
-        if(count > 250){
-            if(dir == 0){
-                n++;
-                duty = 0.5 + (2 * n / 18);
-                if(n > 18) dir = 1;
+        if(count > 2000){
+            if(n == 1){
+                duty = 0.25;
+                n=2;
             }
-            else if ( dir == 1){
-                n--;
-                duty = 0.5 + (2 * n / 18);
-                if(n < 0) dir = 0;
+            else if (n == 2){
+                duty = 0.75;
+                n=1;
             }
             count = 0;
         }
@@ -57,9 +60,7 @@ void TIM3_IRQHandler(void) {
 
 void EXTI15_10_IRQHandler(void) {
     if (is_pending_EXTI(BUTTON_PIN)){
-        duty = 0;
-        dir = 0;
-        n = 0;
+        stop ^= 1;
         clear_pending_EXTI(BUTTON_PIN); // cleared by writing '1'
     }
 }

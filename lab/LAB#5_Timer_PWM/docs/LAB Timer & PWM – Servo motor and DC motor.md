@@ -137,11 +137,11 @@ You need to observe how the PWM signal output is generated as the input button i
 
 ### v. Discussion
 
-1. Derive a simple logic to calculate CRR and ARR values to generate x[Hz] and y[%] duty ratio of PWM. How can you read the values of input clock frequency and PSC?
+1. **Derive a simple logic to calculate CRR and ARR values to generate x[Hz] and y[%] duty ratio of PWM. How can you read the values of input clock frequency and PSC?**
 
+   
 
-
-2. What is the smallest and highest PWM frequency that can be generated for Q1?
+2. **What is the smallest and highest PWM frequency that can be generated for Q1?**
 
 
 
