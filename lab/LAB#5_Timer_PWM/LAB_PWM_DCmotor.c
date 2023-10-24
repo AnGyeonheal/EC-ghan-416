@@ -38,16 +38,16 @@ int main(void) {
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
         count++;
-        if(count > 500){
+        if(count > 250){
             if(dir == 0){
                 n++;
                 duty = 0.5 + (2 * n / 18);
-                if(n == 18) dir = 1;
+                if(n > 18) dir = 1;
             }
             else if ( dir == 1){
                 n--;
                 duty = 0.5 + (2 * n / 18);
-                if(n == 0) dir = 0;
+                if(n < 0) dir = 0;
             }
             count = 0;
         }

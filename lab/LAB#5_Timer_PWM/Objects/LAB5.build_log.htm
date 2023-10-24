@@ -27,27 +27,83 @@ Project File Date:  10/23/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-LAB_PWM_RCmotor.c(7): warning: In file included from...
-../../include\ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void SysTick_counter();
-                    ^
-                     void
-LAB_PWM_RCmotor.c(11): warning: In file included from...
+LAB_PWM_RCmotor.c(5): warning: In file included from...
+../../include\ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_PWM_RCmotor.c(10): warning: In file included from...
 ../../include\ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
 #endif
       ^
-LAB_PWM_RCmotor.c(27): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-      PWM_duty(PWM_PIN, 0.1*i);
-      ~~~~~~~~          ~~~^~
-LAB_PWM_RCmotor.c(31): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-      PWM_duty(PWM_PIN, 0.1*i);
-      ~~~~~~~~          ~~~^~
-4 warnings generated.
+LAB_PWM_RCmotor.c(15): warning: no previous extern declaration for non-static variable 'PWM_PIN' [-Wmissing-variable-declarations]
+PinName_t PWM_PIN = PA_1;
+          ^
+LAB_PWM_RCmotor.c(15): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+PinName_t PWM_PIN = PA_1;
+^
+LAB_PWM_RCmotor.c(24): warning: no previous extern declaration for non-static variable 'count' [-Wmissing-variable-declarations]
+uint32_t count = 0;
+         ^
+LAB_PWM_RCmotor.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t count = 0;
+^
+LAB_PWM_RCmotor.c(25): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
+float period = 20;
+      ^
+LAB_PWM_RCmotor.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float period = 20;
+^
+LAB_PWM_RCmotor.c(26): warning: no previous extern declaration for non-static variable 'n' [-Wmissing-variable-declarations]
+float n = 0;
+      ^
+LAB_PWM_RCmotor.c(26): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float n = 0;
+^
+LAB_PWM_RCmotor.c(27): warning: no previous extern declaration for non-static variable 'duty' [-Wmissing-variable-declarations]
+float duty = 0;
+      ^
+LAB_PWM_RCmotor.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float duty = 0;
+^
+LAB_PWM_RCmotor.c(28): warning: no previous extern declaration for non-static variable 'dir' [-Wmissing-variable-declarations]
+int dir = 0;                                                                                    // dir = 0 , 1
+    ^
+LAB_PWM_RCmotor.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int dir = 0;                                                                                    // dir = 0 , 1
+^
+LAB_PWM_RCmotor.c(46): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                                                duty = 0.5 + (2 * n / 18);
+                                                     ~ ~~~~^~~~~~~~~~~~~~
+LAB_PWM_RCmotor.c(46): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                                                duty = 0.5 + (2 * n / 18);
+                                                           ~  ~~~~~~^~~~
+LAB_PWM_RCmotor.c(47): warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+                                                if(n == 18) dir = 1;
+                                                   ~ ^  ~~
+LAB_PWM_RCmotor.c(51): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                                                duty = 0.5 + (2 * n / 18);
+                                                     ~ ~~~~^~~~~~~~~~~~~~
+LAB_PWM_RCmotor.c(51): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                                                duty = 0.5 + (2 * n / 18);
+                                                           ~  ~~~~~~^~~~
+LAB_PWM_RCmotor.c(52): warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+                                                if(n == 0) dir = 0;
+                                                   ~ ^  ~
+LAB_PWM_RCmotor.c(62): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                PWM_duty(PWM_PIN, 0.5/period);
+                ~~~~~~~~          ~~~^~~~~~~
+LAB_PWM_RCmotor.c(62): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                PWM_duty(PWM_PIN, 0.5/period);
+                                     ~^~~~~~
+LAB_PWM_RCmotor.c(83): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN, period);
+    ~~~~~~~~~~~~~          ^~~~~~
+17 warnings generated.
 compiling LAB_PWM_RCmotor.c...
 linking...
-Program Size: Code=5140 RO-data=440 RW-data=4 ZI-data=1644  
+Program Size: Code=7064 RO-data=440 RW-data=12 ZI-data=1660  
 FromELF: creating hex file...
-".\Objects\LAB5.axf" - 0 Error(s), 4 Warning(s).
+".\Objects\LAB5.axf" - 0 Error(s), 17 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -73,12 +129,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-Build Time Elapsed:  00:00:00
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
