@@ -77,6 +77,5 @@ void setup(void) {
     // PWM SETUP
     PWM_init(PWM_PIN);
     PWM_period_ms(PWM_PIN, period);
-
 }
 

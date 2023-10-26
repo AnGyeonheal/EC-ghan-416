@@ -8,7 +8,7 @@ Language/ver     : C++ in Keil uVision
 Description      : Distributed to Students for LAB_GPIO
 /----------------------------------------------------------------*/
 
-#define LED_PIN 	5
+#define LED_PIN 	0
 #define BUTTON_PIN 13
 #include "stm32f4xx.h"
 #include "ecRCC.h"
@@ -40,10 +40,11 @@ int main(void) {
 void setup(void)
 {
 	RCC_HSI_init();
-	GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
+
 	GPIO_init(GPIOA, LED_PIN, OUTPUT);    // calls RCC_GPIOA_enable()
     GPIO_otype(GPIOA, LED_PIN, EC_OPEN_DRAIN);
     GPIO_ospeed(GPIOA, LED_PIN, EC_MEDIUM);
     GPIO_pupd(GPIOA, LED_PIN, EC_PU);
+    GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
     GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
 }

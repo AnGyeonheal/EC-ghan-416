@@ -39,7 +39,7 @@ Description      : GPIO.h
 #define BUTTON_PIN 13
 
 // ------------------- LAB3P_2 Definition -------------------
-#define pin_a   5
+#define pin_a   9
 #define pin_b   6
 #define pin_c   7
 #define pin_d   6
@@ -94,6 +94,7 @@ void seven_segment_init(void);
 void seven_segment_decode(uint8_t state);
 void sevensegment_display_init(void);
 void sevensegment_display(uint8_t  state);
+void GPIO(GPIO_TypeDef *Port, int pin, unsigned int mode, unsigned int speed, unsigned int type, unsigned int pupd);
 
 #ifdef __cplusplus
 }

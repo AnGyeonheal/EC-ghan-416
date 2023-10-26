@@ -29,8 +29,9 @@ void TIM_init(TIM_TypeDef* TIMx, uint32_t msec){
 	TIM_period_ms(TIMx, msec); 
 
 // 3. CNT Direction
-	TIMx->CR1 &= ~TIM_CR1_DIR;					// Upcounter	
-	
+	// TIMx->CR1 &= ~TIM_CR1_DIR;					// Upcounter
+    TIMx->CR1 &= TIM_CR1_DIR;					// Downcounter
+
 // 4. Enable Timer Counter
 	TIMx->CR1 |= TIM_CR1_CEN;		
 }

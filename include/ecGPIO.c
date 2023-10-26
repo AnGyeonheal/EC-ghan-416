@@ -37,7 +37,7 @@ State_P2 FSM_D[10] = {
         {{S7, S6}, {0,1,1,0,}},    // 6
         {{S8, S7}, {0,1,1,1,}},    // 7
         {{S9, S8}, {1,0,0,0,}},    // 8
-        {{S0, S9}, {1,0,0,1,}}     // 9
+        {{S0, S9}, {1,0,04,1,}}     // 9
 
 };
 
@@ -98,8 +98,8 @@ void GPIO_write(GPIO_TypeDef *Port, int pin, unsigned int Output){
 }
 
 void seven_segment_init(void){
-    RCC_HSI_init();
-    GPIO_init(GPIOA, pin_a, OUTPUT);
+
+    GPIO_init(GPIOB, pin_a, OUTPUT);
     GPIO_init(GPIOA, pin_b, OUTPUT);
     GPIO_init(GPIOA, pin_c, OUTPUT);
     GPIO_init(GPIOB, pin_d, OUTPUT);
@@ -108,7 +108,7 @@ void seven_segment_init(void){
     GPIO_init(GPIOA, pin_g, OUTPUT);
     GPIO_init(GPIOB, pin_dp, OUTPUT);
 
-    GPIO_otype(GPIOA, pin_a, EC_PUSH_PULL);
+    GPIO_otype(GPIOB, pin_a, EC_PUSH_PULL);
     GPIO_otype(GPIOA, pin_b, EC_PUSH_PULL);
     GPIO_otype(GPIOA, pin_c, EC_PUSH_PULL);
     GPIO_otype(GPIOB, pin_d, EC_PUSH_PULL);
@@ -117,7 +117,7 @@ void seven_segment_init(void){
     GPIO_otype(GPIOA, pin_g, EC_PUSH_PULL);
     GPIO_otype(GPIOB, pin_dp, EC_PUSH_PULL);
 
-    GPIO_pupd(GPIOA, pin_a, EC_NONE);
+    GPIO_pupd(GPIOB, pin_a, EC_NONE);
     GPIO_pupd(GPIOA, pin_b, EC_NONE);
     GPIO_pupd(GPIOA, pin_c, EC_NONE);
     GPIO_pupd(GPIOB, pin_d, EC_NONE);
@@ -126,7 +126,7 @@ void seven_segment_init(void){
     GPIO_pupd(GPIOA, pin_g, EC_NONE);
     GPIO_pupd(GPIOB, pin_dp, EC_NONE);
 
-    GPIO_ospeed(GPIOA, pin_a, EC_MEDIUM);
+    GPIO_ospeed(GPIOB, pin_a, EC_MEDIUM);
     GPIO_ospeed(GPIOA, pin_b, EC_MEDIUM);
     GPIO_ospeed(GPIOA, pin_c, EC_MEDIUM);
     GPIO_ospeed(GPIOB, pin_d, EC_MEDIUM);
@@ -147,7 +147,7 @@ void seven_segment_decode(uint8_t state){
     f = FSM[state].out[5];
     g = FSM[state].out[6];
 
-    GPIO_write(GPIOA, pin_a, a);     // a
+    GPIO_write(GPIOB, pin_a, a);     // a
     GPIO_write(GPIOA, pin_b, b);     // b
     GPIO_write(GPIOA, pin_c, c);     // c
     GPIO_write(GPIOB, pin_d, d);     // d
@@ -192,4 +192,11 @@ void sevensegment_display(uint8_t  state){
     GPIO_write(GPIOC, pin_e, B);
     GPIO_write(GPIOA, pin_f, A);
 
+}
+
+void GPIO(GPIO_TypeDef *Port, int pin, unsigned int mode, unsigned int speed, unsigned int type, unsigned int pupd) {
+    GPIO_init(Port, pin, mode);
+    GPIO_ospeed(Port, pin, speed);
+    GPIO_otype(Port, pin, type);
+    GPIO_pupd(Port, pin, pupd);
 }

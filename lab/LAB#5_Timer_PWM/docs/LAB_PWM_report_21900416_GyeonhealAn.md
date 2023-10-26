@@ -6,7 +6,7 @@
 
 **Github:** https://github.com/AnGyeonheal/Embedded_Control_GH
 
-**Demo Video:** https://www.youtube.com/shorts/B1C2QEXgeFs
+**Demo Video:** https://youtu.be/5xGN5WilE7k?feature=shared
 
 ## I. Introduction
 
@@ -181,7 +181,7 @@ You need to observe how the PWM signal output is generated as the input button i
    $$
    
    $$
-   PWM\;period = (1+ARR) * CLK\;period
+   PWM\;period = (1+ARR) * Setting\;CLK
    $$
    
    $$
@@ -198,18 +198,19 @@ You need to observe how the PWM signal output is generated as the input button i
 
    The smallest PWM frequency has max ARR, PSC value (16bits).
    $$
-   PWM\;period=\frac{(1+ARR)^2\times(PSC+1)}{System\;CLK}
+   PWM\;period=\frac{(1+ARR)\times(PSC+1)}{System\;CLK}
    $$
 
    $$
-   PWM\;frequency_{min} = \frac{1}{PWM\;period}=\frac{84\times 10^6}{(1+2^{16})^2\times (1+2^{16})}=2.98\times 10^{-7} == 0
+   PWM\;frequency_{min} = \frac{1}{PWM\;period}=\frac{84\times 10^6}{(1+2^{16}-1)\times (1+2^{16}-1)}=0.0196
    $$
 
    The highest PWM frequency has mimimum ARR, PSC value.
    $$
-   PWM\;frequency_{max} = \frac{1}{PWM\;period}=\frac{84\times 10^6}{(1)^2\times (1)}=84\times 10^{6}
+   PWM\;frequency_{max} = \frac{1}{PWM\;period}=\frac{84\times 10^6}{(1+0)\times (1+0)}=84\times 10^{6}
    $$
    
+3. 
 
 ### vi. Code
 
@@ -312,11 +313,11 @@ void setup(void) {
 }
 ```
 
-The setup function sets System Clock, Button, Timer, and PWM. Timer used TIM3 and PWM_period was set to 20 msec.
+The setup function sets System Clock, Button, Timer, and PWM. Timer used TIM3 and PWM period was set to 20 msec.
 
 ### vii. Results
 
-[demo video link](https://www.youtube.com/shorts/B1C2QEXgeFs)
+[demo video link](https://youtu.be/5xGN5WilE7k?feature=shared)
 
 ## III. Problem 2: DC motor
 
@@ -373,6 +374,7 @@ By pressing the push button (PC13), toggle from Running and stopping the DC moto
 // Definition Button Pin & PWM Port, Pin
 #define BUTTON_PIN 13
 PinName_t PWM_PIN = PA_0;
+#define DIR_PIN 2
 
 void setup(void);
 
@@ -381,8 +383,7 @@ void EXTI15_10_IRQHandler(void);
 
 uint32_t count = 0;
 float period = 1;
-float duty = 1;
-float n = 1;
+float duty = 0.25;
 static int stop = 0;
 ```
 
@@ -395,11 +396,12 @@ int main(void) {
 
     // Infinite Loop ---------------------------------------------------
     while (1) {
+        GPIO_write(GPIOC, DIR_PIN, 0);
         if(stop == 0){
-            PWM_duty(PWM_PIN, (duty / period));
+            PWM_duty(PWM_PIN, duty);
         }
         else if(stop == 1){
-            PWM_duty(PWM_PIN, (1 / period));
+            PWM_duty(PWM_PIN, 0);
         }
     }
 }
@@ -407,7 +409,9 @@ int main(void) {
 
 If button EXTI signal is recognized, it turns on or off.
 
-The motor we used stops when it  comes duty 1.
+We set DIR = LOW.
+
+The motor we used stops when it  comes duty is 0 (due to DIR).
 
 ```c
 void TIM3_IRQHandler(void) {
@@ -425,9 +429,9 @@ void TIM3_IRQHandler(void) {
 }
 ```
 
-If update interrupt flag is recognized, first 2 sec, duty is 0.75 which is 25% output speed.
+If update interrupt flag is recognized, first 0~2 sec, duty is 0.25(initial value) which is 25% output speed.
 
-After 2 sec, duty becomes 0.25 which is 75% output speed and clear the timer flag
+After 2 sec(2 ~ 4 sec), duty becomes 0.75 which is 75% output speed and clear the count and timer flag
 
 ```c
 void EXTI15_10_IRQHandler(void) {
@@ -438,7 +442,7 @@ void EXTI15_10_IRQHandler(void) {
 }
 ```
 
-If external interrupt has occurred by the button pin, it makes stop variable 1, and if EXTI occurred again, it toggles.
+If external interrupt has occurred by the button pin, it makes stop variable 1, and if EXTI occur again, it toggles.
 
 ```c
 // Initialiization
@@ -449,22 +453,26 @@ void setup(void) {
     GPIO_init(GPIOC, BUTTON_PIN, INPUT);
     GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
     EXTI_init(GPIOC, BUTTON_PIN, FALL, 0);
+    // DIR SETUP
+    GPIO_init(GPIOC, DIR_PIN, OUTPUT);
+    GPIO_otype(GPIOC, DIR_PIN, EC_PUSH_PULL);
     // TIMER SETUP
     TIM_UI_init(TIM3, 1);
     // PWM SETUP
     PWM_init(PWM_PIN);
     PWM_period_ms(PWM_PIN, period);
-
 }
 ```
 
-This is the setting of System clock, button, timer, pwm.
+This is the initial setting of System clock, button, timer, pwm.
 
 We initialized timer TIM3, 1ms and PWM period 1 as we can see in configuration.
 
+And We also Initialized DIR pin which is Pin PC_2
+
 ### v. Results
 
-[demo video link](https://www.youtube.com/shorts/B1C2QEXgeFs)
+[demo video link](https://youtu.be/5xGN5WilE7k?feature=shared)
 
 ## IV. Reference
 
@@ -474,5 +482,5 @@ https://ykkim.gitbook.io/ec/ec-course/lab/lab-timer-and-pwm
 
 ## V. Troubleshooting
 
-In Problem 2, the reference value of the duty ratio is different for each DC motor, so the value at which the motor stops is set to duty ratio 1. In addition, because the computer did not provide enough power to USB, the motor received a signal but did not rotate when the motor was at 25% speed due to weak output.
+In Problem 2, the reference value of the duty ratio is different for DIR value of DC motor, so the value at which the motor stops is set to duty ratio 0. In addition, because the computer did not provide enough power to USB, the motor received a signal but did not rotate when the motor was at 25% speed due to weak output.
 
