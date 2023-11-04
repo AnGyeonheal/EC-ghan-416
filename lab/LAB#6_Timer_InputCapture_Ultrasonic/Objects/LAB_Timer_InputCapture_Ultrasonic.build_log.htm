@@ -21,105 +21,13 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\hilla\source\repos\Embedded_Control_GH\lab\LAB#6_Timer_InputCapture_Ultrasonic\LAB_Timer_InputCapture_Ultrasonic.uvprojx
-Project File Date:  10/31/2023
+C:\Users\heal\source\repos\Embedded_Control_GH\lab\LAB#6_Timer_InputCapture_Ultrasonic\LAB_Timer_InputCapture_Ultrasonic.uvprojx
+Project File Date:  11/04/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-LAB_Timer_InputCapture_Ultrasonic.c(15): warning: In file included from...
-../../include\ecTIM.h(13): warning: In file included from...
-../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(17): warning: In file included from...
-../../include\ecUART_simple.h(30): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void UART2_init();
-               ^
-                void
-../../include\ecUART_simple.h(37): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(18): warning: non-portable path to file '"ecSysTick.h"'; specified path differs in case from file name on disk [-Wnonportable-include-path]
-#include "ecSysTIck.h"
-         ^~~~~~~~~~~~~
-         "ecSysTick.h"
-LAB_Timer_InputCapture_Ultrasonic.c(18): warning: In file included from...
-../../include\ecSysTIck.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void SysTick_counter();
-                    ^
-                     void
-LAB_Timer_InputCapture_Ultrasonic.c(21): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
-uint32_t ovf_cnt = 0;
-         ^
-LAB_Timer_InputCapture_Ultrasonic.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t ovf_cnt = 0;
-^
-LAB_Timer_InputCapture_Ultrasonic.c(22): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
-float distance = 0;
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float distance = 0;
-^
-LAB_Timer_InputCapture_Ultrasonic.c(23): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
-float timeInterval = 0;
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float timeInterval = 0;
-^
-LAB_Timer_InputCapture_Ultrasonic.c(24): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
-float time1 = 0;
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float time1 = 0;
-^
-LAB_Timer_InputCapture_Ultrasonic.c(25): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
-float time2 = 0;
-      ^
-LAB_Timer_InputCapture_Ultrasonic.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float time2 = 0;
-^
-LAB_Timer_InputCapture_Ultrasonic.c(37): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                distance = (float) timeInterval * 340.0 / 2.0 / 10.0;   // [mm] -> [cm]
-                         ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-LAB_Timer_InputCapture_Ultrasonic.c(37): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-                distance = (float) timeInterval * 340.0 / 2.0 / 10.0;   // [mm] -> [cm]
-                           ^~~~~~~~~~~~~~~~~~~~ ~
-LAB_Timer_InputCapture_Ultrasonic.c(38): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-                printf("%f cm\r\n", distance);
-                ~~~~~~              ^~~~~~~~
-LAB_Timer_InputCapture_Ultrasonic.c(49): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
-                time1 = TIM4->CCR1;                                                                     // Capture TimeStart
-                      ~ ~~~~~~^~~~
-LAB_Timer_InputCapture_Ultrasonic.c(53): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
-                time2 = TIM4->CCR2;                                                                     // Capture TimeEnd
-                      ~ ~~~~~~^~~~
-LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
-                             ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
-                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
-                                ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~  ~
-LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
-                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
-                                                ~ ~~~~~~~~~~~~~~^~~~~~~~~
-LAB_Timer_InputCapture_Ultrasonic.c(43): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
-void TIM4_IRQHandler(void){
-     ^
-LAB_Timer_InputCapture_Ultrasonic.c(43): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void TIM4_IRQHandler(void){
-^
-static 
-LAB_Timer_InputCapture_Ultrasonic.c(60): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void setup(){
-          ^
-           void
-20 warnings generated.
-compiling LAB_Timer_InputCapture_Ultrasonic.c...
-linking...
-Program Size: Code=16764 RO-data=1000 RW-data=4 ZI-data=1668  
-FromELF: creating hex file...
-".\Objects\LAB_Timer_InputCapture_Ultrasonic.axf" - 0 Error(s), 20 Warning(s).
+".\Objects\LAB_Timer_InputCapture_Ultrasonic.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -137,8 +45,8 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  C:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/heal/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/heal/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -146,11 +54,11 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:2.6.3
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-Build Time Elapsed:  00:00:01
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
+      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
