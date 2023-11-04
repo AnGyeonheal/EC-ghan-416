@@ -23,12 +23,14 @@ int main(void) {
 
 	// Initialization --------------------------------------------------------
 	setup();
+/*
     //------------------------ problem 2 ------------------------
      seven_segment_decode(S0);
      GPIO_write(GPIOB, pin_dp, HIGH);      // DP
+*/
 
     //------------------------ problem 3 ------------------------
-//    sevensegment_display(S0);
+    sevensegment_display(S0);
 
 	// Infinite Loop ----------------------------------------------------------
 	while(1){
@@ -37,10 +39,10 @@ int main(void) {
             input = 0;
             next_state = FSM[state].next[input];
             state = next_state;
-            // ---------------- problee 2 ----------------
-             seven_segment_decode(state);
+/*            // ---------------- problee 2 ----------------
+             seven_segment_decode(state);*/
             // ---------------- problem 3 ----------------
-//            sevensegment_display(state);
+            sevensegment_display(state);
 
             delay = 0;
             input = 1;
@@ -54,6 +56,6 @@ void setup(void)
     RCC_HSI_init();
     GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
     GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
-    seven_segment_init();
-    //sevensegment_display_init();
+    // seven_segment_init();
+    sevensegment_display_init();
 }

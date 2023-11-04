@@ -8,7 +8,7 @@
 #include "ecTIM.h"
 #include "ecPWM.h"
 #include "ecEXTI.h"
-
+#include "ecSysTick.h"
 
 // Definition Button Pin & PWM Port, Pin
 #define BUTTON_PIN 13
@@ -65,18 +65,35 @@ void EXTI15_10_IRQHandler(void) {
 
 // Initialiization
 void setup(void) {
-    // CLK SETUP
     RCC_PLL_init();
-    // EXTI: BUTTON SETUP
-    GPIO_init(GPIOC, BUTTON_PIN, INPUT);
-    GPIO_pupd(GPIOC, BUTTON_PIN, EC_PU);
-    EXTI_init(GPIOC, BUTTON_PIN, FALL, 0);
+
+    // SYSTICK
+    SysTick_init();
+
+    // Status LED
+
+    GPIO(GPIOA, LED_PIN, OUTPUT, EC_MEDIUM, EC_PUSH_PULL, EC_NONE);
+
+    // Seven Segment
+    seven_segment_init();
+
+    //BUTTON
+    GPIO_init(GPIOC, BUTTON_PIN, INPUT);  // calls RCC_GPIOC_enable()
+    GPIO_pupd(GPIOC, BUTTON_PIN, EC_PD);
+
+    //EXTI
+    EXTI_init(GPIOC, BUTTON_PIN, RISE, 15);
+
     // DIR SETUP
     GPIO_init(GPIOC, DIR_PIN, OUTPUT);
     GPIO_otype(GPIOC, DIR_PIN, EC_PUSH_PULL);
-    // TIMER SETUP
+
+    // TIM
     TIM_UI_init(TIM3, 1);
-    // PWM SETUP
+
+    // PWM
     PWM_init(PWM_PIN);
     PWM_period_ms(PWM_PIN, period);
+
+
 }
