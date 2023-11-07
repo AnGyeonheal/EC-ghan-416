@@ -6,7 +6,7 @@
 
 **Github:** https://github.com/AnGyeonheal/Embedded_Control_GH
 
-**Demo Video:** Youtube link
+**Demo Video:** https://www.youtube.com/shorts/gBAAXINBI0E
 
 ## I. Introduction
 
@@ -142,7 +142,16 @@ The program needs to
 
 2. **In the tutorial, what is the accuracy when measuring the period of 1Hz square wave? Show your result.**
 
+   ![image](https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/30b73c26-dc40-4c58-bdce-c9aec49fb954)
+   $$
+   T=\frac{1}{f}=\frac{1}{1Hz}=1sec=1000ms
+   $$
    
+   $$
+   accuracy = \frac{1031.2-1000}{1000}\times100\% = 3.12 \%
+   $$
+   
+3. 
 
 ### vi. Code
 
@@ -241,7 +250,15 @@ TRIG pin initialized in PWM and ECHO pin initialized in ICAP.
 
 ### vii. Results
 
-Add [demo video link](https://github.com/ykkimhgu/course-doc/blob/master/course/lab/link/README.md)
+<img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/61e7e49e-cf83-49de-a0e0-1badfcb8f6e5" alt="image" style="zoom: 33%;" />
+
+<img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/97407da4-76ef-4cab-aa67-79d3e902badc" alt="image" style="zoom:33%;" />
+
+<img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/7a0bda45-dfe5-46eb-a951-d27795b47f55" alt="image" style="zoom:33%;" />
+
+10mm was couldn't detected because this ultrasonic sensor model can detect 25cm to 400cm.
+
+[demo video link](https://www.youtube.com/shorts/gBAAXINBI0E)
 
 ## IV. Reference
 

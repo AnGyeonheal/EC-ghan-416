@@ -30,7 +30,7 @@ int main(void){
 	setup();
 	while(1){
 		printf("period = %f[msec]\r\n", period);		// print out the period on TeraTerm
-		delay_ms(100);
+		delay_ms(500);
 	}
 }
 
