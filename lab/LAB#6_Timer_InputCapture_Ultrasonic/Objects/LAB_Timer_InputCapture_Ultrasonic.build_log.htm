@@ -21,13 +21,425 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\heal\source\repos\Embedded_Control_GH\lab\LAB#6_Timer_InputCapture_Ultrasonic\LAB_Timer_InputCapture_Ultrasonic.uvprojx
-Project File Date:  11/04/2023
+C:\Users\hilla\source\repos\Embedded_Control_GH\lab\LAB#6_Timer_InputCapture_Ultrasonic\LAB_Timer_InputCapture_Ultrasonic.uvprojx
+Project File Date:  10/31/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\LAB_Timer_InputCapture_Ultrasonic.axf" - 0 Error(s), 0 Warning(s).
+../../include/ecRCC.c(14): warning: no previous extern declaration for non-static variable 'EC_SYSCLK' [-Wmissing-variable-declarations]
+volatile int EC_SYSCLK=16000000;
+             ^
+../../include/ecRCC.c(14): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile int EC_SYSCLK=16000000;
+         ^
+../../include/ecRCC.c(16): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_HSI_init() {
+                 ^
+                  void
+../../include/ecRCC.c(23): warning: empty expression statement has no effect; remove unnecessary ';' to silence this warning [-Wextra-semi-stmt]
+        while ( (RCC->CR & 0x00000002U) == 0 ) {;}
+                                                ^
+../../include/ecRCC.c(37): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_PLL_init() {   
+                 ^
+                  void
+../../include/ecRCC.c(85): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOA_enable()
+                     ^
+                      void
+../../include/ecRCC.c(91): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOB_enable()
+                     ^
+                      void
+../../include/ecRCC.c(97): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOC_enable()
+                     ^
+                      void
+../../include/ecRCC.c(103): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOD_enable()
+                     ^
+                      void
+8 warnings generated.
+compiling ecRCC.c...
+compiling ecGPIO.c...
+compiling system_stm32f4xx.c...
+../../include/ecPinNames.c(1): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecPinNames.c(9): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    unsigned int portNum=(pinName>>4);
+                 ~~~~~~~  ~~~~~~~^~~
+../../include/ecPinNames.c(24): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+../../include/ecPinNames.c(9): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    unsigned int portNum=(pinName>>4);
+                 ^
+4 warnings generated.
+compiling ecPinNames.c...
+../../include/ecSysTick.c(11): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecSysTick.c(52): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter(){
+                    ^
+                     void
+../../include/ecSysTick.c(52): warning: no previous prototype for function 'SysTick_counter' [-Wmissing-prototypes]
+void SysTick_counter(){
+     ^
+../../include/ecSysTick.h(25): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void SysTick_counter();
+     ^
+                     void
+../../include/ecSysTick.c(95): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+4 warnings generated.
+compiling ecSysTick.c...
+LAB_Timer_InputCapture_Ultrasonic.c(15): warning: In file included from...
+../../include\ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(17): warning: In file included from...
+../../include\ecUART_simple.h(30): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void UART2_init();
+               ^
+                void
+../../include\ecUART_simple.h(37): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(18): warning: non-portable path to file '"ecSysTick.h"'; specified path differs in case from file name on disk [-Wnonportable-include-path]
+#include "ecSysTIck.h"
+         ^~~~~~~~~~~~~
+         "ecSysTick.h"
+LAB_Timer_InputCapture_Ultrasonic.c(18): warning: In file included from...
+../../include\ecSysTIck.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+LAB_Timer_InputCapture_Ultrasonic.c(21): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
+uint32_t ovf_cnt = 0;
+         ^
+LAB_Timer_InputCapture_Ultrasonic.c(21): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ovf_cnt = 0;
+^
+LAB_Timer_InputCapture_Ultrasonic.c(22): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
+float distance = 0;
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(22): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float distance = 0;
+^
+LAB_Timer_InputCapture_Ultrasonic.c(23): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
+float timeInterval = 0;
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(23): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float timeInterval = 0;
+^
+LAB_Timer_InputCapture_Ultrasonic.c(24): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
+float time1 = 0;
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time1 = 0;
+^
+LAB_Timer_InputCapture_Ultrasonic.c(25): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
+float time2 = 0;
+      ^
+LAB_Timer_InputCapture_Ultrasonic.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time2 = 0;
+^
+LAB_Timer_InputCapture_Ultrasonic.c(37): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                distance = (float) timeInterval * 340.0 / 2.0 / 10.0;   // [mm] -> [cm]
+                         ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+LAB_Timer_InputCapture_Ultrasonic.c(37): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                distance = (float) timeInterval * 340.0 / 2.0 / 10.0;   // [mm] -> [cm]
+                           ^~~~~~~~~~~~~~~~~~~~ ~
+LAB_Timer_InputCapture_Ultrasonic.c(38): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                printf("%f cm\r\n", distance);
+                ~~~~~~              ^~~~~~~~
+LAB_Timer_InputCapture_Ultrasonic.c(49): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+                time1 = TIM4->CCR1;                                                                     // Capture TimeStart
+                      ~ ~~~~~~^~~~
+LAB_Timer_InputCapture_Ultrasonic.c(53): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+                time2 = TIM4->CCR2;                                                                     // Capture TimeEnd
+                      ~ ~~~~~~^~~~
+LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                             ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                                ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~  ~
+LAB_Timer_InputCapture_Ultrasonic.c(54): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+                timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                                                ~ ~~~~~~~~~~~~~~^~~~~~~~~
+LAB_Timer_InputCapture_Ultrasonic.c(43): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
+void TIM4_IRQHandler(void){
+     ^
+LAB_Timer_InputCapture_Ultrasonic.c(43): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIM4_IRQHandler(void){
+^
+static 
+LAB_Timer_InputCapture_Ultrasonic.c(60): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void setup(){
+          ^
+           void
+20 warnings generated.
+compiling LAB_Timer_InputCapture_Ultrasonic.c...
+../../include/ecEXTI.c(12): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecEXTI.c(13): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecEXTI.c(30): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SYSCFG->EXTICR[Pin/4] |= (EXTICR_port << (Pin%4*4));                                                                                            // set 4 bits
+                              ~~  ~~~~~~~~~~~~^~~~~~~~~~~~
+../../include/ecEXTI.c(22): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        int EXTICR_port;
+            ^
+4 warnings generated.
+compiling ecEXTI.c...
+../../include/ecTIM.c(11): warning: In file included from...
+../../include/ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecTIM.c(64): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                ARRval = Sys_CLK/PSCval/1000000 * usec;         // 1MHz*usec
+                       ~ ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../../include/ecTIM.c(55): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
+                PSCval = (Sys_CLK / 1000000);                                                                   // 84 or 16     --> f_cnt = 1MHz
+                          ^~~~~~~
+../../include/ecTIM.c(43): note: initialize the variable 'Sys_CLK' to silence this warning
+        uint32_t Sys_CLK;
+                        ^
+                         = 0
+../../include/ecTIM.c(86): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                       ~ ~~~~~~~~^~~~~~~~~~~~~~~~~~
+../../include/ecTIM.c(94): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                       ~ ~~~~~~~~^~~~~~~~~~~~~~~~~~
+../../include/ecTIM.c(95): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                ARRval = Sys_CLK / PSCval / 1000 * msec;                                        // 100kHz*msec
+                       ~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../../include/ecTIM.c(86): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                         ^~~~~~~
+../../include/ecTIM.c(74): note: initialize the variable 'Sys_CLK' to silence this warning
+        uint32_t Sys_CLK;
+                        ^
+                         = 0
+../../include/ecTIM.c(110): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        uint32_t IRQn_reg =0;
+                 ^
+8 warnings generated.
+compiling ecTIM.c...
+../../include/ecUART_simple.c(2): warning: In file included from...
+../../include/ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecUART_simple.c(3): warning: In file included from...
+../../include/ecUART_simple.h(30): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void UART2_init();
+               ^
+                void
+../../include/ecUART_simple.h(37): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecUART_simple.c(20): warning: unused parameter 'f' [-Wunused-parameter]
+int fputc(int ch, FILE *f) { 
+                        ^
+../../include/ecUART_simple.c(29): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void UART2_init(){
+               ^
+                void
+../../include/ecUART_simple.c(43): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER   &= ~(0xF << (2*TX_pin)); // Clear bits
+                       ~~ ^~~~~~~~~~~~~~~~~~~~
+../../include/ecUART_simple.c(44): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->MODER   |=   0xA << (2*TX_pin);  // Alternate Function(10)               
+                       ~~   ~~~~^~~~~~~~~~~~~
+../../include/ecUART_simple.c(45): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->AFR[0]  |=   0x77<< (4*TX_pin);  // AF7 - USART2         
+                       ~~   ~~~~^~~~~~~~~~~~~
+../../include/ecUART_simple.c(46): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->OSPEEDR |=   0xF<<(2*TX_pin);            // High speed (11)                                      
+                       ~~   ~~~^~~~~~~~~~~~
+../../include/ecUART_simple.c(47): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->PUPDR   &= ~(0xF<<(2*TX_pin));
+                       ~~ ^~~~~~~~~~~~~~~~~~
+../../include/ecUART_simple.c(48): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->PUPDR   |=   0x5<<(2*TX_pin);    // Pull-up (01)                 
+                       ~~   ~~~^~~~~~~~~~~~
+../../include/ecUART_simple.c(49): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIOA->OTYPER  &=  ~(0x3<<TX_pin) ;             // push-pull (0, reset)
+                       ~~  ^~~~~~~~~~~~~~
+../../include/ecUART_simple.c(74): warning: implicit conversion turns floating-point number into integer: 'double' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+        uint32_t FRC = round((USARTDIV - MNT) * 16);
+                 ~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecUART_simple.c(74): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+        uint32_t FRC = round((USARTDIV - MNT) * 16);
+                       ~~~~~ ~~~~~~~~~~~~~~~~~^~~~
+../../include/ecUART_simple.c(74): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        uint32_t FRC = round((USARTDIV - MNT) * 16);
+                                       ~ ^~~
+../../include/ecUART_simple.c(41): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        int TX_pin = 2;
+            ^
+../../include/ecUART_simple.c(29): warning: no previous prototype for function 'UART2_init' [-Wmissing-prototypes]
+void UART2_init(){
+     ^
+../../include/ecUART_simple.h(30): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void UART2_init();
+     ^
+                void
+../../include/ecUART_simple.c(95): warning: comparison of integers of different signs: 'int' and 'uint32_t' (aka 'unsigned int') [-Wsign-compare]
+        for (i = 0; i < nBytes; i++) {
+                    ~ ^ ~~~~~~
+18 warnings generated.
+compiling ecUART_simple.c...
+../../include/ecPWM.c(11): warning: In file included from...
+../../include/ecPWM.h(12): warning: In file included from...
+../../include/ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecPWM.c(23): warning: passing 'int *' to parameter of type 'unsigned int *' converts between pointers to integer types with different sign [-Wpointer-sign]
+    ecPinmap(pinName, &port, &pin);
+                             ^~~~
+../../include/ecPinNames.h(125): note: passing argument to parameter 'pin' here
+void ecPinmap(PinName_t pinName, GPIO_TypeDef **GPIOx, unsigned int *pin);
+                                                                     ^
+../../include/ecPWM.c(24): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(120): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(143): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(173): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float fclk = fsys / (psc + 1);                                    // fclk=fsys/(psc+1);
+          ~~~~   ~~~~~^~~~~~~~~~~
+../../include/ecPWM.c(174): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    uint32_t value = pulse_width_ms * fclk - 1;                    // pulse_width_ms *fclk - 1;
+             ~~~~~   ~~~~~~~~~~~~~~~~~~~~~~^~~
+../../include/ecPWM.c(174): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    uint32_t value = pulse_width_ms * fclk - 1;                    // pulse_width_ms *fclk - 1;
+                     ^~~~~~~~~~~~~~ ~
+../../include/ecPWM.c(160): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(220): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float fclk = fsys / (psc + 1);                    // fclk=fsys/(psc+1);
+          ~~~~   ~~~~~^~~~~~~~~~~
+../../include/ecPWM.c(221): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    uint32_t value = pulse_width_us * fclk - 1;                    // pulse_width_ms *fclk - 1;
+             ~~~~~   ~~~~~~~~~~~~~~~~~~~~~~^~~
+../../include/ecPWM.c(221): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    uint32_t value = pulse_width_us * fclk - 1;                    // pulse_width_ms *fclk - 1;
+                     ^~~~~~~~~~~~~~ ~
+../../include/ecPWM.c(205): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(254): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float value = (TIMx->ARR + 1) * duty + 1;      // (ARR+1)*dutyRatio + 1
+                   ~~~~~~~~~~^~~  ~
+../../include/ecPWM.c(256): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    if (chN == 1) { TIMx->CCR1 = value; }          //set channel
+                               ~ ^~~~~
+../../include/ecPWM.c(257): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 2) { TIMx->CCR2 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(258): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 3) { TIMx->CCR3 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(259): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 4) { TIMx->CCR4 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(248): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(369): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+20 warnings generated.
+compiling ecPWM.c...
+../../include/ecICAP.c(1): warning: In file included from...
+../../include/ecICAP.h(4): warning: In file included from...
+../../include/ecPinNames.h(134): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecICAP.c(22): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+        GPIO_init(port, pin, AF);                                                       // AF=2
+        ~~~~~~~~~       ^~~
+../../include/ecICAP.c(23): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+        GPIO_ospeed(port, pin, EC_HIGH);                                                // speed VHIGH=3        
+        ~~~~~~~~~~~       ^~~
+../../include/ecICAP.c(27): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        else if(TIMx == TIM3 || TIMx == TIM4 || TIMx == TIM5)  port->AFR[pin >> 3] |= 0x02 << (4*(pin % 8)); // TIM3~5 
+                                                                                   ~~ ~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(28): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        else if(TIMx == TIM9 || TIMx == TIM10|| TIMx == TIM11) port->AFR[pin >> 3] |= 0x03 << (4*(pin % 8)); // TIM9~11 
+                                                                                   ~~ ~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(62): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        TIMx->CCER &= ~(0b1010 << 4*(ICn - 1));                                 // CCy(Rising) for ICn
+                        ^
+../../include/ecICAP.c(62): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        TIMx->CCER &= ~(0b1010 << 4*(ICn - 1));                                 // CCy(Rising) for ICn
+                   ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(14): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+../../include/ecICAP.c(119): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        TIMx->CCER  &= ~(0b1010 << 4*(ICn - 1));                                        // Clear CCnNP/CCnP bits
+                         ^
+../../include/ecICAP.c(119): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        TIMx->CCER  &= ~(0b1010 << 4*(ICn - 1));                                        // Clear CCnNP/CCnP bits
+                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(121): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_RISE: TIMx->CCER &= ~(0b1010 << 4*(ICn - 1)); break; //rising:  00
+                                              ^
+../../include/ecICAP.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_RISE: TIMx->CCER &= ~(0b1010 << 4*(ICn - 1)); break; //rising:  00
+                                         ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(122): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_FALL: TIMx->CCER |= 0b0010 << 4 * (ICn - 1);     break; //falling: 01
+                                            ^
+../../include/ecICAP.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_FALL: TIMx->CCER |= 0b0010 << 4 * (ICn - 1);     break; //falling: 01
+                                         ~~ ~~~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(123): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_BOTH: TIMx->CCER |= 0b1010 << 4 * (ICn - 1);     break; //both:    11
+                                            ^
+../../include/ecICAP.c(123): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_BOTH: TIMx->CCER |= 0b1010 << 4 * (ICn - 1);     break; //both:    11
+                                         ~~ ~~~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(83): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+../../include/ecICAP.c(142): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+        TIMx->PSC = 84*usec-1;                                            // Timer counter clock: 1us * usec
+                  ~ ~~~~~~~^~
+../../include/ecICAP.c(137): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+19 warnings generated.
+compiling ecICAP.c...
+linking...
+Program Size: Code=16764 RO-data=1000 RW-data=4 ZI-data=1668  
+FromELF: creating hex file...
+".\Objects\LAB_Timer_InputCapture_Ultrasonic.axf" - 0 Error(s), 105 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,20 +457,20 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/heal/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  C:/Users/heal/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
-Build Time Elapsed:  00:00:00
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
