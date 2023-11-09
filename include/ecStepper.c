@@ -41,16 +41,16 @@ typedef struct {
   	uint32_t next[2];
 } State_half_t;
 
-/*State_half_t FSM_half[8] = {
- 	{0b1001,{S1,S2}},
-	 // YOUR CODE
-	 // YOUR CODE
-	 // YOUR CODE
-	 // YOUR CODE
-	 // YOUR CODE
-	 // YOUR CODE
-	 // YOUR CODE
-};*/
+State_half_t FSM_half[8] = {
+ 	{0b1000, {S1,S7}},
+    {0b1100, {S2,S0}},
+    {0b0100, {S3,S1}},
+    {0b0110, {S4,S2}},
+    {0b0010, {S5,S3}},
+    {0b0011, {S6,S4}},
+    {0b0001, {S7,S5}},
+    {0b1001, {S0,S6}}
+};
 
 
 
@@ -83,17 +83,17 @@ void Stepper_pinOut (uint32_t state, uint32_t mode){
         GPIO_write(myStepper.port3, myStepper.pin3, (FSM_full[state].out & 0b0010) >> 1);
         GPIO_write(myStepper.port4, myStepper.pin4, (FSM_full[state].out & 0b0001) >> 0);
 	}	 
-/* 	else if (mode == HALF){    // HALF mode
-		// YOUR CODE
-		// YOUR CODE 
-		// YOUR CODE 
-		// YOUR CODE
-	}*/
+ 	else if (mode == HALF){    // HALF mode
+        GPIO_write(myStepper.port1, myStepper.pin1, (FSM_half[state].out & 0b1000) >> 3);
+        GPIO_write(myStepper.port2, myStepper.pin2, (FSM_half[state].out & 0b0100) >> 2);
+        GPIO_write(myStepper.port3, myStepper.pin3, (FSM_half[state].out & 0b0010) >> 1);
+        GPIO_write(myStepper.port4, myStepper.pin4, (FSM_half[state].out & 0b0001) >> 0);
+	}
 }
 
 
 void Stepper_setSpeed (long whatSpeed){      // rpm [rev/min]
-		step_delay =  1000 * 60/ whatSpeed  / step_per_rev;	 // Convert rpm to  [msec] delay
+		step_delay =  1000 * 60 / whatSpeed  / step_per_rev;	 // Convert rpm to  [msec] delay
 }
 
 
@@ -104,18 +104,18 @@ void Stepper_step(uint32_t steps, uint32_t direction, uint32_t mode){
 	 for(; myStepper._step_num > 0; myStepper._step_num--){ // run for step size
 		delay_ms(step_delay);                        // delay (step_delay);
         if (mode == FULL) state = FSM_full[state].next[direction]; // YOUR CODE       // state = next state
-        else if (mode == HALF) state = FSM_full[state].next[direction]; // YOUR CODE       // state = next state
+        else if (mode == HALF) state = FSM_half[state].next[direction]; // YOUR CODE       // state = next state
 		Stepper_pinOut(state, mode);
    	}
 }
 
 
 void Stepper_stop (void){ 
-    myStepper._step_num = 0;
+    myStepper._step_num = 1;
 	// All pins(A,AN,B,BN) set as DigitalOut '0'
-    GPIO_write(myStepper.port1, myStepper.pin1, 0);
-    GPIO_write(myStepper.port1, myStepper.pin2,0);
-    GPIO_write(myStepper.port1, myStepper.pin3, 0);
-    GPIO_write(myStepper.port1, myStepper.pin4, 0);
+//    GPIO_write(myStepper.port1, myStepper.pin1, myStepper._step_num);
+//    GPIO_write(myStepper.port2, myStepper.pin2, myStepper._step_num);
+//    GPIO_write(myStepper.port3, myStepper.pin3, myStepper._step_num);
+//    GPIO_write(myStepper.port4, myStepper.pin4, myStepper._step_num);
 }
 
