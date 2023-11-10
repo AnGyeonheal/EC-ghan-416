@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 11-10-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : ecStepper.c
+/----------------------------------------------------------------*/
+
 #include "ecSTM32F411.h"
 #include "ecStepper.h"
 

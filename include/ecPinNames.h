@@ -1,3 +1,11 @@
+/**
+******************************************************************************
+* @author  SSSLAB
+* @Mod		 2023-11-10 by YKKIM
+* @brief   Embedded Controller:  EC_HAL_for_student_exercise
+*
+******************************************************************************
+*/
 
 #ifndef EC_PINNAMES_H
 #define EC_PINNAMES_H

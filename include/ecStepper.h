@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------\
+@ Embedded Controller by Young-Keun Kim - Handong Global University
+Author           : Gyeonheal An
+Created          : 05-03-2021
+Modified         : 11-10-2023
+Language/ver     : C++ in Keil uVision
+
+Description      : ecStepper.h
+/----------------------------------------------------------------*/
+
 #include "stm32f411xe.h"
 #include "ecGPIO.h"
 #include "ecSysTick.h"
@@ -28,7 +38,6 @@ typedef struct{
 	int pin4;
 	uint32_t _step_num;
 } Stepper_t;
-
 	 
 void Stepper_init(GPIO_TypeDef* port1, int pin1, GPIO_TypeDef* port2, int pin2, GPIO_TypeDef* port3, int pin3, GPIO_TypeDef* port4, int pin4);
 void Stepper_setSpeed(long whatSpeed);

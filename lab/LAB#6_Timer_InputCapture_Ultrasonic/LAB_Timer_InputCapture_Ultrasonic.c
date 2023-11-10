@@ -1,7 +1,7 @@
 /**
 ******************************************************************************
 * @author  SSSLAB
-* @Mod		 2023-10-31 by YKKIM  	
+* @Mod		 2023-10-31 by GH An  	
 * @brief   Embedded Controller:  LAB - Timer Input Capture 
 *					 						- with Ultrasonic Distance Sensor
 * 

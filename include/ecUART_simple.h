@@ -1,3 +1,12 @@
+/**
+******************************************************************************
+* @author  SSSLAB
+* @Mod		 2023-11-10 by Gyeonheal An
+* @brief   Embedded Controller:  EC_HAL_for_student_exercise
+*
+******************************************************************************
+*/
+
 #ifndef __EC_USART_SIMPLE_H
 #define __EC_USART_SIMPLE_H
 

@@ -1,3 +1,12 @@
+/**
+******************************************************************************
+* @author  SSSLAB
+* @Mod		 2023-11-10 by Gyeonheal An
+* @brief   Embedded Controller:  EC_HAL_for_student_exercise
+*
+******************************************************************************
+*/
+
 #include "ecICAP.h"
 #include "ecGPIO.h"
 #include "math.h"
