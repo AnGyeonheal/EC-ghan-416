@@ -27,75 +27,7 @@ Project File Date:  11/07/2023
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-LAB_USART.c(5): warning: In file included from...
-../../include\ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void SysTick_counter();
-                    ^
-                     void
-LAB_USART.c(12): warning: no previous prototype for function 'setup' [-Wmissing-prototypes]
-void setup(void){
-     ^
-LAB_USART.c(12): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void setup(void){
-^
-static 
-LAB_USART.c(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void main(){
-         ^
-          void
-LAB_USART.c(25): warning: return type of 'main' is not 'int' [-Wmain-return-type]
-void main(){
-^
-LAB_USART.c(25): note: change return type to 'int'
-void main(){
-^~~~
-int
-LAB_USART.c(25): warning: function 'main' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
-void main(){
-           ^
-LAB_USART.c(37): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void USART2_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-                      ^
-                       void
-LAB_USART.c(40): warning: passing 'volatile uint8_t *' (aka 'volatile unsigned char *') to parameter of type 'uint8_t *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-        USART2_write(&PC_Data,1);               // TX to USART1  (BT)
-                     ^~~~~~~~
-../../include\ecUART.h(48): note: passing argument to parameter 'buffer' here
-void USART2_write(uint8_t* buffer, uint32_t nBytes);
-                           ^
-LAB_USART.c(41): warning: passing 'volatile uint8_t *' (aka 'volatile unsigned char *') to parameter of type 'uint8_t *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-                                USART1_write(&PC_Data,1);
-                                             ^~~~~~~~
-../../include\ecUART.h(47): note: passing argument to parameter 'buffer' here
-void USART1_write(uint8_t* buffer, uint32_t nBytes);
-                           ^
-LAB_USART.c(37): warning: no previous prototype for function 'USART2_IRQHandler' [-Wmissing-prototypes]
-void USART2_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-     ^
-LAB_USART.c(37): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void USART2_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-^
-static 
-LAB_USART.c(46): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-                      ^
-                       void
-LAB_USART.c(51): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
-LAB_USART.c(46): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
-void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-     ^
-LAB_USART.c(46): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
-^
-static 
-12 warnings generated.
-compiling LAB_USART.c...
-linking...
-Program Size: Code=11108 RO-data=1036 RW-data=4 ZI-data=1652  
-FromELF: creating hex file...
-".\Objects\LAB_USART.axf" - 0 Error(s), 12 Warning(s).
+".\Objects\LAB_USART.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -121,11 +53,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>
 </body>

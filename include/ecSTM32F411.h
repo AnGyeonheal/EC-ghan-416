@@ -25,6 +25,5 @@
 #include "ecPWM.h"
 #include "ecStepper.h"
 //#include "ecADC.h"
-#include "ecUART_simple.h"
 
 #endif

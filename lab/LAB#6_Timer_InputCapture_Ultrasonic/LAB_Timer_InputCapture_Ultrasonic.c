@@ -14,7 +14,7 @@
 #include "ecRCC.h"
 #include "ecTIM.h"
 #include "ecPWM.h"
-#include "ecUART_simple.h"
+#include "ecUART.h"
 #include "ecSysTIck.h"
 #include "ecICAP.h"
 
