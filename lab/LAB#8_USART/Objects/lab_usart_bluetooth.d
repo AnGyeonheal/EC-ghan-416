@@ -1,5 +1,4 @@
-./objects/ecstepper.o: ..\..\include\ecStepper.c \
-  ..\..\include\ecSTM32F411.h \
+./objects/lab_usart_bluetooth.o: LAB_USART_Bluetooth.c \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
@@ -9,9 +8,7 @@
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  ..\..\include\ecPinNames.h ..\..\include\ecRCC.h \
-  ..\..\include\ecGPIO.h ..\..\include\ecEXTI.h \
-  ..\..\include\ecSysTick.h ..\..\include\ecTIM.h ..\..\include\ecPWM.h \
-  ..\..\include\ecStepper.h ..\..\include\ecUART.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\..\include\ecADC.h
+  ..\..\include\ecGPIO.h ..\..\include\ecRCC.h ..\..\include\ecUART.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\..\include\ecPWM.h \
+  ..\..\include\ecTIM.h ..\..\include\ecPinNames.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h

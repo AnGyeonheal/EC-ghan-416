@@ -19,7 +19,7 @@ int _write(int file, char* data, int len)
 {
     // replace with your 'send to uart' function
     USART_write(USART2, (uint8_t*) data, len);
-
+    USART_write(USART1, (uint8_t*) data, len);
     return len;
 }
 

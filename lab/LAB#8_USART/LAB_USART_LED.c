@@ -15,7 +15,7 @@
 
 static volatile uint8_t PC_Data = 0;
 static volatile uint8_t BT_Data = 0;
-void LED_toggle();
+
 
 void setup(void){
     RCC_PLL_init();
@@ -47,7 +47,7 @@ void USART2_IRQHandler(){          		// USART2 RX Interrupt : Recommended
     if(is_USART2_RXNE()){
         PC_Data = USART2_read();		// RX from UART2 (PC)
         USART2_write(&PC_Data,1);		// TX to USART1	 (BT)
-				USART1_write(&PC_Data,1);
+        USART1_write(&PC_Data,1);
         printf("MCU_1 sent : %c \r\n",PC_Data); // TX to USART2(PC)
     }
 }

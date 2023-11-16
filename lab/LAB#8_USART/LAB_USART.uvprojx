@@ -454,9 +454,9 @@
           </GroupOption>
           <Files>
             <File>
-              <FileName>LAB_USART.c</FileName>
+              <FileName>LAB_USART_Bluetooth.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\LAB_USART.c</FilePath>
+              <FilePath>.\LAB_USART_Bluetooth.c</FilePath>
             </File>
           </Files>
         </Group>

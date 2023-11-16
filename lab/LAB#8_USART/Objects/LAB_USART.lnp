@@ -1,5 +1,5 @@
 --cpu=Cortex-M4.fp.sp
-".\objects\lab_usart.o"
+".\objects\lab_usart_bluetooth.o"
 ".\objects\ecexti.o"
 ".\objects\ecgpio.o"
 ".\objects\ecicap.o"

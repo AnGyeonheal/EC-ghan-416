@@ -24,6 +24,7 @@
 #include "ecTIM.h"
 #include "ecPWM.h"
 #include "ecStepper.h"
-//#include "ecADC.h"
+#include "ecUART.h"
+#include "ecADC.h"
 
 #endif
