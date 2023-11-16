@@ -25,11 +25,6 @@ float period = 500;
 static volatile uint8_t PC_Data = 0;
 static volatile uint8_t BT_Data = 0;
 void setup(void);
-static volatile uint8_t buffer[MAX_BUF]={0, };
-static volatile uint8_t BT_string[MAX_BUF]={0, };
-
-static volatile int idx = 0;
-static volatile int bReceive =0;
 
 void main(){
     setup();
@@ -44,23 +39,9 @@ void main(){
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
     if(is_USART1_RXNE()){
 			BT_Data = USART1_read();	
-			USART1_write(&BT_Data,10);		
+			USART1_write(&BT_Data,1);
 			USART1_write("\r\n", 2);
-			// Creates a String from serial character receive				
-			if(BT_Data != END_CHAR && (idx < MAX_BUF)){	
-				buffer[idx] = BT_Data;
-				idx++;
-			}
-			else if (BT_Data == END_CHAR) {						
-				bReceive = 1;
-				// reset PC_string;
-				memset(BT_string, 0, sizeof(char) * MAX_BUF);
-				// copy to PC_string;
-				memcpy(BT_string, buffer, sizeof(char) * idx);
-				// reset buffer
-				memset(buffer, 0, sizeof(char) * MAX_BUF);	
-				idx = 0;
-			}
+
 			if(BT_Data == 's'){
 				PWM_duty(PWM_PIN1, 1);
 				PWM_duty(PWM_PIN2, 1);
@@ -74,8 +55,8 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
 				PWM_duty(PWM_PIN2, 0.2);
 			}
 			else if(BT_Data == 'w'){
-				PWM_duty(PWM_PIN1, 0);
-				PWM_duty(PWM_PIN2, 0);
+				PWM_duty(PWM_PIN1, 0.2);
+				PWM_duty(PWM_PIN2, 0.2);
 			}
 			else if(BT_Data == 'L'){
 				GPIO_write(GPIOA, LED_PIN, 0);
