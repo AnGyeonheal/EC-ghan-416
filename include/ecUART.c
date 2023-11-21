@@ -141,15 +141,15 @@ void USART_setting(USART_TypeDef* USARTx, GPIO_TypeDef* GPIO_TX, int pinTX, GPIO
    // Set the priority and enable interrupt
    USARTx->CR1 |= USART_CR1_RXNEIE;                // Received Data Ready to be Read Interrupt
    if (USARTx == USART1){
-      NVIC_SetPriority(USART1_IRQn, 1);            // Set Priority to 1
+      NVIC_SetPriority(USART1_IRQn, 3);            // Set Priority to 1
       NVIC_EnableIRQ(USART1_IRQn);                // Enable interrupt of USART2 peripheral
    }
    else if (USARTx == USART2){
-      NVIC_SetPriority(USART2_IRQn, 1);            // Set Priority to 1
+      NVIC_SetPriority(USART2_IRQn, 3);            // Set Priority to 1
       NVIC_EnableIRQ(USART2_IRQn);                // Enable interrupt of USART2 peripheral
    }
    else {                                                         // if(USARTx==USART6)
-      NVIC_SetPriority(USART6_IRQn, 1);            // Set Priority to 1
+      NVIC_SetPriority(USART6_IRQn, 3);            // Set Priority to 1
       NVIC_EnableIRQ(USART6_IRQn);               // Enable interrupt of USART2 peripheral
    }
    USARTx->CR1 |= USART_CR1_UE;                      // USART enable

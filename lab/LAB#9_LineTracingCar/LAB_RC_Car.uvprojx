@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>LAB_USART</OutputName>
+          <OutputName>LAB_RC_Car</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -454,9 +454,9 @@
           </GroupOption>
           <Files>
             <File>
-              <FileName>LAB_USART_Bluetooth.c</FileName>
+              <FileName>LAB_RCcar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\LAB_USART_Bluetooth.c</FilePath>
+              <FilePath>.\LAB_RCcar.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -533,6 +533,16 @@
           </GroupOption>
           <Files>
             <File>
+              <FileName>ecADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecADC.h</FilePath>
+            </File>
+            <File>
               <FileName>ecEXTI.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\include\ecEXTI.c</FilePath>
@@ -603,6 +613,11 @@
               <FilePath>..\..\include\ecStepper.h</FilePath>
             </File>
             <File>
+              <FileName>ecSTM32F411.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecSTM32F411.h</FilePath>
+            </File>
+            <File>
               <FileName>ecSysTick.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\include\ecSysTick.c</FilePath>
@@ -631,21 +646,6 @@
               <FileName>ecUART.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\include\ecUART.h</FilePath>
-            </File>
-            <File>
-              <FileName>ecADC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\include\ecADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>ecADC.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\include\ecADC.h</FilePath>
-            </File>
-            <File>
-              <FileName>ecSTM32F411.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\include\ecSTM32F411.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -22,12 +22,81 @@ Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 C:\Users\hilla\source\repos\Embedded_Control_GH\lab\LAB#8_USART\LAB_USART.uvprojx
-Project File Date:  11/16/2023
+Project File Date:  11/21/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\LAB_USART.axf" - 0 Error(s), 0 Warning(s).
+LAB_USART_Bluetooth.c(4): warning: In file included from...
+../../include\ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_USART_Bluetooth.c(5): warning: In file included from...
+../../include\ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+LAB_USART_Bluetooth.c(7): warning: In file included from...
+../../include\ecADC.h(4): warning: In file included from...
+../../include/ecSTM32F411.h(22): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+LAB_USART_Bluetooth.c(7): warning: In file included from...
+../../include/ecADC.h(17): warning: 'FALL' macro redefined [-Wmacro-redefined]
+#define FALL 2
+        ^
+../../include/ecEXTI.h(16): note: previous definition is here
+#define FALL 0
+        ^
+LAB_USART_Bluetooth.c(7): warning: In file included from...
+../../include/ecADC.h(18): warning: 'BOTH' macro redefined [-Wmacro-redefined]
+#define BOTH 3
+        ^
+../../include/ecEXTI.h(18): note: previous definition is here
+#define BOTH 2
+        ^
+LAB_USART_Bluetooth.c(12): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
+int flag = 0;
+    ^
+LAB_USART_Bluetooth.c(12): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int flag = 0;
+^
+LAB_USART_Bluetooth.c(13): warning: no previous extern declaration for non-static variable 'seqCHn' [-Wmissing-variable-declarations]
+PinName_t seqCHn[2] = {PB_0, PB_1};
+          ^
+LAB_USART_Bluetooth.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+PinName_t seqCHn[2] = {PB_0, PB_1};
+^
+LAB_USART_Bluetooth.c(59): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+LAB_USART_Bluetooth.c(47): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
+void ADC_IRQHandler(void){
+     ^
+LAB_USART_Bluetooth.c(47): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void ADC_IRQHandler(void){
+^
+static 
+LAB_USART_Bluetooth.c(11): warning: no previous extern declaration for non-static variable 'value1' [-Wmissing-variable-declarations]
+uint32_t value1, value2;
+         ^
+LAB_USART_Bluetooth.c(11): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t value1, value2;
+^
+LAB_USART_Bluetooth.c(11): warning: no previous extern declaration for non-static variable 'value2' [-Wmissing-variable-declarations]
+uint32_t value1, value2;
+                 ^
+LAB_USART_Bluetooth.c(11): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t value1, value2;
+^
+11 warnings generated.
+compiling LAB_USART_Bluetooth.c...
+linking...
+Program Size: Code=13436 RO-data=1024 RW-data=8 ZI-data=1656  
+FromELF: creating hex file...
+".\Objects\LAB_USART.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -53,12 +122,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
