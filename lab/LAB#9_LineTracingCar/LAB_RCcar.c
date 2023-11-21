@@ -8,21 +8,28 @@
 
 #include "stm32f4xx.h"
 #include "ecSTM32F411.h"
-
+#include "math.h"
 
 #define DIR_PIN1 2
 #define DIR_PIN2 3
 PinName_t PWM_PIN1 = PA_0;
 PinName_t PWM_PIN2 = PA_1;
+#define TRIG PA_6
+#define ECHO PB_6
 #define v0 0.7
-#define v1 0.5
+#define v1 0.6
 #define v2 0.25
 #define v3 0
 #define F 1
 #define B 0
-
-float period = 500;
-
+uint32_t _count = 0;
+float period = 6;
+// UltraSonic
+uint32_t ovf_cnt = 0;
+float distance = 0;
+float timeInterval = 0;
+float time1 = 0;
+float time2 = 0;
 //IR parameter//
 uint32_t value1, value2;
 int flag = 0;
@@ -59,35 +66,43 @@ void main(){
     PWM_duty(PWM_PIN1, vel1);
     PWM_duty(PWM_PIN2, vel2);
     while(1){
-
-			if(mode == 'A'){
-				LED_toggle();
-				if(value1 < 1000 && value2 < 1000){
-                    vel1 = vel[3];
-                    vel2 = vel[3];
-				}
-				else if(value1 > 1000 && value2 < 1000){
-                    vel1 = vel[3];
-                    vel2 = vel[2];
-				}
-				else if(value1 < 1000 && value2 > 1000){
-                    vel1 = vel[2];
-                    vel2 = vel[3];
-				}
-				else if(value1 > 1000 && value2 > 1000){
-                    vel1 = 1;
-                    vel2 = 1;
-				}
-                PWM_duty(PWM_PIN1, vel1);
-                PWM_duty(PWM_PIN2, vel2);
-			}
-            if(mode == 'M'){
-                GPIO_write(GPIOA, LED_PIN, 1);
-                GPIO_write(GPIOC, DIR_PIN1, dir);
-                GPIO_write(GPIOC, DIR_PIN2, dir);
-                PWM_duty(PWM_PIN1, vel1);
-                PWM_duty(PWM_PIN2, vel2);
+        if(mode == 'A'){
+						if(_count >= 1){
+							LED_toggle();
+							_count = 0;
+						}
+						// printf("%c\r\n",mode);
+						printf("%d\r\n",_count);
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
+            if(value1 < 1000 && value2 < 1000){
+                vel1 = vel[3];
+                vel2 = vel[3];
             }
+            else if(value1 > 1000 && value2 < 1000){
+                vel1 = vel[3];
+                vel2 = vel[1];
+            }
+            else if(value1 < 1000 && value2 > 1000){
+                vel1 = vel[1];
+                vel2 = vel[3];
+            }
+            else if(value1 > 1000 && value2 > 1000){
+                vel1 = 1;
+                vel2 = 1;
+            }
+						if(distance < 7){
+							vel1 = 1;
+							vel2 = 1;
+						}
+						else if(distance > 3000){
+							continue;
+						}
+            PWM_duty(PWM_PIN1, vel1);
+            PWM_duty(PWM_PIN2, vel2);
+        }
+        if(mode == 'M'){
+            E_stop();
+        }
     }
 }
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
@@ -134,7 +149,25 @@ void ADC_IRQHandler(void){
             value1 = ADC_read();
         else if (flag==1)
             value2 = ADC_read();
-        flag =! flag;      // flag toggle				
+        flag =! flag;      // flag toggle
+    }
+}
+
+void TIM4_IRQHandler(void){
+    if(is_UIF(TIM4)){                     // Update interrupt
+        ovf_cnt++;													// overflow count
+				_count++;
+        clear_UIF(TIM4);  							    // clear update interrupt flag
+    }
+    if(is_CCIF(TIM4, 1)){ 								// TIM4_Ch1 (IC1) Capture Flag. Rising Edge Detect
+        time1 = TIM4->CCR1;									// Capture TimeStart
+        clear_CCIF(TIM4, 1);                // clear capture/compare interrupt flag
+    }
+    else if(is_CCIF(TIM4, 2)){ 									// TIM4_Ch2 (IC2) Capture Flag. Falling Edge Detect
+        time2 = TIM4->CCR2;									// Capture TimeEnd
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01; 	// (10us * counter pulse -> [msec] unit) Total time of echo pulse
+        ovf_cnt = 0;                        // overflow reset
+        clear_CCIF(TIM4,2);								  // clear capture/compare interrupt flag
     }
 }
 
@@ -215,16 +248,16 @@ double str_angle(int str_level){
 }
 
 void LED_toggle(void){
-		static unsigned int out = 0;
-		if(out == 0) out = 1;
-		else if(out == 1) out = 0;
-		GPIO_write(GPIOA, LED_PIN, out);
+    static unsigned int out = 0;
+    if(out == 0) out = 1;
+    else if(out == 1) out = 0;
+    GPIO_write(GPIOA, LED_PIN, out);
 }
 
 void setup(void){
     RCC_PLL_init();
     SysTick_init();                     // SysTick Init
-		UART2_init();
+    UART2_init();
     // LED
     GPIO(GPIOA, LED_PIN, OUTPUT, EC_MEDIUM, EC_PUSH_PULL, EC_NONE);
 
@@ -249,10 +282,21 @@ void setup(void){
 
     // PWM1
     PWM_init(PWM_PIN1);
-    PWM_period_us(PWM_PIN1, period);
+    PWM_period_ms(PWM_PIN1, period);
 
     // PWM2
     PWM_init(PWM_PIN2);
-    PWM_period_us(PWM_PIN2, period);
+    PWM_period_ms(PWM_PIN2, period);
+
+    // PWM configuration ---------------------------------------------------------------------
+    PWM_init(TRIG);			// PA_6: Ultrasonic trig pulse
+    PWM_period_us(TRIG, 50000);    // PWM of 50ms period. Use period_us()
+    PWM_pulsewidth_us(TRIG, 10);   // PWM pulse width of 10us
+
+    // Input Capture configuration -----------------------------------------------------------------------
+    ICAP_init(ECHO);    	// PB_6 as input caputre
+    ICAP_counter_us(ECHO, 10);   	// ICAP counter step time as 10us
+    ICAP_setup(ECHO, 1, IC_RISE);  // TIM4_CH1 as IC1 , rising edge detect
+    ICAP_setup(ECHO, 2, IC_FALL);  // TIM4_CH2 as IC2 , falling edge detect
 
 }

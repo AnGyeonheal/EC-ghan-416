@@ -71,349 +71,353 @@ PinName_t PWM_PIN2 = PA_1;
 LAB_RCcar.c(16): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 PinName_t PWM_PIN2 = PA_1;
 ^
-LAB_RCcar.c(24): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
-float period = 500;
-      ^
-LAB_RCcar.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float period = 500;
+LAB_RCcar.c(25): warning: no previous extern declaration for non-static variable '_count' [-Wmissing-variable-declarations]
+uint32_t _count = 0;
+         ^
+LAB_RCcar.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t _count = 0;
 ^
-LAB_RCcar.c(28): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
+LAB_RCcar.c(26): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
+float period = 6;
+      ^
+LAB_RCcar.c(26): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float period = 6;
+^
+LAB_RCcar.c(28): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
+uint32_t ovf_cnt = 0;
+         ^
+LAB_RCcar.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ovf_cnt = 0;
+^
+LAB_RCcar.c(29): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
+float distance = 0;
+      ^
+LAB_RCcar.c(29): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float distance = 0;
+^
+LAB_RCcar.c(30): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
+float timeInterval = 0;
+      ^
+LAB_RCcar.c(30): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float timeInterval = 0;
+^
+LAB_RCcar.c(31): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
+float time1 = 0;
+      ^
+LAB_RCcar.c(31): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time1 = 0;
+^
+LAB_RCcar.c(32): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
+float time2 = 0;
+      ^
+LAB_RCcar.c(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time2 = 0;
+^
+LAB_RCcar.c(35): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
 int flag = 0;
     ^
-LAB_RCcar.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(35): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 int flag = 0;
 ^
-LAB_RCcar.c(29): warning: no previous extern declaration for non-static variable 'seqCHn' [-Wmissing-variable-declarations]
+LAB_RCcar.c(36): warning: no previous extern declaration for non-static variable 'seqCHn' [-Wmissing-variable-declarations]
 PinName_t seqCHn[2] = {PB_0, PB_1};
           ^
-LAB_RCcar.c(29): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 PinName_t seqCHn[2] = {PB_0, PB_1};
 ^
-LAB_RCcar.c(34): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
+LAB_RCcar.c(41): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
 int i=0;
     ^
-LAB_RCcar.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(41): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 int i=0;
 ^
-LAB_RCcar.c(36): warning: no previous extern declaration for non-static variable 'vel' [-Wmissing-variable-declarations]
+LAB_RCcar.c(43): warning: no previous extern declaration for non-static variable 'vel' [-Wmissing-variable-declarations]
 double vel[4] = {v0, v1, v2, v3};
        ^
-LAB_RCcar.c(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(43): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 double vel[4] = {v0, v1, v2, v3};
 ^
-LAB_RCcar.c(37): warning: no previous extern declaration for non-static variable 'str_level' [-Wmissing-variable-declarations]
+LAB_RCcar.c(44): warning: no previous extern declaration for non-static variable 'str_level' [-Wmissing-variable-declarations]
 int str_level = 0;
     ^
-LAB_RCcar.c(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(44): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 int str_level = 0;
 ^
-LAB_RCcar.c(38): warning: no previous extern declaration for non-static variable 'vel1' [-Wmissing-variable-declarations]
-double vel1 = 0;
+LAB_RCcar.c(45): warning: no previous extern declaration for non-static variable 'vel1' [-Wmissing-variable-declarations]
+double vel1 = 1;
        ^
-LAB_RCcar.c(38): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-double vel1 = 0;
+LAB_RCcar.c(45): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double vel1 = 1;
 ^
-LAB_RCcar.c(39): warning: no previous extern declaration for non-static variable 'vel2' [-Wmissing-variable-declarations]
-double vel2 = 0;
+LAB_RCcar.c(46): warning: no previous extern declaration for non-static variable 'vel2' [-Wmissing-variable-declarations]
+double vel2 = 1;
        ^
-LAB_RCcar.c(39): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-double vel2 = 0;
+LAB_RCcar.c(46): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double vel2 = 1;
 ^
-LAB_RCcar.c(43): warning: no previous extern declaration for non-static variable 'dir' [-Wmissing-variable-declarations]
+LAB_RCcar.c(50): warning: no previous extern declaration for non-static variable 'dir' [-Wmissing-variable-declarations]
 uint8_t dir = 1;
         ^
-LAB_RCcar.c(43): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(50): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint8_t dir = 1;
 ^
-LAB_RCcar.c(48): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(54): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedUP();
             ^
              void
-LAB_RCcar.c(49): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(55): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedDOWN();
               ^
                void
-LAB_RCcar.c(50): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(56): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_right();
             ^
              void
-LAB_RCcar.c(51): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(57): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_left();
            ^
             void
-LAB_RCcar.c(52): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(58): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_straight();
                ^
                 void
-LAB_RCcar.c(53): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(59): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void E_stop();
            ^
             void
-LAB_RCcar.c(54): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(60): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_back();
            ^
             void
-LAB_RCcar.c(55): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(61): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void LED_toggle();
                ^
                 void
-LAB_RCcar.c(56): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(62): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void main(){
          ^
           void
-LAB_RCcar.c(56): warning: return type of 'main' is not 'int' [-Wmain-return-type]
+LAB_RCcar.c(62): warning: return type of 'main' is not 'int' [-Wmain-return-type]
 void main(){
 ^
-LAB_RCcar.c(56): note: change return type to 'int'
+LAB_RCcar.c(62): note: change return type to 'int'
 void main(){
 ^~~~
 int
-LAB_RCcar.c(71): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN1, 0.3);
-                                                ~~~~~~~~           ^~~
-LAB_RCcar.c(72): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN2, 0.3);
-                                                ~~~~~~~~           ^~~
-LAB_RCcar.c(75): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN1, vel[3]);
-                                                ~~~~~~~~           ^~~~~~
+LAB_RCcar.c(66): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    PWM_duty(PWM_PIN1, vel1);
+    ~~~~~~~~           ^~~~
+LAB_RCcar.c(67): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    PWM_duty(PWM_PIN2, vel2);
+    ~~~~~~~~           ^~~~
 LAB_RCcar.c(76): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN2, vel[1]);
-                                                ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(79): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN1, vel[1]);
-                                                ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(80): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-                                                PWM_duty(PWM_PIN2, vel[3]);
-                                                ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(56): warning: function 'main' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+LAB_RCcar.c(76): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
+                       ^~~~~~~~~~~~~~~~~~~~ ~
+LAB_RCcar.c(100): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            PWM_duty(PWM_PIN1, vel1);
+            ~~~~~~~~           ^~~~
+LAB_RCcar.c(101): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            PWM_duty(PWM_PIN2, vel2);
+            ~~~~~~~~           ^~~~
+LAB_RCcar.c(62): warning: function 'main' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
 void main(){
            ^
-LAB_RCcar.c(89): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(108): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
                       ^
                        void
-LAB_RCcar.c(95): warning: passing 'volatile uint8_t *' (aka 'volatile unsigned char *') to parameter of type 'uint8_t *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
-                                USART1_write(&BT_Data,1);
-                                             ^~~~~~~~
+LAB_RCcar.c(111): warning: passing 'volatile uint8_t *' (aka 'volatile unsigned char *') to parameter of type 'uint8_t *' (aka 'unsigned char *') discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+        USART1_write(&BT_Data,1);
+                     ^~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(89): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
+LAB_RCcar.c(108): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
      ^
-LAB_RCcar.c(89): note: declare 'static' if the function is not intended to be used outside of this translation unit
+LAB_RCcar.c(108): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
 ^
 static 
-LAB_RCcar.c(128): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
+LAB_RCcar.c(143): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
 void ADC_IRQHandler(void){
      ^
-LAB_RCcar.c(128): note: declare 'static' if the function is not intended to be used outside of this translation unit
+LAB_RCcar.c(143): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void ADC_IRQHandler(void){
 ^
 static 
-LAB_RCcar.c(141): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(163): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        time1 = TIM4->CCR1;                                                                     // Capture TimeStart
+              ~ ~~~~~~^~~~
+LAB_RCcar.c(167): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        time2 = TIM4->CCR2;                                                                     // Capture TimeEnd
+              ~ ~~~~~~^~~~
+LAB_RCcar.c(168): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+LAB_RCcar.c(168): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                        ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~  ~
+LAB_RCcar.c(168): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                                        ~ ~~~~~~~~~~~~~~^~~~~~~~~
+LAB_RCcar.c(156): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
+void TIM4_IRQHandler(void){
+     ^
+LAB_RCcar.c(156): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIM4_IRQHandler(void){
+^
+static 
+LAB_RCcar.c(174): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedUP(){
             ^
              void
-LAB_RCcar.c(144): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN1, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(145): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN2, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(141): warning: no previous prototype for function 'speedUP' [-Wmissing-prototypes]
+LAB_RCcar.c(174): warning: no previous prototype for function 'speedUP' [-Wmissing-prototypes]
 void speedUP(){
      ^
-LAB_RCcar.c(48): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(54): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void speedUP();
      ^
              void
-LAB_RCcar.c(148): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(181): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedDOWN(){
               ^
                void
-LAB_RCcar.c(151): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN1, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(152): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN2, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(148): warning: no previous prototype for function 'speedDOWN' [-Wmissing-prototypes]
+LAB_RCcar.c(181): warning: no previous prototype for function 'speedDOWN' [-Wmissing-prototypes]
 void speedDOWN(){
      ^
-LAB_RCcar.c(49): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(55): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void speedDOWN();
      ^
                void
-LAB_RCcar.c(155): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(188): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_right(){
             ^
              void
-LAB_RCcar.c(158): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN1, vel1);
-    ~~~~~~~~           ^~~~
-LAB_RCcar.c(159): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN2, vel2);
-    ~~~~~~~~           ^~~~
-LAB_RCcar.c(155): warning: no previous prototype for function 'M_right' [-Wmissing-prototypes]
+LAB_RCcar.c(188): warning: no previous prototype for function 'M_right' [-Wmissing-prototypes]
 void M_right(){
      ^
-LAB_RCcar.c(50): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(56): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_right();
      ^
              void
-LAB_RCcar.c(162): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(193): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_left(){
            ^
             void
-LAB_RCcar.c(165): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN1, vel1);
-    ~~~~~~~~           ^~~~
-LAB_RCcar.c(166): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN2, vel2);
-    ~~~~~~~~           ^~~~
-LAB_RCcar.c(162): warning: no previous prototype for function 'M_left' [-Wmissing-prototypes]
+LAB_RCcar.c(193): warning: no previous prototype for function 'M_left' [-Wmissing-prototypes]
 void M_left(){
      ^
-LAB_RCcar.c(51): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(57): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_left();
      ^
             void
-LAB_RCcar.c(169): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(198): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_straight(){
                ^
                 void
-LAB_RCcar.c(174): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN1, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(175): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
-    PWM_duty(PWM_PIN2, vel[i]);
-    ~~~~~~~~           ^~~~~~
-LAB_RCcar.c(169): warning: no previous prototype for function 'M_straight' [-Wmissing-prototypes]
+LAB_RCcar.c(198): warning: no previous prototype for function 'M_straight' [-Wmissing-prototypes]
 void M_straight(){
      ^
-LAB_RCcar.c(52): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(58): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_straight();
      ^
                 void
-LAB_RCcar.c(178): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(207): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_back(){
            ^
             void
-LAB_RCcar.c(178): warning: no previous prototype for function 'M_back' [-Wmissing-prototypes]
+LAB_RCcar.c(207): warning: no previous prototype for function 'M_back' [-Wmissing-prototypes]
 void M_back(){
      ^
-LAB_RCcar.c(54): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(60): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_back();
      ^
             void
-LAB_RCcar.c(187): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(214): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void E_stop(){
            ^
             void
-LAB_RCcar.c(187): warning: no previous prototype for function 'E_stop' [-Wmissing-prototypes]
+LAB_RCcar.c(214): warning: no previous prototype for function 'E_stop' [-Wmissing-prototypes]
 void E_stop(){
      ^
-LAB_RCcar.c(53): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(59): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void E_stop();
      ^
             void
-LAB_RCcar.c(195): warning: declaration shadows a variable in the global scope [-Wshadow]
+LAB_RCcar.c(220): warning: declaration shadows a variable in the global scope [-Wshadow]
 double str_angle(int str_level){
                      ^
-LAB_RCcar.c(37): note: previous declaration is here
+LAB_RCcar.c(44): note: previous declaration is here
 int str_level = 0;
     ^
-LAB_RCcar.c(199): warning: multi-character character constant [-Wmultichar]
-        STR = '-1';
-              ^
-LAB_RCcar.c(204): warning: multi-character character constant [-Wmultichar]
-        STR = '-2';
-              ^
-LAB_RCcar.c(209): warning: multi-character character constant [-Wmultichar]
-        STR = '-3';
-              ^
-LAB_RCcar.c(228): warning: multi-character character constant [-Wmultichar]
-        STR = '00';
-              ^
-LAB_RCcar.c(199): warning: implicit conversion from 'int' to 'char' changes value from 11569 to 49 [-Wconstant-conversion]
-        STR = '-1';
-            ~ ^~~~
-LAB_RCcar.c(204): warning: implicit conversion from 'int' to 'char' changes value from 11570 to 50 [-Wconstant-conversion]
-        STR = '-2';
-            ~ ^~~~
-LAB_RCcar.c(209): warning: implicit conversion from 'int' to 'char' changes value from 11571 to 51 [-Wconstant-conversion]
-        STR = '-3';
-            ~ ^~~~
-LAB_RCcar.c(228): warning: implicit conversion from 'int' to 'char' changes value from 12336 to 48 [-Wconstant-conversion]
-        STR = '00';
-            ~ ^~~~
-LAB_RCcar.c(230): warning: non-void function does not return a value [-Wreturn-type]
+LAB_RCcar.c(248): warning: non-void function does not return a value [-Wreturn-type]
 }
 ^
-LAB_RCcar.c(232): warning: no previous prototype for function 'LED_toggle' [-Wmissing-prototypes]
+LAB_RCcar.c(250): warning: no previous prototype for function 'LED_toggle' [-Wmissing-prototypes]
 void LED_toggle(void){
      ^
-LAB_RCcar.c(55): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(61): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void LED_toggle();
      ^
                 void
-LAB_RCcar.c(267): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
-    PWM_period_us(PWM_PIN1, period);
+LAB_RCcar.c(285): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN1, period);
     ~~~~~~~~~~~~~           ^~~~~~
-LAB_RCcar.c(271): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
-    PWM_period_us(PWM_PIN2, period);
+LAB_RCcar.c(289): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN2, period);
     ~~~~~~~~~~~~~           ^~~~~~
-LAB_RCcar.c(273): warning: no newline at end of file [-Wnewline-eof]
+LAB_RCcar.c(302): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-LAB_RCcar.c(27): warning: no previous extern declaration for non-static variable 'value1' [-Wmissing-variable-declarations]
+LAB_RCcar.c(34): warning: no previous extern declaration for non-static variable 'value1' [-Wmissing-variable-declarations]
 uint32_t value1, value2;
          ^
-LAB_RCcar.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint32_t value1, value2;
 ^
-LAB_RCcar.c(27): warning: no previous extern declaration for non-static variable 'value2' [-Wmissing-variable-declarations]
+LAB_RCcar.c(34): warning: no previous extern declaration for non-static variable 'value2' [-Wmissing-variable-declarations]
 uint32_t value1, value2;
                  ^
-LAB_RCcar.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint32_t value1, value2;
 ^
-LAB_RCcar.c(35): warning: no previous extern declaration for non-static variable 'mode' [-Wmissing-variable-declarations]
+LAB_RCcar.c(42): warning: no previous extern declaration for non-static variable 'mode' [-Wmissing-variable-declarations]
 char mode;
-     ^
-LAB_RCcar.c(35): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char mode;
-^
-LAB_RCcar.c(40): warning: no previous extern declaration for non-static variable 'DIR' [-Wmissing-variable-declarations]
-char DIR;
-     ^
-LAB_RCcar.c(40): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char DIR;
-^
-LAB_RCcar.c(41): warning: no previous extern declaration for non-static variable 'VEL' [-Wmissing-variable-declarations]
-char VEL;
-     ^
-LAB_RCcar.c(41): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char VEL;
-^
-LAB_RCcar.c(42): warning: no previous extern declaration for non-static variable 'STR' [-Wmissing-variable-declarations]
-char STR;
      ^
 LAB_RCcar.c(42): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char mode;
+^
+LAB_RCcar.c(47): warning: no previous extern declaration for non-static variable 'DIR' [-Wmissing-variable-declarations]
+char DIR;
+     ^
+LAB_RCcar.c(47): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char DIR;
+^
+LAB_RCcar.c(48): warning: no previous extern declaration for non-static variable 'VEL' [-Wmissing-variable-declarations]
+char VEL;
+     ^
+LAB_RCcar.c(48): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char VEL;
+^
+LAB_RCcar.c(49): warning: no previous extern declaration for non-static variable 'STR' [-Wmissing-variable-declarations]
+char STR;
+     ^
+LAB_RCcar.c(49): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 char STR;
 ^
-LAB_RCcar.c(31): warning: unused variable 'PC_Data' [-Wunused-variable]
+LAB_RCcar.c(38): warning: unused variable 'PC_Data' [-Wunused-variable]
 static volatile uint8_t PC_Data = 0;
                         ^
-82 warnings generated.
+76 warnings generated.
 compiling LAB_RCcar.c...
 linking...
-Program Size: Code=18068 RO-data=1024 RW-data=48 ZI-data=1696  
+Program Size: Code=21460 RO-data=1000 RW-data=64 ZI-data=1704  
 FromELF: creating hex file...
-".\Objects\LAB_RC_Car.axf" - 0 Error(s), 82 Warning(s).
+".\Objects\LAB_RC_Car.axf" - 0 Error(s), 76 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -440,11 +444,11 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:2.6.3
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

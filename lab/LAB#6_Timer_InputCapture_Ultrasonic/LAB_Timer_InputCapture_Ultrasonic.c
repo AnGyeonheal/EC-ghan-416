@@ -35,6 +35,7 @@ int main(void){
 	
 	while(1){
 		distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
+		//printf("%f cm\r\n", timeInterval);
 		printf("%f cm\r\n", distance);
 		delay_ms(500);
 	}

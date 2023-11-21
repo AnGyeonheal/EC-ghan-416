@@ -14,7 +14,7 @@
 #include "ecGPIO.h"
 #include "ecRCC.h"
 #include "ecTIM.h"
-#include "ecUART_simple.h"
+#include "ecUART.h"
 #include "ecSysTick.h"
 #include "ecICAP.h"
 uint32_t ovf_cnt = 0;

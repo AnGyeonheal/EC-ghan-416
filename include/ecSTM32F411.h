@@ -26,5 +26,6 @@
 #include "ecStepper.h"
 #include "ecUART.h"
 #include "ecADC.h"
+#include "ecICAP.h"
 
 #endif

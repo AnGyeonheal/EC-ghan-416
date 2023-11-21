@@ -14,4 +14,5 @@
   ..\..\include\ecGPIO.h ..\..\include\ecEXTI.h \
   ..\..\include\ecSysTick.h ..\..\include\ecTIM.h ..\..\include\ecPWM.h \
   ..\..\include\ecStepper.h ..\..\include\ecUART.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\..\include\ecADC.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\..\include\ecADC.h \
+  ..\..\include\ecICAP.h

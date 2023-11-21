@@ -7,11 +7,8 @@
 */
 
 #include "stm32f4xx.h"
-#include "ecGPIO.h"
-#include "ecRCC.h"
-#include "ecUART.h"
-#include "ecPWM.h"
-#include "string.h"
+#include "ecSTM32F411.h"
+
 
 #define DIR_PIN1 2
 #define DIR_PIN2 3
@@ -26,8 +23,10 @@ PinName_t PWM_PIN2 = PA_1;
 
 float period = 500;
 
-#define MAX_BUF 	10
-#define END_CHAR 	13
+//IR parameter//
+uint32_t value1, value2;
+int flag = 0;
+PinName_t seqCHn[2] = {PB_0, PB_1};
 
 static volatile uint8_t PC_Data = 0;
 static volatile uint8_t BT_Data = 0;
@@ -35,8 +34,6 @@ static volatile uint8_t BT_Data = 0;
 int i=0;
 char mode;
 double vel[4] = {v0, v1, v2, v3};
-int str1 = 0;
-int str2 = 0;
 int str_level = 0;
 double vel1 = 0;
 double vel2 = 0;
@@ -48,6 +45,14 @@ uint8_t dir = 1;
 
 void setup(void);
 double str_angle(int str_level);
+void speedUP();
+void speedDOWN();
+void M_right();
+void M_left();
+void M_straight();
+void E_stop();
+void M_back();
+void LED_toggle();
 void main(){
     setup();
     GPIO_write(GPIOC, DIR_PIN1, 1);
@@ -56,75 +61,138 @@ void main(){
     PWM_duty(PWM_PIN2, 1);
 
     while(1){
+        if(mode == 'A'){
+            LED_toggle();
+            printf("value1 = %d \r\n",value1);
+            printf("value2 = %d \r\n",value2);
+            printf("\r\n");
+            delay_ms(1000);
+
+        }
     }
 }
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
     if(is_USART1_RXNE()){
-        if(dir == F) DIR = 'F';
-        else if(dir == B) DIR = 'B';
+//        if(dir == F) DIR = 'F';
+//        else if(dir == B) DIR = 'B';
 
         BT_Data = USART1_read();
-        USART1_write("MOD:",4);
-        USART1_write(&mode,1);
-        USART1_write(" DIR:",5);
-        USART1_write(&DIR,1);
-        USART1_write(" STR:", 5);
-        USART1_write(&STR, 2);
-        USART1_write(" VEL:", 5);
-        USART1_write(&VEL, 1);
-        USART1_write("\r\n", 2);
-            if(BT_Data == 'M') {
-                mode = 'M';
+        USART1_write(&BT_Data,1);
+
+        if(BT_Data == 'M') {
+            mode = 'M';
+        }
+        else if(BT_Data == 'A'){
+            mode = 'A';
+        }
+        if(mode == 'M') {
+            GPIO_write(GPIOA, LED_PIN, 1);
+            if (BT_Data == '>'){
+                speedUP();
             }
-            if(mode == 'M') {
-                GPIO_write(GPIOA, LED_PIN, 1);
-                if (BT_Data == '>'){
-                    i++;
-                    if(i>4) i=4;
-                    PWM_duty(PWM_PIN1, vel[i]);
-                    PWM_duty(PWM_PIN2, vel[i]);
-                }
-                else if (BT_Data == '<'){
-                    i--;
-                    if(i<0) i=0;
-                    PWM_duty(PWM_PIN1, vel[i]);
-                    PWM_duty(PWM_PIN2, vel[i]);
-                }
-                else if (BT_Data == 'd') {
-                    str_level--;
-                    str_angle(str_level);
-                    PWM_duty(PWM_PIN1, vel1);
-                    PWM_duty(PWM_PIN2, vel2);
-                } else if (BT_Data == 'a') {
-                    str_level++;
-                    str_angle(str_level);
-                    PWM_duty(PWM_PIN1, vel1);
-                    PWM_duty(PWM_PIN2, vel2);
-                } else if (BT_Data == 'w') {
-                    str_level = 0;
-                    dir = F;
-                    GPIO_write(GPIOC, DIR_PIN1, dir);
-                    GPIO_write(GPIOC, DIR_PIN2, dir);
-                    PWM_duty(PWM_PIN1, vel[i]);
-                    PWM_duty(PWM_PIN2, vel[i]);
-                }
-                else if (BT_Data == 's') {
-                    str_level = 0;
-                    dir = B;
-                    GPIO_write(GPIOC, DIR_PIN1, dir);
-                    GPIO_write(GPIOC, DIR_PIN2, dir);
-                    PWM_duty(PWM_PIN1, 0.5);
-                    PWM_duty(PWM_PIN2, 0.5);
-                }
-                else if (BT_Data == 'E'){
-                    dir = F;
-                    GPIO_write(GPIOC, DIR_PIN1, dir);
-                    GPIO_write(GPIOC, DIR_PIN2, dir);
-                    PWM_duty(PWM_PIN1, 1);
-                    PWM_duty(PWM_PIN2, 1);
-                }
+            else if (BT_Data == '<'){
+                speedDOWN();
+            }
+            else if (BT_Data == 'd') {
+                M_right();
+            } else if (BT_Data == 'a') {
+                M_left();
+            } else if (BT_Data == 'w') {
+                M_straight();
+            }
+            else if (BT_Data == 's') {
+                M_back();
+            }
+            else if (BT_Data == 'E'){
+                E_stop();
             }
         }
+        if(mode == 'A'){
+            if(value1 < 2000 && value2 < 2000){
+                PWM_duty(PWM_PIN1, 0.3);
+                PWM_duty(PWM_PIN2, 0.3);
+            }
+            else if(value1 > 2000 && value2 < 2000){
+                PWM_duty(PWM_PIN1, vel[3]);
+                PWM_duty(PWM_PIN2, vel[1]);
+            }
+            else if(value1 < 1000 && value2 > 1000){
+                PWM_duty(PWM_PIN1, vel[1]);
+                PWM_duty(PWM_PIN2, vel[3]);
+            }
+            else if(value1 > 1000 && value2 > 1000){
+                PWM_duty(PWM_PIN1, 1);
+                PWM_duty(PWM_PIN2, 1);
+            }
+        }
+    }
+}
+
+void ADC_IRQHandler(void){
+    if(is_ADC_OVR())
+        clear_ADC_OVR();
+
+    if(is_ADC_EOC()){      // after finishing sequence
+        if (flag==0)
+            value1 = ADC_read();
+        else if (flag==1)
+            value2 = ADC_read();
+        flag =! flag;      // flag toggle
+    }
+}
+
+void speedUP(){
+    i++;
+    if(i>4) i=4;
+    PWM_duty(PWM_PIN1, vel[i]);
+    PWM_duty(PWM_PIN2, vel[i]);
+}
+
+void speedDOWN(){
+    i--;
+    if(i<0) i=0;
+    PWM_duty(PWM_PIN1, vel[i]);
+    PWM_duty(PWM_PIN2, vel[i]);
+}
+
+void M_right(){
+    str_level--;
+    str_angle(str_level);
+    PWM_duty(PWM_PIN1, vel1);
+    PWM_duty(PWM_PIN2, vel2);
+}
+
+void M_left(){
+    str_level++;
+    str_angle(str_level);
+    PWM_duty(PWM_PIN1, vel1);
+    PWM_duty(PWM_PIN2, vel2);
+}
+
+void M_straight(){
+    str_level = 0;
+    dir = F;
+    GPIO_write(GPIOC, DIR_PIN1, dir);
+    GPIO_write(GPIOC, DIR_PIN2, dir);
+    PWM_duty(PWM_PIN1, vel[i]);
+    PWM_duty(PWM_PIN2, vel[i]);
+}
+
+void M_back(){
+    str_level = 0;
+    dir = B;
+    GPIO_write(GPIOC, DIR_PIN1, dir);
+    GPIO_write(GPIOC, DIR_PIN2, dir);
+    PWM_duty(PWM_PIN1, 0.5);
+    PWM_duty(PWM_PIN2, 0.5);
+}
+
+void E_stop(){
+    dir = F;
+    GPIO_write(GPIOC, DIR_PIN1, dir);
+    GPIO_write(GPIOC, DIR_PIN2, dir);
+    PWM_duty(PWM_PIN1, 1);
+    PWM_duty(PWM_PIN2, 1);
 }
 
 double str_angle(int str_level){
@@ -164,11 +232,19 @@ double str_angle(int str_level){
     }
 }
 
+void LED_toggle(void){
+    static unsigned int out = 0;
+    if(out == 0) out = 1;
+    else if(out == 1) out = 0;
+    GPIO_write(GPIOA, LED_PIN, out);
+}
+
 void setup(void){
     RCC_PLL_init();
-	
-		// LED
-		GPIO(GPIOA, LED_PIN, OUTPUT, EC_MEDIUM, EC_PUSH_PULL, EC_NONE);
+    SysTick_init();                     // SysTick Init
+    UART2_init();
+    // LED
+    GPIO(GPIOA, LED_PIN, OUTPUT, EC_MEDIUM, EC_PUSH_PULL, EC_NONE);
 
     // BT serial init
     UART1_init();
@@ -181,6 +257,13 @@ void setup(void){
     // DIR2 SETUP
     GPIO_init(GPIOC, DIR_PIN2, OUTPUT);
     GPIO_otype(GPIOC, DIR_PIN2, EC_PUSH_PULL);
+
+    // ADC Init
+    ADC_init(PB_0);
+    ADC_init(PB_1);
+
+    // ADC channel sequence setting
+    ADC_sequence(seqCHn, 2);
 
     // PWM1
     PWM_init(PWM_PIN1);

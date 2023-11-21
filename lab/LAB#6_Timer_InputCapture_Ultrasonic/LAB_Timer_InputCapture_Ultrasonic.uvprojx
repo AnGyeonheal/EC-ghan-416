@@ -613,14 +613,39 @@
               <FilePath>..\..\include\ecTIM.h</FilePath>
             </File>
             <File>
-              <FileName>ecUART_simple.c</FileName>
+              <FileName>ecADC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\include\ecUART_simple.c</FilePath>
+              <FilePath>..\..\include\ecADC.c</FilePath>
             </File>
             <File>
-              <FileName>ecUART_simple.h</FileName>
+              <FileName>ecADC.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\include\ecUART_simple.h</FilePath>
+              <FilePath>..\..\include\ecADC.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecStepper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecStepper.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecStepper.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecStepper.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecSTM32F411.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecSTM32F411.h</FilePath>
+            </File>
+            <File>
+              <FileName>ecUART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\include\ecUART.c</FilePath>
+            </File>
+            <File>
+              <FileName>ecUART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\include\ecUART.h</FilePath>
             </File>
           </Files>
         </Group>

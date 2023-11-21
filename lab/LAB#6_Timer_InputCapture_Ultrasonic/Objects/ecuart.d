@@ -1,4 +1,5 @@
-./objects/ecadc.o: ..\..\include\ecADC.c \
+./objects/ecuart.o: ..\..\include\ecUART.c ..\..\include\ecUART.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
@@ -7,12 +8,5 @@
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h \
   C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
-  ..\..\include\ecSysTick.h \
-  C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
-  ..\..\include\ecRCC.h ..\..\include\ecADC.h \
-  ..\..\include\ecSTM32F411.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  ..\..\include\ecPinNames.h ..\..\include\ecGPIO.h \
-  ..\..\include\ecEXTI.h ..\..\include\ecTIM.h ..\..\include\ecPWM.h \
-  ..\..\include\ecStepper.h ..\..\include\ecUART.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\..\include\ecICAP.h
+  ..\..\include\ecGPIO.h ..\..\include\ecRCC.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h

@@ -1,6 +1,6 @@
 Dependencies for Project 'LAB_RC_Car', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\LAB_RCcar.c)(0x655C67B8)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/lab_rccar.o -MD)
+F (.\LAB_RCcar.c)(0x655CDD6C)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/lab_rccar.o -MD)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F3CCE)
@@ -10,7 +10,7 @@ I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cms
 I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F3CCE)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F3CCE)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x63743BDA)
-I (..\..\include\ecSTM32F411.h)(0x655526B9)
+I (..\..\include\ecSTM32F411.h)(0x655C8873)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63883AF8)
 I (..\..\include\ecPinNames.h)(0x654CF6B4)
 I (..\..\include\ecRCC.h)(0x651EDD6F)
@@ -23,6 +23,7 @@ I (..\..\include\ecStepper.h)(0x654CF6B4)
 I (..\..\include\ecUART.h)(0x65532AE7)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63883AF8)
 I (..\..\include\ecADC.h)(0x65531865)
+I (..\..\include\ecICAP.h)(0x654CF6B4)
 F (..\..\include\ecADC.c)(0x655C5A6E)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ecadc.o -MD)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F3CCE)
@@ -36,7 +37,7 @@ I (..\..\include\ecSysTick.h)(0x652BC377)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x63743BDA)
 I (..\..\include\ecRCC.h)(0x651EDD6F)
 I (..\..\include\ecADC.h)(0x65531865)
-I (..\..\include\ecSTM32F411.h)(0x655526B9)
+I (..\..\include\ecSTM32F411.h)(0x655C8873)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63883AF8)
 I (..\..\include\ecPinNames.h)(0x654CF6B4)
 I (..\..\include\ecGPIO.h)(0x653B755F)
@@ -46,6 +47,7 @@ I (..\..\include\ecPWM.h)(0x6540B47C)
 I (..\..\include\ecStepper.h)(0x654CF6B4)
 I (..\..\include\ecUART.h)(0x65532AE7)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63883AF8)
+I (..\..\include\ecICAP.h)(0x654CF6B4)
 F (..\..\include\ecADC.h)(0x65531865)()
 F (..\..\include\ecEXTI.c)(0x65312355)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ecexti.o -MD)
 I (..\..\include\ecGPIO.h)(0x653B755F)
@@ -132,7 +134,7 @@ I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSI
 I (..\..\include\ecRCC.h)(0x651EDD6F)
 F (..\..\include\ecRCC.h)(0x651EDD6F)()
 F (..\..\include\ecStepper.c)(0x654CF6B4)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ecstepper.o -MD)
-I (..\..\include\ecSTM32F411.h)(0x655526B9)
+I (..\..\include\ecSTM32F411.h)(0x655C8873)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F3CCE)
@@ -154,9 +156,10 @@ I (..\..\include\ecStepper.h)(0x654CF6B4)
 I (..\..\include\ecUART.h)(0x65532AE7)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63883AF8)
 I (..\..\include\ecADC.h)(0x65531865)
+I (..\..\include\ecICAP.h)(0x654CF6B4)
 F (..\..\include\ecStepper.h)(0x654CF6B4)()
-F (..\..\include\ecSTM32F411.h)(0x655526B9)()
-F (..\..\include\ecSysTick.c)(0x652BC378)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ecsystick.o -MD)
+F (..\..\include\ecSTM32F411.h)(0x655C8873)()
+F (..\..\include\ecSysTick.c)(0x655CC103)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Weverything -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../include -I ../../include-I./RTE/_Target_1-IC:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F411xE -D_RTE_-o ./objects/ecsystick.o -MD)
 I (..\..\include\ecSysTick.h)(0x652BC377)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x63743BDA)
 I (C:\Users\hilla\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f411xe.h)(0x63743BDA)

@@ -39,7 +39,7 @@ void SysTick_init(void){
 	// Enable SysTick IRQ and SysTick Timer
 	SysTick->CTRL |= SysTick_CTRL_ENABLE_Msk;
 		
-	NVIC_SetPriority(SysTick_IRQn, 16);		// Set Priority to 1
+	NVIC_SetPriority(SysTick_IRQn, 15);		// Set Priority to 1
 	NVIC_EnableIRQ(SysTick_IRQn);			// Enable interrupt in NVIC
 }
 
