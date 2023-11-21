@@ -35,13 +35,12 @@ int i=0;
 char mode;
 double vel[4] = {v0, v1, v2, v3};
 int str_level = 0;
-double vel1 = 0;
-double vel2 = 0;
+double vel1 = 1;
+double vel2 = 1;
 char DIR;
 char VEL;
 char STR;
 uint8_t dir = 1;
-
 
 void setup(void);
 double str_angle(int str_level);
@@ -55,44 +54,46 @@ void M_back();
 void LED_toggle();
 void main(){
     setup();
-    GPIO_write(GPIOC, DIR_PIN1, 1);
-    GPIO_write(GPIOC, DIR_PIN2, 1);
-    PWM_duty(PWM_PIN1, 1);
-    PWM_duty(PWM_PIN2, 1);
-
+    GPIO_write(GPIOC, DIR_PIN1, dir);
+    GPIO_write(GPIOC, DIR_PIN2, dir);
+    PWM_duty(PWM_PIN1, vel1);
+    PWM_duty(PWM_PIN2, vel2);
     while(1){
+
 			if(mode == 'A'){
 				LED_toggle();
-				printf("value1 = %d \r\n",value1);
-				printf("value2 = %d \r\n",value2);
-				printf("\r\n");
-				//delay_ms(1000);
 				if(value1 < 1000 && value2 < 1000){
-						PWM_duty(PWM_PIN1, 0.3);
-						PWM_duty(PWM_PIN2, 0.3);
+                    vel1 = vel[3];
+                    vel2 = vel[3];
 				}
 				else if(value1 > 1000 && value2 < 1000){
-						PWM_duty(PWM_PIN1, vel[3]);
-						PWM_duty(PWM_PIN2, vel[1]);
+                    vel1 = vel[3];
+                    vel2 = vel[2];
 				}
 				else if(value1 < 1000 && value2 > 1000){
-						PWM_duty(PWM_PIN1, vel[1]);
-						PWM_duty(PWM_PIN2, vel[3]);
+                    vel1 = vel[2];
+                    vel2 = vel[3];
 				}
 				else if(value1 > 1000 && value2 > 1000){
-						PWM_duty(PWM_PIN1, 1);
-						PWM_duty(PWM_PIN2, 1);
+                    vel1 = 1;
+                    vel2 = 1;
 				}
+                PWM_duty(PWM_PIN1, vel1);
+                PWM_duty(PWM_PIN2, vel2);
 			}
+            if(mode == 'M'){
+                GPIO_write(GPIOA, LED_PIN, 1);
+                GPIO_write(GPIOC, DIR_PIN1, dir);
+                GPIO_write(GPIOC, DIR_PIN2, dir);
+                PWM_duty(PWM_PIN1, vel1);
+                PWM_duty(PWM_PIN2, vel2);
+            }
     }
 }
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
     if(is_USART1_RXNE()){
-//        if(dir == F) DIR = 'F';
-//        else if(dir == B) DIR = 'B';
-
         BT_Data = USART1_read();
-				USART1_write(&BT_Data,1);
+        USART1_write(&BT_Data,1);
 
         if(BT_Data == 'M') {
             mode = 'M';
@@ -101,7 +102,6 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
             mode = 'A';
         }
         if(mode == 'M') {
-            GPIO_write(GPIOA, LED_PIN, 1);
             if (BT_Data == '>'){
                 speedUP();
             }
@@ -141,29 +141,25 @@ void ADC_IRQHandler(void){
 void speedUP(){
     i++;
     if(i>4) i=4;
-    PWM_duty(PWM_PIN1, vel[i]);
-    PWM_duty(PWM_PIN2, vel[i]);
+    vel1 = vel[i];
+    vel2 = vel[i];
 }
 
 void speedDOWN(){
     i--;
     if(i<0) i=0;
-    PWM_duty(PWM_PIN1, vel[i]);
-    PWM_duty(PWM_PIN2, vel[i]);
+    vel1 = vel[i];
+    vel2 = vel[i];
 }
 
 void M_right(){
     str_level--;
     str_angle(str_level);
-    PWM_duty(PWM_PIN1, vel1);
-    PWM_duty(PWM_PIN2, vel2);
 }
 
 void M_left(){
     str_level++;
     str_angle(str_level);
-    PWM_duty(PWM_PIN1, vel1);
-    PWM_duty(PWM_PIN2, vel2);
 }
 
 void M_straight(){
@@ -171,61 +167,50 @@ void M_straight(){
     dir = F;
     GPIO_write(GPIOC, DIR_PIN1, dir);
     GPIO_write(GPIOC, DIR_PIN2, dir);
-    PWM_duty(PWM_PIN1, vel[i]);
-    PWM_duty(PWM_PIN2, vel[i]);
+    vel1 = vel[i];
+    vel2 = vel[i];
 }
 
 void M_back(){
     str_level = 0;
     dir = B;
-    GPIO_write(GPIOC, DIR_PIN1, dir);
-    GPIO_write(GPIOC, DIR_PIN2, dir);
     PWM_duty(PWM_PIN1, 0.5);
     PWM_duty(PWM_PIN2, 0.5);
 }
 
 void E_stop(){
     dir = F;
-    GPIO_write(GPIOC, DIR_PIN1, dir);
-    GPIO_write(GPIOC, DIR_PIN2, dir);
-    PWM_duty(PWM_PIN1, 1);
-    PWM_duty(PWM_PIN2, 1);
+    vel1 = 1;
+    vel2 = 1;
 }
 
 double str_angle(int str_level){
     if(str_level == -1){
         vel1 = v2;
         vel2 = v1;
-        STR = '-1';
     }
     else if(str_level == -2){
         vel1 = v2;
         vel2 = v0;
-        STR = '-2';
     }
     else if(str_level == -3){
         vel1 = v3;
         vel2 = v0;
-        STR = '-3';
     }
     else if(str_level == 1){
         vel1 = v1;
         vel2 = v2;
-        STR = '1';
     }
     else if(str_level == 2){
         vel1 = v0;
         vel2 = v2;
-        STR = '2';
     }else if(str_level == 3){
         vel1 = v0;
         vel2 = v3;
-        STR = '3';
     }
     else if(str_level == 0){
         vel1 = v0;
         vel2 = v0;
-        STR = '00';
     }
 }
 
