@@ -17,8 +17,9 @@ PinName_t PWM_PIN1 = PA_0;
 PinName_t PWM_PIN2 = PA_1;
 #define TRIG PA_6
 #define ECHO PB_6
+#define EX 1
 #define v0 0.7
-#define v1 0.6
+#define v1 0.5
 #define v2 0.25
 #define v3 0
 #define F 1
@@ -69,34 +70,34 @@ void main(){
     PWM_duty(PWM_PIN2, vel2);
     while(1){
         if(mode == 'A'){
-						if(_count >= 1){
-							LED_toggle();
-							printState();
-							_count = 0;
-						}
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
+					
             if(value1 < 1000 && value2 < 1000){
-                vel1 = vel[3];
-                vel2 = vel[3];
+                vel1 = 0;
+                vel2 = 0;
             }
             else if(value1 > 1000 && value2 < 1000){
-                vel1 = vel[3];
-                vel2 = vel[1];
+                vel1 = 0;
+                vel2 = 0.6;
             }
             else if(value1 < 1000 && value2 > 1000){
-                vel1 = vel[1];
-                vel2 = vel[3];
+                vel1 = 0.6;
+                vel2 = 0;			
             }
             else if(value1 > 1000 && value2 > 1000){
                 vel1 = 1;
                 vel2 = 1;
             }
 						if(distance < 7){
-							vel1 = 1;
-							vel2 = 1;
+							E_stop();					
 						}
 						else if(distance > 3000){
 							continue;
+						}
+						if(_count >= 1){
+							LED_toggle();
+							printState();
+							_count = 0;
 						}
 					GPIO_write(GPIOC, DIR_PIN1, dir);
 					GPIO_write(GPIOC, DIR_PIN2, dir);
@@ -104,10 +105,11 @@ void main(){
 					PWM_duty(PWM_PIN2, vel2);
         }
         if(mode == 'M'){
-					if(_count >= 2){
+					if((_count >= 2) &(BT_Data!='E')){
 						printState();
 						_count = 0;
 					}
+					GPIO_write(GPIOA, LED_PIN, 1);
 					GPIO_write(GPIOC, DIR_PIN1, dir);
 					GPIO_write(GPIOC, DIR_PIN2, dir);
 					PWM_duty(PWM_PIN1, vel1);
@@ -119,9 +121,11 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
     if(is_USART1_RXNE()){
         BT_Data = USART1_read();
         if(BT_Data == 'M') {
+						USART1_write("Manual Mode\r\n",13);
             mode = 'M';
         }
         else if(BT_Data == 'A'){
+						USART1_write("Auto Mode\r\n",11);
             mode = 'A';
         }
         if(mode == 'M') {
@@ -143,6 +147,7 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
             }
             else if (BT_Data == 'E'){
                 E_stop();
+								USART1_write("Emergency\r\n", 11);
             }
         }
     }
@@ -150,19 +155,40 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
 
 void printState(void){
 	
-	sprintf(VEL, "%d", i);
-	sprintf(STR, "%d", str_level);
+	if(mode == 'M'){
+		sprintf(VEL, "%d", i);
+		sprintf(STR, "%d", str_level);
+		
+		USART1_write("MOD: ", 5);
+		USART1_write(&mode, 1);
+		USART1_write(" DIR: ", 6);
+		USART1_write(&DIR, 1);
+		USART1_write(" STR: ", 6);
+		USART1_write(&STR, 2);
+		USART1_write(" VEL: ", 6);
+		if(str_level == 0){
+		USART1_write("V", 1);
+		USART1_write(&VEL, 2);
+		}
+		USART1_write("\r\n", 2);
+	}
 	
-	
-	USART1_write("MOD: ", 5);
-	USART1_write(&mode, 1);
-	USART1_write(" DIR: ", 6);
-	USART1_write(&DIR, 1);
-	USART1_write(" STR: ", 6);
-	USART1_write(&STR, 2);
-	USART1_write(" VEL: V", 7);
-	USART1_write(&VEL, 2);
-	USART1_write("\r\n", 2);
+	else if(mode == 'A'){
+		if(distance < 7){
+			USART1_write("Obstacle Infront\r\n", 18);
+		}
+		else{
+			if(value1 < 1000 && value2 < 1000){
+				USART1_write("Straight\r\n",10);
+			}
+			else if(value1 > 1000 && value2 < 1000){
+				USART1_write("Turn right\r\n", 13);
+			}
+			else if(value1 < 1000 && value2 > 1000){
+				USART1_write("Turn left\r\n", 12);
+			}
+		}
+	}
 }
 
 void ADC_IRQHandler(void){
@@ -198,14 +224,14 @@ void TIM4_IRQHandler(void){
 
 void speedUP(){
     i++;
-    if(i>4) i=3;
+    if(i>=3) i=3;
     vel1 = vel[i];
     vel2 = vel[i];
 }
 
 void speedDOWN(){
     i--;
-    if(i<0) i=0;
+    if(i<=0) i=0;
     vel1 = vel[i];
     vel2 = vel[i];
 }
@@ -240,8 +266,8 @@ void M_back(){
 
 void E_stop(){
     dir = F;
-    vel1 = 1;
-    vel2 = 1;
+    vel1 = EX;
+    vel2 = EX;
 }
 
 double str_angle(int str_level){
@@ -269,8 +295,8 @@ double str_angle(int str_level){
         vel2 = v3;
     }
     else if(str_level == 0){
-        vel1 = v0;
-        vel2 = v0;
+        vel1 = vel[i];
+        vel2 = vel[i];
     }
 }
 

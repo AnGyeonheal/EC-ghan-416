@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\LAB_RC_Car.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\LAB_RC_Car.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Nov 23 12:57:16 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Nov 23 18:16:22 2023
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -648,7 +648,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
+<BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
 </UL>
 
 <P><STRONG><a name="[132]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -1059,8 +1059,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_init
 </UL>
 
-<P><STRONG><a name="[e4]"></a>E_stop</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, lab_rccar.o(.text.E_stop))
+<P><STRONG><a name="[e5]"></a>E_stop</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, lab_rccar.o(.text.E_stop))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[b0]"></a>GPIO</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, ecgpio.o(.text.GPIO))
@@ -1179,7 +1180,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e3]"></a>M_back</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, lab_rccar.o(.text.M_back))
+<P><STRONG><a name="[e4]"></a>M_back</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, lab_rccar.o(.text.M_back))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
@@ -1199,7 +1200,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[e2]"></a>M_straight</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, lab_rccar.o(.text.M_straight))
+<P><STRONG><a name="[e3]"></a>M_straight</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, lab_rccar.o(.text.M_straight))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
@@ -1401,35 +1402,37 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART1_baud
 </UL>
 
-<P><STRONG><a name="[2b]"></a>USART1_IRQHandler</STRONG> (Thumb, 272 bytes, Stack size 8 bytes, lab_rccar.o(.text.USART1_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = USART1_IRQHandler &rArr; M_left &rArr; str_angle
+<P><STRONG><a name="[2b]"></a>USART1_IRQHandler</STRONG> (Thumb, 314 bytes, Stack size 8 bytes, lab_rccar.o(.text.USART1_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = USART1_IRQHandler &rArr; USART1_write &rArr; USART_write &rArr; USART_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;E_stop
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_back
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_straight
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_back
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_straight
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_left
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_right
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speedDOWN
-<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speedUP
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speedDOWN
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speedUP
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_read
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_USART1_RXNE
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_write
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;E_stop
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f411xe.o(RESET)
 </UL>
 <P><STRONG><a name="[df]"></a>USART1_read</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, ecuart.o(.text.USART1_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = USART1_read &rArr; USART_read
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_read
+<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[e6]"></a>USART1_write</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, ecuart.o(.text.USART1_write))
+<P><STRONG><a name="[e0]"></a>USART1_write</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, ecuart.o(.text.USART1_write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = USART1_write &rArr; USART_write &rArr; USART_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
+<BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
 </UL>
 
 <P><STRONG><a name="[ea]"></a>USART_delay</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, ecuart.o(.text.USART_delay))
@@ -1438,7 +1441,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_write
 </UL>
 
-<P><STRONG><a name="[e5]"></a>USART_read</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, ecuart.o(.text.USART_read))
+<P><STRONG><a name="[e6]"></a>USART_read</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, ecuart.o(.text.USART_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = USART_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_read
@@ -1464,7 +1467,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_write
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_write
 </UL>
 
 <P><STRONG><a name="[a1]"></a>clear_ADC_OVR</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, ecadc.o(.text.clear_ADC_OVR))
@@ -1534,16 +1537,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_USART1_RXNE
 </UL>
 
-<P><STRONG><a name="[7a]"></a>main</STRONG> (Thumb, 1044 bytes, Stack size 56 bytes, lab_rccar.o(.text.main))
+<P><STRONG><a name="[7a]"></a>main</STRONG> (Thumb, 1036 bytes, Stack size 56 bytes, lab_rccar.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
 <LI>Call Chain = main &rArr; setup &rArr; UART1_init &rArr; USART_setting &rArr; UART_baud &rArr; __hardfp_round &rArr; _drnd &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printState
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_toggle
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;E_stop
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWM_duty
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_write
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
@@ -1551,12 +1555,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[ed]"></a>printState</STRONG> (Thumb, 188 bytes, Stack size 32 bytes, lab_rccar.o(.text.printState))
+<P><STRONG><a name="[ee]"></a>printState</STRONG> (Thumb, 460 bytes, Stack size 32 bytes, lab_rccar.o(.text.printState))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = printState &rArr; sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sprintf
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_write
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1585,15 +1589,15 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e1]"></a>speedDOWN</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, lab_rccar.o(.text.speedDOWN))
+<P><STRONG><a name="[e2]"></a>speedDOWN</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, lab_rccar.o(.text.speedDOWN))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[e0]"></a>speedUP</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, lab_rccar.o(.text.speedUP))
+<P><STRONG><a name="[e1]"></a>speedUP</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, lab_rccar.o(.text.speedUP))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[c0]"></a>str_angle</STRONG> (Thumb, 380 bytes, Stack size 16 bytes, lab_rccar.o(.text.str_angle))
+<P><STRONG><a name="[c0]"></a>str_angle</STRONG> (Thumb, 392 bytes, Stack size 16 bytes, lab_rccar.o(.text.str_angle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = str_angle
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;M_left
@@ -1723,7 +1727,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dcmple
 </UL>
 
-<P><STRONG><a name="[ee]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
+<P><STRONG><a name="[ed]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
