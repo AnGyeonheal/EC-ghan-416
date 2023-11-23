@@ -6,7 +6,7 @@
 
 **Github:** https://github.com/AnGyeonheal/Embedded_Control_GH
 
-**Demo Video:** 
+**Demo Video:** https://www.youtube.com/watch?v=S_XWER2FtZE
 
 ## I. Introduction
 
@@ -89,21 +89,21 @@ Design your RC car that has the following functions:
 
 3. Select appropriate configurations for the design problem. Fill in the table.
 
-| **Functions**             | **Register** | **PORT_PIN**       | **Configuration**                                     |
-| ------------------------- | ------------ | ------------------ | ----------------------------------------------------- |
-| System Clock              | RCC          |                    | PLL 84MHz                                             |
-| delay_ms                  | SysTick      |                    |                                                       |
-| Motor DIR                 | Digital Out  |                    |                                                       |
-|                           | ….           |                    |                                                       |
-| TIMER                     | TIMER1       |                    |                                                       |
-|                           | TIMER2       |                    |                                                       |
-| Timer Interrupt           | ...          |                    | 10msec                                                |
-| ADC                       | ADC          |                    |                                                       |
-|                           | ….           |                    |                                                       |
-| DC Motor Speed            | PWM2         |                    |                                                       |
-| ADC sampling trigger      | PWM3         |                    |                                                       |
-| RS-232 USB cable(ST-LINK) | USART2       |                    | No Parity, 8-bit Data, 1-bit Stop bit 38400 baud-rate |
-| Bluetooth                 | USART1       | TXD: PA9 RXD: PA10 | No Parity, 8-bit Data, 1-bit Stop bit 9600 baud-rate  |
+|         **Functions**         | **Register** |    **PORT_PIN**    |                      **Configuration**                       |
+| :---------------------------: | :----------: | :----------------: | :----------------------------------------------------------: |
+|       **System Clock**        |     RCC      |                    |                          PLL 84MHz                           |
+|            **LED**            |              |        PA5         |       Output, Medium, Push-Pull, No Pull-up Pull-down        |
+|        **Motor DIR1**         | Digital Out  |        PC2         |                                                              |
+|        **Motor DIR2**         | Digital Out  |        PC3         |                                                              |
+|        **Motor PWM1**         |   TIM2_CH1   |        PA0         |          AF, PUSH_PULL, PULL-UP, FAST, period : 6ms          |
+|        **Motor PWM2**         |   TIM2_CH2   |        PA1         |          AF, PUSH_PULL, PULL-UP, FAST, period : 6ms          |
+|      **Ultra Sonic PWM**      |   TIM3_CH1   |     TRIG : PA6     | AF, Push-Pull, No Pull-up Pull-down, Fast, period: 50ms, pulse width: 10us |
+|                               |   TIM4_CH1   |     ECHO : PB6     |       AF, No Pull-up Pull-down, Counter Clock : 0.1MHz       |
+|            **ADC**            |   ADC1_CH8   |        PB0         |               Analog Mode No Pull-up Pull-down               |
+|                               |   ADC1_CH9   |        PB1         |               Analog Mode No Pull-up Pull-down               |
+|   **ADC sampling trigger**    |     TIM3     |                    | ADC Clock Prescaler /8 12-bit resolution, right alignment Continuous Conversion mode Scan mode: Two channels in regular group External Trigger (Timer3 Trigger) @ 1kHz Trigger Detection on Rising Edge |
+| **RS-232 USB cable(ST-LINK)** |    USART2    |                    |    No Parity, 8-bit Data, 1-bit Stop bit 38400 baud-rate     |
+|         **Bluetooth**         |    USART1    | TXD: PA9 RXD: PA10 |     No Parity, 8-bit Data, 1-bit Stop bit 9600 baud-rate     |
 
 ### i. Flow Chart
 
@@ -111,9 +111,7 @@ Design your RC car that has the following functions:
 
 ### ii. Circuit Diagram
 
-> You need to include the circuit diagram
-
-![img](https://user-images.githubusercontent.com/38373000/192134563-72f68b29-4127-42ac-b064-2eda95a9a52a.png)
+<img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/20ca28f0-59ca-4c95-b780-686827631cc8" alt="image" style="zoom: 33%;" />
 
 ### ii. Code
 
@@ -257,7 +255,7 @@ void main(){
 }
 ```
 
-Main function은 Pin들을 initializing하는 setup() 함수를 실행시키고, 초기 모터 상태인 정지상태를 출력합니다. loop 안에는 Automation mode 일때와 Manual mode일 때로 나눈다. Auto mode 일때는 2개의 IR sensor를 통해 얻은 value1, value2 값을 비교하여 Line Tracing 기능을 수행한다. 또한 Ultra Sonic sensor를 통해 들어온 distance 값이 7cm 보다 작은 값이 들어왔을 때 RC car가 정지하도록 수행한다. 이 때 distance 값이 sensing 오류로 인해 매우 큰 값이 입력되는 현상이 생겼다. 이를 방지하기 위해 3000cm 이상의 distance 값이 들어왔을 때 이를 무시하게 하였다. 그리고 TIM4를 통해 얻은 _count 값으로 매 초 MCU의 LED가 반짝이며 현 자동차의 상태를 출력하도록 하였다. 마지막으로는 DC motor가 위에서 얻은 dir, vel1, vel2 값을 통해 dc motor를 가동한다.
+The main function executes the setup() function to initialize pins and outputs the initial motor state, which is the stopped state. Within the loop, it distinguishes between Automation mode and Manual mode. In Auto mode, it performs Line Tracing based on the values obtained from two IR sensors (value1, value2). Additionally, when the distance value from the Ultrasonic sensor is less than 7cm, the RC car comes to a stop. To prevent issues arising from sensing errors resulting in extremely large distance values, values exceeding 3000cm are ignored. The MCU's LED blinks every second based on the _count value obtained through TIM4, displaying the current state of the car. Finally, the DC motor is operated using the dir, vel1, and vel2 values obtained earlier.
 
 **USART1_IRQHandler**
 
@@ -299,7 +297,7 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
 }
 ```
 
-이 함수는 Bluetooth를 통해 들어온 값이 감지 되었을 때 함수 내 명령을 수행한다. USART1_read() 함수를 통해 BT_Data 값을 얻고 mode를 결정한다. Auto mode는 main function 내에서 수행하였다면 Manual mode는 해당 함수 내에서 수행한다. 자동차의 속도를 높이고 낮추며 steering angle을 -3부터 3까지 조절할 수 있게 한다. 직진, 후진 기능을 수행하고 "E"를 읽으면 Emergency Stop 기능을 수행한다.
+This function performs commands when values are detected through Bluetooth. It obtains the BT_Data using the USART1_read() function and determines the mode. While Auto mode is executed within the main function, Manual mode is handled within this function. It allows for adjusting the car's speed and steering angle, ranging from -3 to 3. The function also implements forward and backward movement and activates the Emergency Stop function upon reading 'E'.
 
 **IR sensor**
 
@@ -319,9 +317,9 @@ void ADC_IRQHandler(void){
 }
 ```
 
-해당 함수는 ADC Handler 기능을 통해 IR sensor의 값을 읽어온다. (value1, value2)
+This function reads the values of IR sensors using the ADC handler functionality. (value1, value2)
 
-**TIM4_IRQHanldler()**
+**TIM4_IRQHandler()**
 
 ```c
 // TIM4 Handler (Ultra Sonic)
@@ -344,7 +342,7 @@ void TIM4_IRQHandler(void){
 }
 ```
 
-이 함수는 Ultra Sonic의 
+This function is the TIM4_IRQHandler() function for the Ultrasonic sensor. Through this function, you can obtain the values of timeInterval and _count.
 
 **printState()**
 
@@ -388,31 +386,168 @@ void printState(void){
 }
 ```
 
-이 함수는 Manual mode일 때와 Auto mode일 때의 상태를 Bluetooth를 통해 PC로 보내 출력한다.
+This function sends the status of the RC car in Manual and Auto modes to a PC via Bluetooth and outputs it. It utilizes the `USART1_write()` function for display, but since this function only transmits strings, `sprintf()` is used to convert speed and steering angle values into strings for output.
 
-USART1_write() 함수를 사용하여 화면으로 출력하였으며 이는 문자열밖에 전송이 되지 않으므로 sprintf()를 사용하여 속도, 조향 각도 값을 문자열로 바꿔 출력하도록 하였다.
+**RC Car Function**
 
+```c
+void speedUP(){
+    i++;
+    if(i>=3) i=3;
+    vel1 = vel[i];
+    vel2 = vel[i];
+}
+void speedDOWN(){
+    i--;
+    if(i<=0) i=0;
+    vel1 = vel[i];
+    vel2 = vel[i];
+}
+void M_right(){
+    str_level--;
+	if(str_level<-3) str_level=-3;
+    str_angle(str_level);
+}
+void M_left(){
+    str_level++;
+	if(str_level>3) str_level=3;
+    str_angle(str_level);
+}
+void M_straight(){
+    str_level = 0;
+    dir = F;
+    vel1 = vel[i];
+    vel2 = vel[i];
+	DIR = 'F';
+}
+void M_back(){
+    str_level = 0;
+    dir = B;
+    vel1 = vel[1];
+	vel2 = vel[1];
+	DIR = 'B';
+}
+void E_stop(){
+    dir = F;
+    vel1 = EX;
+    vel2 = EX;
+}
+double str_angle(int str_level){
+	if(str_level == -1){
+        vel1 = v2;
+        vel2 = v1;	
+	}
+	else if(str_level == -2){
+        vel1 = v2;
+        vel2 = v0;
+	}
+	else if(str_level == -3){
+        vel1 = v3;
+        vel2 = v0;
+	}
+	else if(str_level == 1){
+        vel1 = v1;
+        vel2 = v2;
+	}
+	else if(str_level == 2){
+        vel1 = v0;
+        vel2 = v2;
+	}else if(str_level == 3){
+        vel1 = v0;
+        vel2 = v3;
+	}
+	else if(str_level == 0){
+        vel1 = vel[i];
+        vel2 = vel[i];
+	}
+}
+```
 
+These functions are related to the operation of an RC car in Manual Mode. Pressing the ">" and "<" buttons increases and decreases the speed level (i) to determine vel1 and vel2 values. Additionally, there are functions for moving forward and backward, as well as a function for setting the steering angle. Pressing "a" or "d" buttons changes the str_level, and based on str_level, the str_angle function adjusts the speeds of the left DC motor and right DC motor. When str_level is 0, it maintains the speed of the original forward motion.
 
-**Auto Mode**
+**LED Toggle Function**
+
+```c
+void LED_toggle(void){
+    static unsigned int out = 0;
+    if(out == 0) out = 1;
+    else if(out == 1) out = 0;
+    GPIO_write(GPIOA, LED_PIN, out);
+}
+```
+
+This function enables the blinking of the MCU's built-in LED in Auto mode.
+
+**setup Function**
+
+```c
+void setup(void){
+    RCC_PLL_init();
+    SysTick_init();                     // SysTick Init
+    UART2_init();
+    // LED
+    GPIO(GPIOA, LED_PIN, OUTPUT, EC_MEDIUM, EC_PUSH_PULL, EC_NONE);
+
+    // BT serial init
+    UART1_init();
+    UART1_baud(BAUD_9600);
+
+    // DIR1 SETUP
+    GPIO_init(GPIOC, DIR_PIN1, OUTPUT);
+    GPIO_otype(GPIOC, DIR_PIN1, EC_PUSH_PULL);
+
+    // DIR2 SETUP
+    GPIO_init(GPIOC, DIR_PIN2, OUTPUT);
+    GPIO_otype(GPIOC, DIR_PIN2, EC_PUSH_PULL);
+
+    // ADC Init
+    ADC_init(PB_0);
+    ADC_init(PB_1);
+
+    // ADC channel sequence setting
+    ADC_sequence(seqCHn, 2);
+
+    // PWM1
+    PWM_init(PWM_PIN1);
+    PWM_period_ms(PWM_PIN1, period);
+
+    // PWM2
+    PWM_init(PWM_PIN2);
+    PWM_period_ms(PWM_PIN2, period);
+
+    // PWM configuration ---------------------------------------------------------------------
+    PWM_init(TRIG);			// PA_6: Ultrasonic trig pulse
+    PWM_period_us(TRIG, 50000);    // PWM of 50ms period. Use period_us()
+    PWM_pulsewidth_us(TRIG, 10);   // PWM pulse width of 10us
+
+    // Input Capture configuration -----------------------------------------------------------------------
+    ICAP_init(ECHO);    	// PB_6 as input caputre
+    ICAP_counter_us(ECHO, 10);   	// ICAP counter step time as 10us
+    ICAP_setup(ECHO, 1, IC_RISE);  // TIM4_CH1 as IC1 , rising edge detect
+    ICAP_setup(ECHO, 2, IC_FALL);  // TIM4_CH2 as IC2 , falling edge detect
+
+}
+```
+
+This function configures the basic settings of sensors and motors used in the RC car. Details can be found in the above configuration.
 
 ## IV. Results
 
-[demo video link]()
+<img src="https://github.com/AnGyeonheal/Embedded_Control_GH/assets/118132313/7eea57a4-6485-438d-942f-afbc8b492fad" alt="image" style="zoom:50%;" />
+
+[demo video link](https://www.youtube.com/watch?v=S_XWER2FtZE)
 
 ## V. Reference
 
-Complete list of all references used (github, blog, paper, etc)
-
-
+[LAB - EC (gitbook.io)](https://ykkim.gitbook.io/ec/ec-course/lab)
 
 ## VI. Troubleshooting
 
 ### i. motor PWM duty ratio for different DIR
 
-When, DIR=0 duty=0.8--> PWM 0.8 // 실제 모터에 전달되는 pwm
+When, DIR=0 duty=0.8--> PWM 0.8 // actural PWM
 
-Whe, DIR=1 duty=0.8--> PWM 0.2 // 실제 모터에 전달되는 PWM
+When, DIR=1 duty=0.8--> PWM 0.2 // actural PWM
 
 *** a solution ***
 
@@ -441,19 +576,20 @@ int main()
 }
 ```
 
-https://dojang.io/mod/page/view.php?id=352 **
+https://dojang.io/mod/page/view.php?id=352
 
-### iii. Motor does not run under duty 0.5
+### iii. Check and give different Interrupt Priority
 
-SOL) Configure motor PWM period as 1kHa
+We set Priority ADC = 1 / TIM = 2 / UART = 3
 
-### iv. Check and give different Interrupt Priority
+I prioritized obtaining values from IR sensors for immediate steering response, assigning priority in the order of TIM and UART.
 
-Check if you have different NVIC priority number for each IRQs
+### iv. Preprocessing values obtained from an ultrasonic sensor.
 
-### v. Ultrasoninc sensor does not measure properly when MCU is connected with motor driver
-
+```c
+else if(distance > 3000){	// Ignoring dummy value
+    continue;
+}
 ```
 
-```
-
+This is for ignoring dummy value.

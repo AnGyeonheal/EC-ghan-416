@@ -278,33 +278,33 @@ void E_stop(){
     vel2 = EX;
 }
 double str_angle(int str_level){
-    if(str_level == -1){
-        vel1 = v2;
-        vel2 = v1;
-    }
-    else if(str_level == -2){
-        vel1 = v2;
-        vel2 = v0;
-    }
-    else if(str_level == -3){
-        vel1 = v3;
-        vel2 = v0;
-    }
-    else if(str_level == 1){
-        vel1 = v1;
-        vel2 = v2;
-    }
-    else if(str_level == 2){
-        vel1 = v0;
-        vel2 = v2;
-    }else if(str_level == 3){
-        vel1 = v0;
-        vel2 = v3;
-    }
-    else if(str_level == 0){
-        vel1 = vel[i];
-        vel2 = vel[i];
-    }
+	if(str_level == -1){
+			vel1 = v2;
+			vel2 = v1;
+	}
+	else if(str_level == -2){
+			vel1 = v2;
+			vel2 = v0;
+	}
+	else if(str_level == -3){
+			vel1 = v3;
+			vel2 = v0;
+	}
+	else if(str_level == 1){
+			vel1 = v1;
+			vel2 = v2;
+	}
+	else if(str_level == 2){
+			vel1 = v0;
+			vel2 = v2;
+	}else if(str_level == 3){
+			vel1 = v0;
+			vel2 = v3;
+	}
+	else if(str_level == 0){
+			vel1 = vel[i];
+			vel2 = vel[i];
+	}
 }
 void LED_toggle(void){
     static unsigned int out = 0;

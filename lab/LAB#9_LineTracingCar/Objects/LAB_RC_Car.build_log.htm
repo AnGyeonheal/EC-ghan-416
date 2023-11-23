@@ -21,12 +21,599 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-C:\Users\hilla\source\repos\Embedded_Control_GH\lab\LAB#9_LineTracingCar\LAB_RC_Car.uvprojx
-Project File Date:  11/21/2023
+C:\Users\heal\source\repos\Embedded_Control_GH\lab\LAB#9_LineTracingCar\LAB_RC_Car.uvprojx
+Project File Date:  11/23/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
+../../include/ecPinNames.c(10): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecPinNames.c(18): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    unsigned int portNum=(pinName>>4);
+                 ~~~~~~~  ~~~~~~~^~~
+../../include/ecPinNames.c(33): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+../../include/ecPinNames.c(18): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    unsigned int portNum=(pinName>>4);
+                 ^
+4 warnings generated.
+compiling ecPinNames.c...
+compiling system_stm32f4xx.c...
+../../include/ecRCC.c(14): warning: no previous extern declaration for non-static variable 'EC_SYSCLK' [-Wmissing-variable-declarations]
+volatile int EC_SYSCLK=16000000;
+             ^
+../../include/ecRCC.c(14): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile int EC_SYSCLK=16000000;
+         ^
+../../include/ecRCC.c(16): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_HSI_init() {
+                 ^
+                  void
+../../include/ecRCC.c(23): warning: empty expression statement has no effect; remove unnecessary ';' to silence this warning [-Wextra-semi-stmt]
+        while ( (RCC->CR & 0x00000002U) == 0 ) {;}
+                                                ^
+../../include/ecRCC.c(37): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_PLL_init() {   
+                 ^
+                  void
+../../include/ecRCC.c(85): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOA_enable()
+                     ^
+                      void
+../../include/ecRCC.c(91): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOB_enable()
+                     ^
+                      void
+../../include/ecRCC.c(97): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOC_enable()
+                     ^
+                      void
+../../include/ecRCC.c(103): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void RCC_GPIOD_enable()
+                     ^
+                      void
+8 warnings generated.
+compiling ecRCC.c...
+../../include/ecTIM.c(11): warning: In file included from...
+../../include/ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecTIM.c(64): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                ARRval = Sys_CLK/PSCval/1000000 * usec;         // 1MHz*usec
+                       ~ ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../../include/ecTIM.c(55): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
+                PSCval = (Sys_CLK / 1000000);                                                                   // 84 or 16     --> f_cnt = 1MHz
+                          ^~~~~~~
+../../include/ecTIM.c(43): note: initialize the variable 'Sys_CLK' to silence this warning
+        uint32_t Sys_CLK;
+                        ^
+                         = 0
+../../include/ecTIM.c(86): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                       ~ ~~~~~~~~^~~~~~~~~~~~~~~~~~
+../../include/ecTIM.c(94): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                       ~ ~~~~~~~~^~~~~~~~~~~~~~~~~~
+../../include/ecTIM.c(95): warning: implicit conversion loses integer precision: 'unsigned int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+                ARRval = Sys_CLK / PSCval / 1000 * msec;                                        // 100kHz*msec
+                       ~ ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../../include/ecTIM.c(86): warning: variable 'Sys_CLK' may be uninitialized when used here [-Wconditional-uninitialized]
+                PSCval = Sys_CLK / (uint16_t)100000;                                                                    // 840 or 160   --> f_cnt = 100kHz
+                         ^~~~~~~
+../../include/ecTIM.c(74): note: initialize the variable 'Sys_CLK' to silence this warning
+        uint32_t Sys_CLK;
+                        ^
+                         = 0
+../../include/ecTIM.c(110): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        uint32_t IRQn_reg =0;
+                 ^
+8 warnings generated.
+compiling ecTIM.c...
+../../include/ecEXTI.c(12): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecEXTI.c(13): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecEXTI.c(30): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SYSCFG->EXTICR[Pin/4] |= (EXTICR_port << (Pin%4*4));                                                                                            // set 4 bits
+                              ~~  ~~~~~~~~~~~~^~~~~~~~~~~~
+../../include/ecEXTI.c(22): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        int EXTICR_port;
+            ^
+4 warnings generated.
+compiling ecEXTI.c...
+../../include/ecSysTick.c(11): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecSysTick.c(52): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter(){
+                    ^
+                     void
+../../include/ecSysTick.c(52): warning: no previous prototype for function 'SysTick_counter' [-Wmissing-prototypes]
+void SysTick_counter(){
+     ^
+../../include/ecSysTick.h(25): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+void SysTick_counter();
+     ^
+                     void
+../../include/ecSysTick.c(95): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+4 warnings generated.
+compiling ecSysTick.c...
+compiling ecGPIO.c...
+../../include/ecADC.c(2): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecADC.c(3): warning: In file included from...
+../../include/ecADC.h(4): warning: In file included from...
+../../include/ecSTM32F411.h(19): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecADC.c(3): warning: In file included from...
+../../include/ecADC.h(4): warning: In file included from...
+../../include/ecSTM32F411.h(22): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecADC.c(3): warning: In file included from...
+../../include/ecADC.h(17): warning: 'FALL' macro redefined [-Wmacro-redefined]
+#define FALL 2
+        ^
+../../include/ecEXTI.h(16): note: previous definition is here
+#define FALL 0
+        ^
+../../include/ecADC.c(3): warning: In file included from...
+../../include/ecADC.h(18): warning: 'BOTH' macro redefined [-Wmacro-redefined]
+#define BOTH 3
+        ^
+../../include/ecEXTI.h(18): note: previous definition is here
+#define BOTH 2
+        ^
+../../include/ecADC.c(19): warning: passing 'int *' to parameter of type 'uint32_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+    ADC_pinmap(pinName, &chN);         // ADC Channel <->Port/Pin mapping
+                        ^~~~
+../../include/ecADC.h(61): note: passing argument to parameter 'chN' here
+void ADC_pinmap(PinName_t pinName, uint32_t *chN);
+                                             ^
+../../include/ecADC.c(23): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+    GPIO_init(port, pin, ANALOG);              // ANALOG = 3
+    ~~~~~~~~~       ^~~
+../../include/ecADC.c(24): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+    GPIO_pupd(port, pin, EC_NONE);           // EC_NONE = 0
+    ~~~~~~~~~       ^~~
+../../include/ecADC.c(61): warning: implicit conversion changes signedness: 'int' to 'unsigned long' [-Wsign-conversion]
+    ADC1->SQR3 |= (chN& ADC_SQR3_SQ1);       // Choose the first channelID to sample
+                   ^~~~
+../../include/ecADC.c(18): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    int chN;
+        ^
+../../include/ecADC.c(97): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    TIM_init(TIMx, msec);
+    ~~~~~~~~       ^~~~
+../../include/ecADC.c(101): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    TIM_period_ms(TIMx, msec);
+    ~~~~~~~~~~~~~       ^~~~
+../../include/ecADC.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    ADC1->CR2 |= (timer*2 + 2) << 24;    // TIMx TRGO event (ADC : TIM2, TIM3 TRGO)
+              ~~ ~~~~~~~~~~~~~~^~~~~
+../../include/ecADC.c(147): warning: variable length array used [-Wvla]
+    int chN[seqCHnums];
+            ^~~~~~~~~
+../../include/ecADC.c(155): warning: passing 'int *' to parameter of type 'uint32_t *' (aka 'unsigned int *') converts between pointers to integer types with different sign [-Wpointer-sign]
+        ADC_pinmap(seqCHn[k], &(chN[k]));
+                              ^~~~~~~~~
+../../include/ecADC.h(61): note: passing argument to parameter 'chN' here
+void ADC_pinmap(PinName_t pinName, uint32_t *chN);
+                                             ^
+../../include/ecADC.c(158): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    ADC1->SQR1 |= (seqCHnums - 1) << ADC_SQR1_L_Pos; // conversions in the regular channel conversion sequence
+               ~~ ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+../../include/ecADC.c(162): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR3 &= ~(0x1F << i*5);            // SQn clear bits
+                       ~~ ^~~~~~~~~~~~~~
+../../include/ecADC.c(163): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR3 |= chN[i] << i*5;            // Choose the channel to convert sequence
+                       ~~ ~~~~~~~^~~~~~
+../../include/ecADC.c(166): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR2 &= ~(0x1F << (i-6)*5);      // SQn clear bits
+                       ~~ ^~~~~~~~~~~~~~~~~~
+../../include/ecADC.c(167): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR2 |= chN[i] << (i-6)*5;      // Choose the channel to convert sequence
+                       ~~ ~~~~~~~^~~~~~~~~~
+../../include/ecADC.c(170): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR1 &= ~(0x1F << (i-12)*5);   // SQn clear bits
+                       ~~ ^~~~~~~~~~~~~~~~~~~
+../../include/ecADC.c(171): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+            ADC1->SQR1 |= chN[i] << (i-12)*5;      // Choose the channel to convert sequence
+                       ~~ ~~~~~~~^~~~~~~~~~~
+../../include/ecADC.c(147): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    int chN[seqCHnums];
+        ^
+23 warnings generated.
+compiling ecADC.c...
+../../include/ecUART.c(21): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    USART_write(USART2, (uint8_t*) data, len);
+    ~~~~~~~~~~~                          ^~~
+../../include/ecUART.c(22): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    USART_write(USART1, (uint8_t*) data, len);
+    ~~~~~~~~~~~                          ^~~
+../../include/ecUART.c(18): warning: unused parameter 'file' [-Wunused-parameter]
+int _write(int file, char* data, int len)
+               ^
+../../include/ecUART.c(18): warning: no previous prototype for function '_write' [-Wmissing-prototypes]
+int _write(int file, char* data, int len)
+    ^
+../../include/ecUART.c(18): note: declare 'static' if the function is not intended to be used outside of this translation unit
+int _write(int file, char* data, int len)
+^
+static 
+../../include/ecUART.c(27): warning: unused parameter 'f' [-Wunused-parameter]
+int fputc(int ch, FILE *f) { 
+                        ^
+../../include/ecUART.c(35): warning: unused parameter 'f' [-Wunused-parameter]
+int fgetc(FILE *f) {  
+                ^
+../../include/ecUART.c(47): warning: comparison of integers of different signs: 'int' and 'uint32_t' (aka 'unsigned int') [-Wsign-compare]
+   for (i = 0; i < nBytes; i++) {
+               ~ ^ ~~~~~~
+../../include/ecUART.c(93): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      if (pinTX < 8) GPIO_TX->AFR[0] |= 8 << (4*pinTX);
+                                     ~~ ~~^~~~~~~~~~~~
+../../include/ecUART.c(94): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      else                 GPIO_TX->AFR[1] |= 8 << (4*(pinTX-8));
+                                           ~~ ~~^~~~~~~~~~~~~~~~
+../../include/ecUART.c(96): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      if (pinRX < 8) GPIO_RX->AFR[0] |= 8 << (4*pinRX); 
+                                     ~~ ~~^~~~~~~~~~~~
+../../include/ecUART.c(97): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      else                 GPIO_RX->AFR[1] |= 8 << (4*(pinRX-8));
+                                           ~~ ~~^~~~~~~~~~~~~~~~
+../../include/ecUART.c(101): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      if (pinTX < 8) GPIO_TX->AFR[0] |= 7 << (4*pinTX);
+                                     ~~ ~~^~~~~~~~~~~~
+../../include/ecUART.c(102): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      else                 GPIO_TX->AFR[1] |= 7 << (4*(pinTX-8));
+                                           ~~ ~~^~~~~~~~~~~~~~~~
+../../include/ecUART.c(104): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      if( pinRX < 8) GPIO_RX->AFR[0] |= 7 << (4*pinRX);
+                                     ~~ ~~^~~~~~~~~~~~
+../../include/ecUART.c(105): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+      else                 GPIO_RX->AFR[1] |= 7 << (4*(pinRX-8));
+                                           ~~ ~~^~~~~~~~~~~~~~~~
+../../include/ecUART.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   USARTx->CR1 &=~ 1 << 10;         // No parrity bit
+               ~~~~~~^~~~~
+../../include/ecUART.c(123): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   USARTx->CR1 &= ~1 << 12;          // M: 0 = 8 data bits, 1 start bit    
+               ~~ ~~~^~~~~
+../../include/ecUART.c(126): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+   USARTx->CR2 &= ~3 << 12;        // 1 stop bit                                                 
+               ~~ ~~~^~~~~
+../../include/ecUART.c(122): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+   USARTx->CR1 &=~ 1 << 10;         // No parrity bit
+                 ~~~ ^
+../../include/ecUART.c(123): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+   USARTx->CR1 &= ~1 << 12;          // M: 0 = 8 data bits, 1 start bit    
+                  ~~ ^
+../../include/ecUART.c(126): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+   USARTx->CR2 &= ~3 << 12;        // 1 stop bit                                                 
+                  ~~ ^
+../../include/ecUART.c(169): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+   float USARTDIV = (float) fCK/(16*baud);
+                               ~ ~~^~~~~
+../../include/ecUART.c(171): warning: implicit conversion turns floating-point number into integer: 'double' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+   uint32_t fraction = round((USARTDIV -mantissa)*16);
+            ~~~~~~~~   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecUART.c(171): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+   uint32_t fraction = round((USARTDIV -mantissa)*16);
+                       ~~~~~ ~~~~~~~~~~~~~~~~~~~~^~~
+../../include/ecUART.c(171): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+   uint32_t fraction = round((USARTDIV -mantissa)*16);
+                                       ~^~~~~~~~
+../../include/ecUART.c(165): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   float fCK = 84000000;                                    // if(USARTx==USART1 || USARTx==USART6), APB2
+         ^
+../../include/ecUART.c(230): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+27 warnings generated.
+compiling ecUART.c...
+../../include/ecStepper.c(11): warning: In file included from...
+../../include/ecSTM32F411.h(19): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecStepper.c(11): warning: In file included from...
+../../include/ecSTM32F411.h(22): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecStepper.c(11): warning: In file included from...
+../../include/ecSTM32F411.h(23): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+../../include/ecStepper.c(11): warning: In file included from...
+../../include/ecSTM32F411.h(28): warning: In file included from...
+../../include/ecADC.h(17): warning: 'FALL' macro redefined [-Wmacro-redefined]
+#define FALL 2
+        ^
+../../include/ecEXTI.h(16): note: previous definition is here
+#define FALL 0
+        ^
+../../include/ecStepper.c(11): warning: In file included from...
+../../include/ecSTM32F411.h(28): warning: In file included from...
+../../include/ecADC.h(18): warning: 'BOTH' macro redefined [-Wmacro-redefined]
+#define BOTH 3
+        ^
+../../include/ecEXTI.h(18): note: previous definition is here
+#define BOTH 2
+        ^
+../../include/ecStepper.c(26): warning: no previous extern declaration for non-static variable 'direction' [-Wmissing-variable-declarations]
+uint32_t direction = 1; 
+         ^
+../../include/ecStepper.c(26): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t direction = 1; 
+^
+../../include/ecStepper.c(27): warning: no previous extern declaration for non-static variable 'step_delay' [-Wmissing-variable-declarations]
+uint32_t step_delay = 100;
+         ^
+../../include/ecStepper.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t step_delay = 100;
+^
+../../include/ecStepper.c(28): warning: no previous extern declaration for non-static variable 'step_per_rev' [-Wmissing-variable-declarations]
+uint32_t step_per_rev = 64*32;
+         ^
+../../include/ecStepper.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t step_per_rev = 64*32;
+^
+../../include/ecStepper.c(38): warning: padding struct 'State_full_t' with 3 bytes to align 'next' [-Wpadded]
+    uint32_t next[2];
+             ^
+../../include/ecStepper.c(42): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        {0b1100, {S1,S3}},
+         ^
+../../include/ecStepper.c(43): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0110, {S2,S0}},
+     ^
+../../include/ecStepper.c(44): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0011, {S3,S1}},
+     ^
+../../include/ecStepper.c(45): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b1001, {S0,S2}}
+     ^
+../../include/ecStepper.c(41): warning: no previous extern declaration for non-static variable 'FSM_full' [-Wmissing-variable-declarations]
+State_full_t FSM_full[4] = {  
+             ^
+../../include/ecStepper.c(41): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+State_full_t FSM_full[4] = {  
+^
+../../include/ecStepper.c(51): warning: padding struct 'State_half_t' with 3 bytes to align 'next' [-Wpadded]
+        uint32_t next[2];
+                 ^
+../../include/ecStepper.c(55): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        {0b1000, {S1,S7}},
+         ^
+../../include/ecStepper.c(56): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b1100, {S2,S0}},
+     ^
+../../include/ecStepper.c(57): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0100, {S3,S1}},
+     ^
+../../include/ecStepper.c(58): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0110, {S4,S2}},
+     ^
+../../include/ecStepper.c(59): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0010, {S5,S3}},
+     ^
+../../include/ecStepper.c(60): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0011, {S6,S4}},
+     ^
+../../include/ecStepper.c(61): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b0001, {S7,S5}},
+     ^
+../../include/ecStepper.c(62): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+    {0b1001, {S0,S6}}
+     ^
+../../include/ecStepper.c(54): warning: no previous extern declaration for non-static variable 'FSM_half' [-Wmissing-variable-declarations]
+State_half_t FSM_half[8] = {
+             ^
+../../include/ecStepper.c(54): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+State_half_t FSM_half[8] = {
+^
+../../include/ecStepper.c(91): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                GPIO_write(myStepper.port1, myStepper.pin1, (FSM_full[state].out & 0b1000) >> 3);
+                                                                                   ^
+../../include/ecStepper.c(92): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port2, myStepper.pin2, (FSM_full[state].out & 0b0100) >> 2);
+                                                                           ^
+../../include/ecStepper.c(93): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port3, myStepper.pin3, (FSM_full[state].out & 0b0010) >> 1);
+                                                                           ^
+../../include/ecStepper.c(94): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port4, myStepper.pin4, (FSM_full[state].out & 0b0001) >> 0);
+                                                                           ^
+../../include/ecStepper.c(97): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port1, myStepper.pin1, (FSM_half[state].out & 0b1000) >> 3);
+                                                                           ^
+../../include/ecStepper.c(98): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port2, myStepper.pin2, (FSM_half[state].out & 0b0100) >> 2);
+                                                                           ^
+../../include/ecStepper.c(99): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port3, myStepper.pin3, (FSM_half[state].out & 0b0010) >> 1);
+                                                                           ^
+../../include/ecStepper.c(100): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO_write(myStepper.port4, myStepper.pin4, (FSM_half[state].out & 0b0001) >> 0);
+                                                                           ^
+../../include/ecStepper.c(89): warning: no previous prototype for function 'Stepper_pinOut' [-Wmissing-prototypes]
+void Stepper_pinOut (uint32_t state, uint32_t mode){    
+     ^
+../../include/ecStepper.c(89): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Stepper_pinOut (uint32_t state, uint32_t mode){    
+^
+static 
+../../include/ecStepper.c(106): warning: implicit conversion changes signedness: 'long' to 'unsigned long' [-Wsign-conversion]
+                step_delay =  1000 * 60 / whatSpeed  / step_per_rev;     // Convert rpm to  [msec] delay
+                              ~~~~~~~~~~^~~~~~~~~~~  ~
+../../include/ecStepper.c(110): warning: declaration shadows a variable in the global scope [-Wshadow]
+void Stepper_step(uint32_t steps, uint32_t direction, uint32_t mode){
+                                           ^
+../../include/ecStepper.c(26): note: previous declaration is here
+uint32_t direction = 1; 
+         ^
+../../include/ecStepper.c(32): warning: no previous extern declaration for non-static variable 'myStepper' [-Wmissing-variable-declarations]
+volatile Stepper_t myStepper; 
+                   ^
+../../include/ecStepper.c(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile Stepper_t myStepper; 
+         ^
+36 warnings generated.
+compiling ecStepper.c...
+../../include/ecPWM.c(11): warning: In file included from...
+../../include/ecPWM.h(12): warning: In file included from...
+../../include/ecTIM.h(13): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecPWM.c(23): warning: passing 'int *' to parameter of type 'unsigned int *' converts between pointers to integer types with different sign [-Wpointer-sign]
+    ecPinmap(pinName, &port, &pin);
+                             ^~~~
+../../include/ecPinNames.h(133): note: passing argument to parameter 'pin' here
+void ecPinmap(PinName_t pinName, GPIO_TypeDef **GPIOx, unsigned int *pin);
+                                                                     ^
+../../include/ecPWM.c(24): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(120): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(143): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(173): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float fclk = fsys / (psc + 1);                                    // fclk=fsys/(psc+1);
+          ~~~~   ~~~~~^~~~~~~~~~~
+../../include/ecPWM.c(174): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    uint32_t value = pulse_width_ms * fclk - 1;                    // pulse_width_ms *fclk - 1;
+             ~~~~~   ~~~~~~~~~~~~~~~~~~~~~~^~~
+../../include/ecPWM.c(174): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    uint32_t value = pulse_width_ms * fclk - 1;                    // pulse_width_ms *fclk - 1;
+                     ^~~~~~~~~~~~~~ ~
+../../include/ecPWM.c(160): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(220): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float fclk = fsys / (psc + 1);                    // fclk=fsys/(psc+1);
+          ~~~~   ~~~~~^~~~~~~~~~~
+../../include/ecPWM.c(221): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    uint32_t value = pulse_width_us * fclk - 1;                    // pulse_width_ms *fclk - 1;
+             ~~~~~   ~~~~~~~~~~~~~~~~~~~~~~^~~
+../../include/ecPWM.c(221): warning: implicit conversion from 'uint32_t' (aka 'unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    uint32_t value = pulse_width_us * fclk - 1;                    // pulse_width_ms *fclk - 1;
+                     ^~~~~~~~~~~~~~ ~
+../../include/ecPWM.c(205): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(254): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+    float value = (TIMx->ARR + 1) * duty + 1;      // (ARR+1)*dutyRatio + 1
+                   ~~~~~~~~~~^~~  ~
+../../include/ecPWM.c(256): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    if (chN == 1) { TIMx->CCR1 = value; }          //set channel
+                               ~ ^~~~~
+../../include/ecPWM.c(257): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 2) { TIMx->CCR2 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(258): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 3) { TIMx->CCR3 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(259): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    else if (chN == 4) { TIMx->CCR4 = value; }
+                                    ~ ^~~~~
+../../include/ecPWM.c(248): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    TIM_TypeDef *TIMx;
+                 ^
+../../include/ecPWM.c(369): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+20 warnings generated.
+compiling ecPWM.c...
+../../include/ecICAP.c(10): warning: In file included from...
+../../include/ecICAP.h(13): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../../include/ecICAP.c(31): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+        GPIO_init(port, pin, AF);                                                       // AF=2
+        ~~~~~~~~~       ^~~
+../../include/ecICAP.c(32): warning: implicit conversion changes signedness: 'unsigned int' to 'int' [-Wsign-conversion]
+        GPIO_ospeed(port, pin, EC_HIGH);                                                // speed VHIGH=3        
+        ~~~~~~~~~~~       ^~~
+../../include/ecICAP.c(36): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        else if(TIMx == TIM3 || TIMx == TIM4 || TIMx == TIM5)  port->AFR[pin >> 3] |= 0x02 << (4*(pin % 8)); // TIM3~5 
+                                                                                   ~~ ~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(37): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        else if(TIMx == TIM9 || TIMx == TIM10|| TIMx == TIM11) port->AFR[pin >> 3] |= 0x03 << (4*(pin % 8)); // TIM9~11 
+                                                                                   ~~ ~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(71): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        TIMx->CCER &= ~(0b1010 << 4*(ICn - 1));                                 // CCy(Rising) for ICn
+                        ^
+../../include/ecICAP.c(71): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        TIMx->CCER &= ~(0b1010 << 4*(ICn - 1));                                 // CCy(Rising) for ICn
+                   ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(23): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+../../include/ecICAP.c(128): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        TIMx->CCER  &= ~(0b1010 << 4*(ICn - 1));                                        // Clear CCnNP/CCnP bits
+                         ^
+../../include/ecICAP.c(128): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        TIMx->CCER  &= ~(0b1010 << 4*(ICn - 1));                                        // Clear CCnNP/CCnP bits
+                    ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(130): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_RISE: TIMx->CCER &= ~(0b1010 << 4*(ICn - 1)); break; //rising:  00
+                                              ^
+../../include/ecICAP.c(130): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_RISE: TIMx->CCER &= ~(0b1010 << 4*(ICn - 1)); break; //rising:  00
+                                         ~~ ^~~~~~~~~~~~~~~~~~~~~~~~
+../../include/ecICAP.c(131): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_FALL: TIMx->CCER |= 0b0010 << 4 * (ICn - 1);     break; //falling: 01
+                                            ^
+../../include/ecICAP.c(131): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_FALL: TIMx->CCER |= 0b0010 << 4 * (ICn - 1);     break; //falling: 01
+                                         ~~ ~~~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(132): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+                case IC_BOTH: TIMx->CCER |= 0b1010 << 4 * (ICn - 1);     break; //both:    11
+                                            ^
+../../include/ecICAP.c(132): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+                case IC_BOTH: TIMx->CCER |= 0b1010 << 4 * (ICn - 1);     break; //both:    11
+                                         ~~ ~~~~~~~^~~~~~~~~~~~~~~~
+../../include/ecICAP.c(92): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+../../include/ecICAP.c(151): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+        TIMx->PSC = 84*usec-1;                                            // Timer counter clock: 1us * usec
+                  ~ ~~~~~~~^~
+../../include/ecICAP.c(146): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+        TIM_TypeDef *TIMx;
+                     ^
+19 warnings generated.
+compiling ecICAP.c...
 LAB_RCcar.c(10): warning: In file included from...
 ../../include\ecSTM32F411.h(19): warning: In file included from...
 ../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
@@ -71,447 +658,447 @@ PinName_t PWM_PIN2 = PA_1;
 LAB_RCcar.c(17): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 PinName_t PWM_PIN2 = PA_1;
 ^
-LAB_RCcar.c(27): warning: no previous extern declaration for non-static variable '_count' [-Wmissing-variable-declarations]
-uint32_t _count = 0;
-         ^
-LAB_RCcar.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t _count = 0;
-^
-LAB_RCcar.c(28): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
+LAB_RCcar.c(31): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
 float period = 6;
-      ^
-LAB_RCcar.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-float period = 6;
-^
-LAB_RCcar.c(30): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
-uint32_t ovf_cnt = 0;
-         ^
-LAB_RCcar.c(30): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint32_t ovf_cnt = 0;
-^
-LAB_RCcar.c(31): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
-float distance = 0;
       ^
 LAB_RCcar.c(31): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float period = 6;
+^
+LAB_RCcar.c(34): warning: no previous extern declaration for non-static variable '_count' [-Wmissing-variable-declarations]
+uint32_t _count = 0;
+         ^
+LAB_RCcar.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t _count = 0;
+^
+LAB_RCcar.c(37): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
+uint32_t ovf_cnt = 0;
+         ^
+LAB_RCcar.c(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ovf_cnt = 0;
+^
+LAB_RCcar.c(38): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
+float distance = 0;
+      ^
+LAB_RCcar.c(38): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 float distance = 0;
 ^
-LAB_RCcar.c(32): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
+LAB_RCcar.c(39): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
 float timeInterval = 0;
       ^
-LAB_RCcar.c(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(39): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 float timeInterval = 0;
 ^
-LAB_RCcar.c(33): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
+LAB_RCcar.c(40): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
 float time1 = 0;
       ^
-LAB_RCcar.c(33): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(40): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 float time1 = 0;
 ^
-LAB_RCcar.c(34): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
+LAB_RCcar.c(41): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
 float time2 = 0;
       ^
-LAB_RCcar.c(34): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(41): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 float time2 = 0;
 ^
-LAB_RCcar.c(37): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
+LAB_RCcar.c(45): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
 int flag = 0;
     ^
-LAB_RCcar.c(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(45): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 int flag = 0;
 ^
-LAB_RCcar.c(38): warning: no previous extern declaration for non-static variable 'seqCHn' [-Wmissing-variable-declarations]
+LAB_RCcar.c(46): warning: no previous extern declaration for non-static variable 'seqCHn' [-Wmissing-variable-declarations]
 PinName_t seqCHn[2] = {PB_0, PB_1};
           ^
-LAB_RCcar.c(38): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(46): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 PinName_t seqCHn[2] = {PB_0, PB_1};
 ^
-LAB_RCcar.c(43): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
-int i=0;
+LAB_RCcar.c(53): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
+int i=0;                // speed level
     ^
-LAB_RCcar.c(43): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-int i=0;
+LAB_RCcar.c(53): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int i=0;                // speed level
 ^
-LAB_RCcar.c(45): warning: no previous extern declaration for non-static variable 'vel' [-Wmissing-variable-declarations]
-double vel[4] = {v0, v1, v2, v3};
+LAB_RCcar.c(55): warning: no previous extern declaration for non-static variable 'vel' [-Wmissing-variable-declarations]
+double vel[4] = {v0, v1, v2, v3};       // velocity levels
        ^
-LAB_RCcar.c(45): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-double vel[4] = {v0, v1, v2, v3};
+LAB_RCcar.c(55): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double vel[4] = {v0, v1, v2, v3};       // velocity levels
 ^
-LAB_RCcar.c(46): warning: no previous extern declaration for non-static variable 'str_level' [-Wmissing-variable-declarations]
-int str_level = 0;
+LAB_RCcar.c(56): warning: no previous extern declaration for non-static variable 'str_level' [-Wmissing-variable-declarations]
+int str_level = 0;      // Steer level
     ^
-LAB_RCcar.c(46): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-int str_level = 0;
+LAB_RCcar.c(56): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int str_level = 0;      // Steer level
 ^
-LAB_RCcar.c(47): warning: no previous extern declaration for non-static variable 'vel1' [-Wmissing-variable-declarations]
-double vel1 = 1;
+LAB_RCcar.c(57): warning: no previous extern declaration for non-static variable 'vel1' [-Wmissing-variable-declarations]
+double vel1 = 1;        // 1st DC motor duty ratio
        ^
-LAB_RCcar.c(47): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-double vel1 = 1;
+LAB_RCcar.c(57): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double vel1 = 1;        // 1st DC motor duty ratio
 ^
-LAB_RCcar.c(48): warning: no previous extern declaration for non-static variable 'vel2' [-Wmissing-variable-declarations]
-double vel2 = 1;
+LAB_RCcar.c(58): warning: no previous extern declaration for non-static variable 'vel2' [-Wmissing-variable-declarations]
+double vel2 = 1;        // 2nd DC motor duty ratio
        ^
-LAB_RCcar.c(48): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-double vel2 = 1;
+LAB_RCcar.c(58): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+double vel2 = 1;        // 2nd DC motor duty ratio
 ^
-LAB_RCcar.c(52): warning: no previous extern declaration for non-static variable 'dir' [-Wmissing-variable-declarations]
-uint8_t dir = 1;
+LAB_RCcar.c(59): warning: no previous extern declaration for non-static variable 'dir' [-Wmissing-variable-declarations]
+uint8_t dir = 1;        // Direction
         ^
-LAB_RCcar.c(52): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint8_t dir = 1;
+LAB_RCcar.c(59): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t dir = 1;        // Direction
 ^
-LAB_RCcar.c(57): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(70): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedUP();
             ^
              void
-LAB_RCcar.c(58): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(71): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedDOWN();
               ^
                void
-LAB_RCcar.c(59): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(72): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_right();
             ^
              void
-LAB_RCcar.c(60): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(73): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_left();
            ^
             void
-LAB_RCcar.c(61): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(74): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_straight();
                ^
                 void
-LAB_RCcar.c(62): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(75): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void E_stop();
            ^
             void
-LAB_RCcar.c(63): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(76): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_back();
            ^
             void
-LAB_RCcar.c(64): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(77): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void LED_toggle();
                ^
                 void
-LAB_RCcar.c(65): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(79): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void main(){
          ^
           void
-LAB_RCcar.c(65): warning: return type of 'main' is not 'int' [-Wmain-return-type]
+LAB_RCcar.c(79): warning: return type of 'main' is not 'int' [-Wmain-return-type]
 void main(){
 ^
-LAB_RCcar.c(65): note: change return type to 'int'
+LAB_RCcar.c(79): note: change return type to 'int'
 void main(){
 ^~~~
 int
-LAB_RCcar.c(69): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(84): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     PWM_duty(PWM_PIN1, vel1);
     ~~~~~~~~           ^~~~
-LAB_RCcar.c(70): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(85): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     PWM_duty(PWM_PIN2, vel2);
     ~~~~~~~~           ^~~~
-LAB_RCcar.c(73): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(88): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
                      ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-LAB_RCcar.c(73): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+LAB_RCcar.c(88): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
                        ^~~~~~~~~~~~~~~~~~~~ ~
-LAB_RCcar.c(104): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(119): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                                         PWM_duty(PWM_PIN1, vel1);
                                         ~~~~~~~~           ^~~~
-LAB_RCcar.c(105): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(120): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                                         PWM_duty(PWM_PIN2, vel2);
                                         ~~~~~~~~           ^~~~
-LAB_RCcar.c(115): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(131): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                                         PWM_duty(PWM_PIN1, vel1);
                                         ~~~~~~~~           ^~~~
-LAB_RCcar.c(116): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(132): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
                                         PWM_duty(PWM_PIN2, vel2);
                                         ~~~~~~~~           ^~~~
-LAB_RCcar.c(65): warning: function 'main' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
+LAB_RCcar.c(79): warning: function 'main' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
 void main(){
            ^
-LAB_RCcar.c(120): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(136): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
                       ^
                        void
-LAB_RCcar.c(124): warning: passing 'char[14]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(140): warning: passing 'char[14]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                                 USART1_write("Manual Mode\r\n",13);
                                                              ^~~~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(128): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(144): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                                 USART1_write("Auto Mode\r\n",11);
                                                              ^~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(150): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(166): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                                                 USART1_write("Emergency\r\n", 11);
                                                                              ^~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(120): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
+LAB_RCcar.c(136): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
      ^
-LAB_RCcar.c(120): note: declare 'static' if the function is not intended to be used outside of this translation unit
+LAB_RCcar.c(136): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
 ^
 static 
-LAB_RCcar.c(162): warning: passing 'char[6]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(178): warning: passing 'char[6]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write("MOD: ", 5);
                              ^~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(163): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(179): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write(&mode, 1);
                              ^~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(164): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(180): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write(" DIR: ", 6);
                              ^~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(165): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(181): warning: passing 'char *' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write(&DIR, 1);
                              ^~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(166): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(182): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write(" STR: ", 6);
                              ^~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(167): warning: incompatible pointer types passing 'char (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
+LAB_RCcar.c(183): warning: incompatible pointer types passing 'char (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
                 USART1_write(&STR, 2);
                              ^~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(168): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(184): warning: passing 'char[7]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write(" VEL: ", 6);
                              ^~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(170): warning: passing 'char[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(186): warning: passing 'char[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write("V", 1);
                              ^~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(171): warning: incompatible pointer types passing 'char (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
+LAB_RCcar.c(187): warning: incompatible pointer types passing 'char (*)[2]' to parameter of type 'uint8_t *' (aka 'unsigned char *') [-Wincompatible-pointer-types]
                 USART1_write(&VEL, 2);
                              ^~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(173): warning: passing 'char[3]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(189): warning: passing 'char[3]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                 USART1_write("\r\n", 2);
                              ^~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(178): warning: passing 'char[19]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(193): warning: passing 'char[19]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                         USART1_write("Obstacle Infront\r\n", 18);
                                      ^~~~~~~~~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(182): warning: passing 'char[11]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(197): warning: passing 'char[11]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                 USART1_write("Straight\r\n",10);
                                              ^~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(185): warning: passing 'char[13]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(200): warning: passing 'char[13]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                 USART1_write("Turn right\r\n", 13);
                                              ^~~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(188): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
+LAB_RCcar.c(203): warning: passing 'char[12]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types where one is of the unique plain 'char' type and the other is not [-Wpointer-sign]
                                 USART1_write("Turn left\r\n", 12);
                                              ^~~~~~~~~~~~~~~
 ../../include/ecUART.h(47): note: passing argument to parameter 'buffer' here
 void USART1_write(uint8_t* buffer, uint32_t nBytes);
                            ^
-LAB_RCcar.c(194): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
+LAB_RCcar.c(209): warning: no previous prototype for function 'ADC_IRQHandler' [-Wmissing-prototypes]
 void ADC_IRQHandler(void){
      ^
-LAB_RCcar.c(194): note: declare 'static' if the function is not intended to be used outside of this translation unit
+LAB_RCcar.c(209): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void ADC_IRQHandler(void){
 ^
 static 
-LAB_RCcar.c(214): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+LAB_RCcar.c(229): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
         time1 = TIM4->CCR1;                                                                     // Capture TimeStart
               ~ ~~~~~~^~~~
-LAB_RCcar.c(218): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+LAB_RCcar.c(233): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
         time2 = TIM4->CCR2;                                                                     // Capture TimeEnd
               ~ ~~~~~~^~~~
-LAB_RCcar.c(219): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+LAB_RCcar.c(234): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
         timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
                      ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
-LAB_RCcar.c(219): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+LAB_RCcar.c(234): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
         timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
                         ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~  ~
-LAB_RCcar.c(219): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+LAB_RCcar.c(234): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
         timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
                                         ~ ~~~~~~~~~~~~~~^~~~~~~~~
-LAB_RCcar.c(207): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
+LAB_RCcar.c(222): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
 void TIM4_IRQHandler(void){
      ^
-LAB_RCcar.c(207): note: declare 'static' if the function is not intended to be used outside of this translation unit
+LAB_RCcar.c(222): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TIM4_IRQHandler(void){
 ^
 static 
-LAB_RCcar.c(225): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(239): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedUP(){
             ^
              void
-LAB_RCcar.c(225): warning: no previous prototype for function 'speedUP' [-Wmissing-prototypes]
+LAB_RCcar.c(239): warning: no previous prototype for function 'speedUP' [-Wmissing-prototypes]
 void speedUP(){
      ^
-LAB_RCcar.c(57): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(70): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void speedUP();
      ^
              void
-LAB_RCcar.c(232): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(245): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void speedDOWN(){
               ^
                void
-LAB_RCcar.c(232): warning: no previous prototype for function 'speedDOWN' [-Wmissing-prototypes]
+LAB_RCcar.c(245): warning: no previous prototype for function 'speedDOWN' [-Wmissing-prototypes]
 void speedDOWN(){
      ^
-LAB_RCcar.c(58): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(71): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void speedDOWN();
      ^
                void
-LAB_RCcar.c(239): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(251): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_right(){
             ^
              void
-LAB_RCcar.c(239): warning: no previous prototype for function 'M_right' [-Wmissing-prototypes]
+LAB_RCcar.c(251): warning: no previous prototype for function 'M_right' [-Wmissing-prototypes]
 void M_right(){
      ^
-LAB_RCcar.c(59): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(72): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_right();
      ^
              void
-LAB_RCcar.c(245): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(256): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_left(){
            ^
             void
-LAB_RCcar.c(245): warning: no previous prototype for function 'M_left' [-Wmissing-prototypes]
+LAB_RCcar.c(256): warning: no previous prototype for function 'M_left' [-Wmissing-prototypes]
 void M_left(){
      ^
-LAB_RCcar.c(60): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(73): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_left();
      ^
             void
-LAB_RCcar.c(251): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(261): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_straight(){
                ^
                 void
-LAB_RCcar.c(251): warning: no previous prototype for function 'M_straight' [-Wmissing-prototypes]
+LAB_RCcar.c(261): warning: no previous prototype for function 'M_straight' [-Wmissing-prototypes]
 void M_straight(){
      ^
-LAB_RCcar.c(61): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(74): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_straight();
      ^
                 void
-LAB_RCcar.c(259): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(268): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void M_back(){
            ^
             void
-LAB_RCcar.c(259): warning: no previous prototype for function 'M_back' [-Wmissing-prototypes]
+LAB_RCcar.c(268): warning: no previous prototype for function 'M_back' [-Wmissing-prototypes]
 void M_back(){
      ^
-LAB_RCcar.c(63): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(76): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void M_back();
      ^
             void
-LAB_RCcar.c(267): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+LAB_RCcar.c(275): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
 void E_stop(){
            ^
             void
-LAB_RCcar.c(267): warning: no previous prototype for function 'E_stop' [-Wmissing-prototypes]
+LAB_RCcar.c(275): warning: no previous prototype for function 'E_stop' [-Wmissing-prototypes]
 void E_stop(){
      ^
-LAB_RCcar.c(62): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(75): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void E_stop();
      ^
             void
-LAB_RCcar.c(273): warning: declaration shadows a variable in the global scope [-Wshadow]
+LAB_RCcar.c(280): warning: declaration shadows a variable in the global scope [-Wshadow]
 double str_angle(int str_level){
                      ^
-LAB_RCcar.c(46): note: previous declaration is here
-int str_level = 0;
+LAB_RCcar.c(56): note: previous declaration is here
+int str_level = 0;      // Steer level
     ^
-LAB_RCcar.c(301): warning: non-void function does not return a value [-Wreturn-type]
+LAB_RCcar.c(308): warning: non-void function does not return a value [-Wreturn-type]
 }
 ^
-LAB_RCcar.c(303): warning: no previous prototype for function 'LED_toggle' [-Wmissing-prototypes]
+LAB_RCcar.c(309): warning: no previous prototype for function 'LED_toggle' [-Wmissing-prototypes]
 void LED_toggle(void){
      ^
-LAB_RCcar.c(64): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
+LAB_RCcar.c(77): note: this declaration is not a prototype; add 'void' to make it a prototype for a zero-parameter function
 void LED_toggle();
      ^
                 void
-LAB_RCcar.c(338): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+LAB_RCcar.c(343): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
     PWM_period_ms(PWM_PIN1, period);
     ~~~~~~~~~~~~~           ^~~~~~
-LAB_RCcar.c(342): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+LAB_RCcar.c(347): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
     PWM_period_ms(PWM_PIN2, period);
     ~~~~~~~~~~~~~           ^~~~~~
-LAB_RCcar.c(355): warning: no newline at end of file [-Wnewline-eof]
+LAB_RCcar.c(360): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-LAB_RCcar.c(36): warning: no previous extern declaration for non-static variable 'value1' [-Wmissing-variable-declarations]
+LAB_RCcar.c(44): warning: no previous extern declaration for non-static variable 'value1' [-Wmissing-variable-declarations]
 uint32_t value1, value2;
          ^
-LAB_RCcar.c(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(44): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint32_t value1, value2;
 ^
-LAB_RCcar.c(36): warning: no previous extern declaration for non-static variable 'value2' [-Wmissing-variable-declarations]
+LAB_RCcar.c(44): warning: no previous extern declaration for non-static variable 'value2' [-Wmissing-variable-declarations]
 uint32_t value1, value2;
                  ^
-LAB_RCcar.c(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(44): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 uint32_t value1, value2;
 ^
-LAB_RCcar.c(44): warning: no previous extern declaration for non-static variable 'mode' [-Wmissing-variable-declarations]
-char mode;
+LAB_RCcar.c(54): warning: no previous extern declaration for non-static variable 'mode' [-Wmissing-variable-declarations]
+char mode;              // mode = 'Manual' or 'Auto'    
      ^
-LAB_RCcar.c(44): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char mode;
+LAB_RCcar.c(54): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char mode;              // mode = 'Manual' or 'Auto'    
 ^
-LAB_RCcar.c(49): warning: no previous extern declaration for non-static variable 'DIR' [-Wmissing-variable-declarations]
-char DIR;
+LAB_RCcar.c(62): warning: no previous extern declaration for non-static variable 'DIR' [-Wmissing-variable-declarations]
+char DIR;                
      ^
-LAB_RCcar.c(49): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char DIR;
+LAB_RCcar.c(62): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char DIR;                
 ^
-LAB_RCcar.c(50): warning: no previous extern declaration for non-static variable 'VEL' [-Wmissing-variable-declarations]
-char VEL[2];
+LAB_RCcar.c(63): warning: no previous extern declaration for non-static variable 'VEL' [-Wmissing-variable-declarations]
+char VEL[2];     
      ^
-LAB_RCcar.c(50): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-char VEL[2];
+LAB_RCcar.c(63): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char VEL[2];     
 ^
-LAB_RCcar.c(51): warning: no previous extern declaration for non-static variable 'STR' [-Wmissing-variable-declarations]
+LAB_RCcar.c(64): warning: no previous extern declaration for non-static variable 'STR' [-Wmissing-variable-declarations]
 char STR[2];
      ^
-LAB_RCcar.c(51): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+LAB_RCcar.c(64): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 char STR[2];
 ^
-LAB_RCcar.c(40): warning: unused variable 'PC_Data' [-Wunused-variable]
+LAB_RCcar.c(49): warning: unused variable 'PC_Data' [-Wunused-variable]
 static volatile uint8_t PC_Data = 0;
                         ^
 94 warnings generated.
@@ -519,7 +1106,7 @@ compiling LAB_RCcar.c...
 linking...
 Program Size: Code=22132 RO-data=1120 RW-data=64 ZI-data=1704  
 FromELF: creating hex file...
-".\Objects\LAB_RC_Car.axf" - 0 Error(s), 94 Warning(s).
+".\Objects\LAB_RC_Car.axf" - 0 Error(s), 247 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -537,18 +1124,18 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Target_1
-  C:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  C:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/heal/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/heal/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:02
 </pre>
