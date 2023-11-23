@@ -9,6 +9,7 @@
 #include "stm32f4xx.h"
 #include "ecSTM32F411.h"
 #include "math.h"
+#include "stdio.h"
 
 #define DIR_PIN1 2
 #define DIR_PIN2 3
@@ -45,12 +46,13 @@ int str_level = 0;
 double vel1 = 1;
 double vel2 = 1;
 char DIR;
-char VEL;
-char STR;
+char VEL[2];
+char STR[2];
 uint8_t dir = 1;
 
 void setup(void);
 double str_angle(int str_level);
+void printState(void);
 void speedUP();
 void speedDOWN();
 void M_right();
@@ -69,10 +71,9 @@ void main(){
         if(mode == 'A'){
 						if(_count >= 1){
 							LED_toggle();
+							printState();
 							_count = 0;
 						}
-						// printf("%c\r\n",mode);
-						printf("%d\r\n",_count);
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
             if(value1 < 1000 && value2 < 1000){
                 vel1 = vel[3];
@@ -97,19 +98,26 @@ void main(){
 						else if(distance > 3000){
 							continue;
 						}
-            PWM_duty(PWM_PIN1, vel1);
-            PWM_duty(PWM_PIN2, vel2);
+					GPIO_write(GPIOC, DIR_PIN1, dir);
+					GPIO_write(GPIOC, DIR_PIN2, dir);
+					PWM_duty(PWM_PIN1, vel1);
+					PWM_duty(PWM_PIN2, vel2);
         }
         if(mode == 'M'){
-            E_stop();
+					if(_count >= 2){
+						printState();
+						_count = 0;
+					}
+					GPIO_write(GPIOC, DIR_PIN1, dir);
+					GPIO_write(GPIOC, DIR_PIN2, dir);
+					PWM_duty(PWM_PIN1, vel1);
+					PWM_duty(PWM_PIN2, vel2);
         }
     }
 }
 void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recommended
     if(is_USART1_RXNE()){
         BT_Data = USART1_read();
-        USART1_write(&BT_Data,1);
-
         if(BT_Data == 'M') {
             mode = 'M';
         }
@@ -138,6 +146,23 @@ void USART1_IRQHandler(){                       // USART2 RX Interrupt : Recomme
             }
         }
     }
+}
+
+void printState(void){
+	
+	sprintf(VEL, "%d", i);
+	sprintf(STR, "%d", str_level);
+	
+	
+	USART1_write("MOD: ", 5);
+	USART1_write(&mode, 1);
+	USART1_write(" DIR: ", 6);
+	USART1_write(&DIR, 1);
+	USART1_write(" STR: ", 6);
+	USART1_write(&STR, 2);
+	USART1_write(" VEL: V", 7);
+	USART1_write(&VEL, 2);
+	USART1_write("\r\n", 2);
 }
 
 void ADC_IRQHandler(void){
@@ -173,7 +198,7 @@ void TIM4_IRQHandler(void){
 
 void speedUP(){
     i++;
-    if(i>4) i=4;
+    if(i>4) i=3;
     vel1 = vel[i];
     vel2 = vel[i];
 }
@@ -187,28 +212,30 @@ void speedDOWN(){
 
 void M_right(){
     str_level--;
+		if(str_level<-3) str_level=-3;
     str_angle(str_level);
 }
 
 void M_left(){
     str_level++;
+		if(str_level>3) str_level=3;
     str_angle(str_level);
 }
 
 void M_straight(){
     str_level = 0;
     dir = F;
-    GPIO_write(GPIOC, DIR_PIN1, dir);
-    GPIO_write(GPIOC, DIR_PIN2, dir);
     vel1 = vel[i];
     vel2 = vel[i];
+		DIR = 'F';
 }
 
 void M_back(){
     str_level = 0;
     dir = B;
-    PWM_duty(PWM_PIN1, 0.5);
-    PWM_duty(PWM_PIN2, 0.5);
+    vel1 = vel[1];
+		vel2 = vel[1];
+		DIR = 'B';
 }
 
 void E_stop(){
