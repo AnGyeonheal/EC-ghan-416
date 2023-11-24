@@ -92,10 +92,10 @@ void main(){
             }
             else if(value1 > 1000 && value2 < 1000){	// Turn right
                 vel1 = 0;
-                vel2 = 0.6;
+                vel2 = 0.54;
             }
             else if(value1 < 1000 && value2 > 1000){	// Turn left
-                vel1 = 0.6;
+                vel1 = 0.54;
                 vel2 = 0;			
             }
             else if(value1 > 1000 && value2 > 1000){	// STOP
