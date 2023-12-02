@@ -54,14 +54,14 @@ void ADC_init(PinName_t pinName){  // trigmode 0 : SW, 1 : TRGO
 
 // 4. Single(one) Channel or Scan(multi-channel) mode
     // Configure the sequence length         // default: one-channel length
-    ADC1->SQR1 &= 15<<20;                // 0000: one channel length in the regular channel conversion sequence
+    ADC1->SQR1 &= ~(15<<20);                // 0000: one channel length in the regular channel conversion sequence
 
     // Configure the multiple channel sampling sequence
     ADC1->SQR3 &= ~ADC_SQR3_SQ1;            // SQ1 clear
-    ADC1->SQR3 |= (chN& ADC_SQR3_SQ1);       // Choose the first channelID to sample
+    ADC1->SQR3 |= (chN & ADC_SQR3_SQ1);       // Choose the first channelID to sample
 
     // Default:  Single(one-channel) Channel mode
-    ADC1->CR1 &= 1<<8;               // 0: One-channel mode
+    ADC1->CR1 &= ~ADC_CR1_SCAN;               // 0: One-channel mode
 
 // 5. Interrupt Enable
     // Enable EOC(conversion) interrupt.
