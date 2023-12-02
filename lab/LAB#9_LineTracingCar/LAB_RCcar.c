@@ -28,7 +28,7 @@ PinName_t PWM_PIN2 = PA_1;
 #define B 0
 
 // PWM period define
-float period = 6;
+float period = 500;
 
 // TIM4 count define
 uint32_t _count = 0;
@@ -63,6 +63,7 @@ char DIR;
 char VEL[2];	 
 char STR[2];
 
+
 // Function Defines
 void setup(void);
 double str_angle(int str_level);
@@ -92,10 +93,10 @@ void main(){
             }
             else if(value1 > 1000 && value2 < 1000){	// Turn right
                 vel1 = 0;
-                vel2 = 0.54;
+                vel2 = 0.5;
             }
             else if(value1 < 1000 && value2 > 1000){	// Turn left
-                vel1 = 0.54;
+                vel1 = 0.5;
                 vel2 = 0;			
             }
             else if(value1 > 1000 && value2 > 1000){	// STOP
@@ -110,7 +111,7 @@ void main(){
 						}
 						if(_count >= 1){	// printing state, toggling every 1 second
 							LED_toggle();
-							printState();
+							printState(); 
 							_count = 0;
 						}
 					// DC motor operate
@@ -189,7 +190,7 @@ void printState(void){
 		USART1_write("\r\n", 2);
 	}
 	else if(mode == 'A'){	// Automation mode
-		if(distance < 7){
+		if(distance < 8){
 			USART1_write("Obstacle Infront\r\n", 18);
 		}
 		else{
@@ -340,11 +341,11 @@ void setup(void){
 
     // PWM1
     PWM_init(PWM_PIN1);
-    PWM_period_ms(PWM_PIN1, period);
+    PWM_period_us(PWM_PIN1, period);
 
     // PWM2
     PWM_init(PWM_PIN2);
-    PWM_period_ms(PWM_PIN2, period);
+    PWM_period_us(PWM_PIN2, period);
 
     // PWM configuration ---------------------------------------------------------------------
     PWM_init(TRIG);			// PA_6: Ultrasonic trig pulse
