@@ -50,12 +50,16 @@ void USART1_IRQHandler(){
             duty1 = 1;
             dir2 = 0;
             duty2 = 0;
+            dir3 = 0;
+            duty3 = 0;
         }
         else if(BT_Data == 'a') {
             dir1 = 1;
             duty1 = 0;
             dir2 = 0;
             duty2 = 0;
+            dir3 = 0;
+            duty3 = 0;
         }
         // Second
         else if(BT_Data == 'w') {
@@ -63,12 +67,16 @@ void USART1_IRQHandler(){
             duty2 = 1;
             dir3 = 0;
             duty3 = 0;
+            dir1 = 0;
+            duty1 = 0;
         }
         else if(BT_Data == 's') {
             dir2 = 1;
             duty2 = 0;
             dir3 = 0;
             duty3 = 0;
+            dir1 = 0;
+            duty1 = 0;
         }
         // Shovel
         else if(BT_Data == 'e') {
@@ -76,12 +84,16 @@ void USART1_IRQHandler(){
             duty3 = 1;
             dir2 = 0;
             duty2 = 0;
+            dir1 = 0;
+            duty1 = 0;
         }
         else if(BT_Data == 'd') {
             dir3 = 1;
             duty3 = 0;
             dir2 = 0;
             duty2 = 0;
+            dir1 = 0;
+            duty1 = 0;
         }
     }
 }
