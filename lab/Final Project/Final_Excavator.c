@@ -30,9 +30,12 @@ float time1 = 0;
 float time2 = 0;
 
 // Variables
+
 char mode;
 static int stop = 0;
 uint32_t count = 0;
+int temp = 0;
+int operation = 0;
 
 // Bluetooth Data
 static volatile uint8_t BT_Data = 0;
@@ -46,16 +49,45 @@ int main(void) {
         motor_init();
         if(mode == 'A'){
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
-            while(1){
+            if(distance > 10 && temp == 0){
+                operation = 1;
+                if(distance < 10){
+                    temp = 1;
+                    operation = 2;
+                }
+                else continue;
+            }
+            if(operation == 1){
                 motor_operate(1, 1);
                 motor_stop(2);
                 motor_stop(3);
-                delay_ms(200);
-                break;
             }
-            motor_stop(1);
-            motor_operate(2, 0);
-            motor_operate(3, 0);
+            if(operation == 2){
+                motor_stop(1);
+                motor_operate(2, 0);
+                motor_stop(3);
+                delay_ms(5000);
+                operation = 3;
+            }
+            if(operation == 3){
+                motor_stop(1);
+                motor_stop(2);
+                motor_operate(3, 0);
+                delay_ms(5000);
+                operation = 4;
+            }
+            if(operation == 4){
+                motor_operate(1, 0);
+                motor_stop(2);
+                motor_stop(3);
+                delay_ms(5000);
+                operation = 0;
+            }
+            if(operation == 0){
+                motor_stop(1);
+                motor_stop(2);
+                motor_stop(3);
+            }
         }
         else if(mode == 'M'){
             // First
