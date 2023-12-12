@@ -2,7 +2,9 @@
 // Functions
 void setup(void);
 void TIM3_IRQHandler(void);
-
+void motor_init(void);
+void motor_stop(int motor);
+void motor_operate(int motor, int dir);
 // ARM Part
 PinName_t PWM_PIN1 = PA_0;
 #define DIR_PIN1 3
@@ -38,19 +40,22 @@ static volatile uint8_t BT_Data = 0;
 int main(void) {
     // Initialization --------------------------------------------------
     setup();
-
+    motor_init();
     // Infinite Loop ---------------------------------------------------
-    while (1) {
+    while (1) {	
 
         if(mode == 'A'){
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
-            while(distance > 10){
-                dir1 = 1;
-                duty1 = 0;
-                dir2 = duty2 = 0;
-                dir3 = duty3 = 0;
+            if(distance > 10){
+                motor_operate(1, 0);
+                motor_stop(2);
+                motor_stop(3);
             }
-
+            else if(distance <= 10){
+                motor_stop(1);
+                motor_stop(2);
+                motor_stop(3);
+            }
         }
         // First
         GPIO_write(GPIOC, DIR_PIN1, dir1);
@@ -114,6 +119,55 @@ void USART1_IRQHandler(){
             }
         }
     }
+}
+void motor_init(void){
+    GPIO_write(GPIOC, DIR_PIN1, 0);
+    PWM_duty(PWM_PIN1, 0);
+    GPIO_write(GPIOC, DIR_PIN2, 0);
+    PWM_duty(PWM_PIN2, 0);
+    GPIO_write(GPIOC, DIR_PIN3, 0);
+    PWM_duty(PWM_PIN3, 0);
+}
+
+void motor_stop(int motor){
+    int dir_pin;
+    int motor_pin;
+    if(motor == 1){
+        dir_pin = DIR_PIN1;
+        motor_pin = PWM_PIN1;
+    }
+    else if(motor == 2){
+        dir_pin = DIR_PIN2;
+        motor_pin = PWM_PIN2;
+    }
+    else if(motor == 3){
+        dir_pin = DIR_PIN3;
+        motor_pin = PWM_PIN3;
+    }
+    GPIO_write(GPIOC, dir_pin, 0);
+    PWM_duty(motor_pin, 0);
+}
+
+void motor_operate(int motor, int dir){
+    int dt;
+    int dir_pin;
+    int motor_pin;
+    if(motor == 1){
+        dir_pin = DIR_PIN1;
+        motor_pin = PWM_PIN1;
+    }
+    else if(motor == 2){
+        dir_pin = DIR_PIN2;
+        motor_pin = PWM_PIN2;
+    }
+    else if(motor == 3){
+        dir_pin = DIR_PIN3;
+        motor_pin = PWM_PIN3;
+    }
+    GPIO_write(GPIOC, dir_pin, dir);
+    if(dir == 1) dt = 0;
+    else if(dir == 0) dt = 1;
+    PWM_duty(motor_pin, dt);
 }
 
 void TIM4_IRQHandler(void){

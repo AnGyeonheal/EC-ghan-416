@@ -1,0 +1,311 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: •ÏVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: An Gyeonheal, HandongGlobalUniversity, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.19
+Assembler:       Armasm.exe V6.19
+Linker/Locator:  ArmLink.exe V6.19
+Library Manager: ArmAr.exe V6.19
+Hex Converter:   FromElf.exe V6.19
+CPU DLL:         SARMCM3.DLL V5.38.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+C:\Users\hilla\source\repos\Embedded_Control_GH\lab\Final Project\Arm.uvprojx
+Project File Date:  12/12/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+Final_Excavator.c(1): warning: In file included from...
+../../include\ecSTM32F411.h(19): warning: In file included from...
+../../include/ecPinNames.h(142): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+Final_Excavator.c(1): warning: In file included from...
+../../include\ecSTM32F411.h(22): warning: In file included from...
+../../include/ecEXTI.h(34): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+Final_Excavator.c(1): warning: In file included from...
+../../include\ecSTM32F411.h(23): warning: In file included from...
+../../include/ecSysTick.h(25): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void SysTick_counter();
+                    ^
+                     void
+Final_Excavator.c(1): warning: In file included from...
+../../include/ecSTM32F411.h(28): warning: In file included from...
+../../include/ecADC.h(17): warning: 'FALL' macro redefined [-Wmacro-redefined]
+#define FALL 2
+        ^
+../../include/ecEXTI.h(16): note: previous definition is here
+#define FALL 0
+        ^
+Final_Excavator.c(1): warning: In file included from...
+../../include/ecSTM32F411.h(28): warning: In file included from...
+../../include/ecADC.h(18): warning: 'BOTH' macro redefined [-Wmacro-redefined]
+#define BOTH 3
+        ^
+../../include/ecEXTI.h(18): note: previous definition is here
+#define BOTH 2
+        ^
+Final_Excavator.c(7): warning: no previous extern declaration for non-static variable 'PWM_PIN1' [-Wmissing-variable-declarations]
+PinName_t PWM_PIN1 = PA_0;
+          ^
+Final_Excavator.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+PinName_t PWM_PIN1 = PA_0;
+^
+Final_Excavator.c(9): warning: no previous extern declaration for non-static variable 'PWM_PIN2' [-Wmissing-variable-declarations]
+PinName_t PWM_PIN2 = PA_1;
+          ^
+Final_Excavator.c(9): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+PinName_t PWM_PIN2 = PA_1;
+^
+Final_Excavator.c(11): warning: no previous extern declaration for non-static variable 'PWM_PIN3' [-Wmissing-variable-declarations]
+PinName_t PWM_PIN3 = PB_10;
+          ^
+Final_Excavator.c(11): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+PinName_t PWM_PIN3 = PB_10;
+^
+Final_Excavator.c(13): warning: no previous extern declaration for non-static variable 'period' [-Wmissing-variable-declarations]
+float period = 1;
+      ^
+Final_Excavator.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float period = 1;
+^
+Final_Excavator.c(17): warning: no previous extern declaration for non-static variable 'dir1' [-Wmissing-variable-declarations]
+int dir1 = 0;
+    ^
+Final_Excavator.c(17): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int dir1 = 0;
+^
+Final_Excavator.c(18): warning: no previous extern declaration for non-static variable 'dir2' [-Wmissing-variable-declarations]
+int dir2 = 0;
+    ^
+Final_Excavator.c(18): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int dir2 = 0;
+^
+Final_Excavator.c(19): warning: no previous extern declaration for non-static variable 'dir3' [-Wmissing-variable-declarations]
+int dir3 = 0;
+    ^
+Final_Excavator.c(19): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int dir3 = 0;
+^
+Final_Excavator.c(24): warning: no previous extern declaration for non-static variable 'ovf_cnt' [-Wmissing-variable-declarations]
+uint32_t ovf_cnt = 0;
+         ^
+Final_Excavator.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t ovf_cnt = 0;
+^
+Final_Excavator.c(25): warning: no previous extern declaration for non-static variable 'distance' [-Wmissing-variable-declarations]
+float distance = 0;
+      ^
+Final_Excavator.c(25): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float distance = 0;
+^
+Final_Excavator.c(26): warning: no previous extern declaration for non-static variable 'timeInterval' [-Wmissing-variable-declarations]
+float timeInterval = 0;
+      ^
+Final_Excavator.c(26): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float timeInterval = 0;
+^
+Final_Excavator.c(27): warning: no previous extern declaration for non-static variable 'time1' [-Wmissing-variable-declarations]
+float time1 = 0;
+      ^
+Final_Excavator.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time1 = 0;
+^
+Final_Excavator.c(28): warning: no previous extern declaration for non-static variable 'time2' [-Wmissing-variable-declarations]
+float time2 = 0;
+      ^
+Final_Excavator.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float time2 = 0;
+^
+Final_Excavator.c(33): warning: no previous extern declaration for non-static variable 'count' [-Wmissing-variable-declarations]
+uint32_t count = 0;
+         ^
+Final_Excavator.c(33): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint32_t count = 0;
+^
+Final_Excavator.c(44): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                                printf("%f\n", distance);
+                                ~~~~~~         ^~~~~~~~
+Final_Excavator.c(46): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+Final_Excavator.c(46): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;       // [mm] -> [cm]
+                       ^~~~~~~~~~~~~~~~~~~~ ~
+Final_Excavator.c(50): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir2 = duty2 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(51): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir3 = duty3 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(56): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIO_write(GPIOC, DIR_PIN1, dir1);
+        ~~~~~~~~~~                  ^~~~
+Final_Excavator.c(59): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIO_write(GPIOC, DIR_PIN2, dir2);
+        ~~~~~~~~~~                  ^~~~
+Final_Excavator.c(62): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        GPIO_write(GPIOC, DIR_PIN3, dir3);
+        ~~~~~~~~~~                  ^~~~
+Final_Excavator.c(67): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+void USART1_IRQHandler(){
+                      ^
+                       void
+Final_Excavator.c(82): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir2 = duty2 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(83): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir3 = duty3 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(88): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir2 = duty2 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(89): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir3 = duty3 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(94): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir1 = duty1 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(95): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir3 = duty3 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(100): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir1 = duty1 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(101): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir3 = duty3 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(106): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir2 = duty2 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(107): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir1 = duty1 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(112): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir2 = duty2 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(113): warning: implicit conversion turns floating-point number into integer: 'float' to 'int' [-Wfloat-conversion]
+                dir1 = duty1 = 0;
+                     ~ ~~~~~~^~~
+Final_Excavator.c(67): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
+void USART1_IRQHandler(){
+     ^
+Final_Excavator.c(67): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void USART1_IRQHandler(){
+^
+static 
+Final_Excavator.c(125): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        time1 = TIM4->CCR1;                                                                     // Capture TimeStart
+              ~ ~~~~~~^~~~
+Final_Excavator.c(129): warning: implicit conversion from 'volatile uint32_t' (aka 'volatile unsigned int') to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        time2 = TIM4->CCR2;                                                                     // Capture TimeEnd
+              ~ ~~~~~~^~~~
+Final_Excavator.c(130): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+Final_Excavator.c(130): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                        ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~  ~
+Final_Excavator.c(130): warning: implicit conversion from 'unsigned int' to 'float' may lose precision [-Wimplicit-int-float-conversion]
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;      // (10us * counter pulse -> [msec] unit) Total time of echo pulse
+                                        ~ ~~~~~~~~~~~~~~^~~~~~~~~
+Final_Excavator.c(119): warning: no previous prototype for function 'TIM4_IRQHandler' [-Wmissing-prototypes]
+void TIM4_IRQHandler(void){
+     ^
+Final_Excavator.c(119): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void TIM4_IRQHandler(void){
+^
+static 
+Final_Excavator.c(171): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN1, period);
+    ~~~~~~~~~~~~~           ^~~~~~
+Final_Excavator.c(174): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN2, period);
+    ~~~~~~~~~~~~~           ^~~~~~
+Final_Excavator.c(177): warning: implicit conversion turns floating-point number into integer: 'float' to 'uint32_t' (aka 'unsigned int') [-Wfloat-conversion]
+    PWM_period_ms(PWM_PIN3, period);
+    ~~~~~~~~~~~~~           ^~~~~~
+Final_Excavator.c(185): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+Final_Excavator.c(14): warning: no previous extern declaration for non-static variable 'duty1' [-Wmissing-variable-declarations]
+float duty1;
+      ^
+Final_Excavator.c(14): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float duty1;
+^
+Final_Excavator.c(15): warning: no previous extern declaration for non-static variable 'duty2' [-Wmissing-variable-declarations]
+float duty2;
+      ^
+Final_Excavator.c(15): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float duty2;
+^
+Final_Excavator.c(16): warning: no previous extern declaration for non-static variable 'duty3' [-Wmissing-variable-declarations]
+float duty3;
+      ^
+Final_Excavator.c(16): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float duty3;
+^
+Final_Excavator.c(31): warning: no previous extern declaration for non-static variable 'mode' [-Wmissing-variable-declarations]
+char mode;
+     ^
+Final_Excavator.c(31): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char mode;
+^
+Final_Excavator.c(32): warning: unused variable 'stop' [-Wunused-variable]
+static int stop = 0;
+           ^
+55 warnings generated.
+compiling Final_Excavator.c...
+linking...
+Program Size: Code=18140 RO-data=996 RW-data=12 ZI-data=1700  
+FromELF: creating hex file...
+".\Objects\Arm.axf" - 0 Error(s), 55 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_Target_1
+  C:/Users/hilla/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/hilla/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+
+   * Component: Keil::Device:Startup:2.6.3
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f411xe.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   MDK/Device/Source/ARM/STM32F411xx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>
