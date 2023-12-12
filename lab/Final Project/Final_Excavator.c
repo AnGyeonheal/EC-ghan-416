@@ -42,30 +42,33 @@ int main(void) {
     setup();
     motor_init();
     // Infinite Loop ---------------------------------------------------
-    while (1) {	
-
+    while (1) {
+        motor_init();
         if(mode == 'A'){
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
-            if(distance > 10){
-                motor_operate(1, 0);
+            while(1){
+                motor_operate(1, 1);
                 motor_stop(2);
                 motor_stop(3);
+                delay_ms(200);
+                break;
             }
-            else if(distance <= 10){
-                motor_stop(1);
-                motor_stop(2);
-                motor_stop(3);
-            }
+            motor_stop(1);
+            motor_operate(2, 0);
+            motor_operate(3, 0);
         }
-        // First
-        GPIO_write(GPIOC, DIR_PIN1, dir1);
-        PWM_duty(PWM_PIN1, duty1);
-        // Second
-        GPIO_write(GPIOC, DIR_PIN2, dir2);
-        PWM_duty(PWM_PIN2, duty2);
-        // shovel
-        GPIO_write(GPIOC, DIR_PIN3, dir3);
-        PWM_duty(PWM_PIN3, duty3);
+        else if(mode == 'M'){
+            // First
+            GPIO_write(GPIOC, DIR_PIN1, dir1);
+            PWM_duty(PWM_PIN1, duty1);
+            // Second
+            GPIO_write(GPIOC, DIR_PIN2, dir2);
+            PWM_duty(PWM_PIN2, duty2);
+            // shovel
+            GPIO_write(GPIOC, DIR_PIN3, dir3);
+            PWM_duty(PWM_PIN3, duty3);
+        }
+        USART1_write(&BT_Data, 1);
     }
 }
 
@@ -190,7 +193,7 @@ void TIM4_IRQHandler(void){
 
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
-
+        count++;
     }
     clear_UIF(TIM3);            // Clear UI flag by writing 0
 }
