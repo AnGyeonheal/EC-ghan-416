@@ -20,6 +20,13 @@ int dir1 = 0;
 int dir2 = 0;
 int dir3 = 0;
 
+// stepper motor
+#define A 8
+#define B 4
+#define NA 5
+#define NB 3
+int RPM = 2;
+
 // UltraSonic parameter define
 #define TRIG PA_6
 #define ECHO PB_6
@@ -29,14 +36,17 @@ float timeInterval = 0;
 float time1 = 0;
 float time2 = 0;
 
-// Variables
+// Buzzer define
+#define BUZ_PIN
 
+// Variables
+int input;
 char mode;
 static int stop = 0;
 uint32_t count = 0;
 int temp = 0;
 int operation = 0;
-
+int flag = 0;
 // Bluetooth Data
 static volatile uint8_t BT_Data = 0;
 
@@ -49,44 +59,42 @@ int main(void) {
         motor_init();
         if(mode == 'A'){
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
-            if(distance > 10 && temp == 0){
-                operation = 1;
-                if(distance < 10){
-                    temp = 1;
-                    operation = 2;
-                }
-                else continue;
-            }
-            if(operation == 1){
+            if(distance > 4){
                 motor_operate(1, 1);
                 motor_stop(2);
                 motor_stop(3);
+                temp = 1;
             }
-            if(operation == 2){
+            else{
+                temp = 0;
+                // TIM_UI_disable(TIM4);
+                // load
+                // first step : 중간 모터 작동
                 motor_stop(1);
                 motor_operate(2, 0);
-                motor_stop(3);
                 delay_ms(5000);
-                operation = 3;
-            }
-            if(operation == 3){
+                // second step : 삽 모터 작동
+                motor_stop(2);
+                motor_operate(3,0);
+                delay_ms(5000);
+                // third step 첫 번째 모터 복귀
+                flag = 1;
+                while(count > 0){
+                    motor_operate(1, 0);
+                    motor_stop(3);  
+                }
+                flag = 0;
+                // rotate
+
+                // unload
+                // firth step0 : 중간 모터 작동
                 motor_stop(1);
-                motor_stop(2);
-                motor_operate(3, 0);
+                motor_operate(2, 1);
                 delay_ms(5000);
-                operation = 4;
-            }
-            if(operation == 4){
-                motor_operate(1, 0);
+                // sixth step : 삽 모터 작동
                 motor_stop(2);
-                motor_stop(3);
+                motor_operate(3,1);
                 delay_ms(5000);
-                operation = 0;
-            }
-            if(operation == 0){
-                motor_stop(1);
-                motor_stop(2);
-                motor_stop(3);
             }
         }
         else if(mode == 'M'){
@@ -101,6 +109,8 @@ int main(void) {
             PWM_duty(PWM_PIN3, duty3);
         }
         USART1_write(&BT_Data, 1);
+				printf("%f cm\r\n", distance);
+				printf("%d\r\n",count);
     }
 }
 
@@ -108,6 +118,9 @@ void USART1_IRQHandler(){
     if(is_USART1_RXNE()){
         BT_Data = USART1_read();
         // First
+        if(BT_Data == 'z') input = 10;
+        else if(BT_Data == 'x') input = 15;
+        else if(BT_Data == 'c') input = 20;
 
         if (BT_Data == 'M'){
             mode = 'M';
@@ -115,42 +128,44 @@ void USART1_IRQHandler(){
         else if (BT_Data == 'A'){
             mode = 'A';
         }
-        if(mode == 'M'){
+
+        if(mode == 'A'){
+            if(BT_Data == 'a'){
+                Stepper_step(200, 0, FULL);
+            }
+            else if(BT_Data == 'd'){
+                Stepper_step(200, 1, FULL);
+            }
+        }
+
+        else if(mode == 'M'){
             if(BT_Data == 'u'){
                 dir1 = 0;
                 duty1 = 1;
-                dir2 = duty2 = 0;
-                dir3 = duty3 = 0;
             }
             else if(BT_Data == 'j'){
                 dir1 = 1;
                 duty1 = 0;
-                dir2 = duty2 = 0;
-                dir3 = duty3 = 0;
             }
             else if(BT_Data == 'i'){
                 dir2 = 0;
                 duty2 = 1;
-                dir1 = duty1 = 0;
-                dir3 = duty3 = 0;
             }
             else if(BT_Data == 'k'){
                 dir2 = 1;
                 duty2 = 0;
-                dir1 = duty1 = 0;
-                dir3 = duty3 = 0;
             }
             else if(BT_Data == 'o'){
                 dir3 = 0;
                 duty3 = 1;
-                dir2 = duty2 = 0;
-                dir1 = duty1 = 0;
             }
             else if(BT_Data == 'l'){
                 dir3 = 1;
                 duty3 = 0;
-                dir2 = duty2 = 0;
-                dir1 = duty1 = 0;
+            }
+            else if(BT_Data == 's'){
+                dir1 = dir2 = dir3 = 0;
+                duty1 = duty2 = duty3 = 0;
             }
         }
     }
@@ -225,7 +240,12 @@ void TIM4_IRQHandler(void){
 
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
-        count++;
+			if(temp == 1){
+				count++;
+			}
+            if(flag == 1){
+                count--;
+            }
     }
     clear_UIF(TIM3);            // Clear UI flag by writing 0
 }
@@ -240,6 +260,7 @@ void setup(void) {
     // Bluetooth serial init
     UART1_init();
     UART1_baud(BAUD_9600);
+    UART2_init();
 
     // DIR1
     GPIO_init(GPIOC, DIR_PIN1, OUTPUT);
@@ -250,6 +271,10 @@ void setup(void) {
     // DIR3
     GPIO_init(GPIOC, DIR_PIN3, OUTPUT);
     GPIO_otype(GPIOC, DIR_PIN3, EC_PUSH_PULL);
+
+    // Stepper motor
+    Stepper_init(GPIOA, A, GPIOB, B, GPIOB, NA, GPIOB, NB);
+    Stepper_setSpeed(RPM);
 
     // TIM
     TIM_UI_init(TIM3, 1);
@@ -270,5 +295,4 @@ void setup(void) {
     ICAP_counter_us(ECHO, 10);   	// ICAP counter step time as 10us
     ICAP_setup(ECHO, 1, IC_RISE);  // TIM4_CH1 as IC1 , rising edge detect
     ICAP_setup(ECHO, 2, IC_FALL);  // TIM4_CH2 as IC2 , falling edge detect
-
 }
