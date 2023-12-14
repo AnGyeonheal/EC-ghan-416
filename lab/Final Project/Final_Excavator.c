@@ -26,6 +26,7 @@ int dir3 = 0;
 #define NA 5
 #define NB 3
 int RPM = 2;
+int rot_done = 0;
 
 // UltraSonic parameter define
 #define TRIG PA_6
@@ -40,6 +41,8 @@ float time2 = 0;
 #define BUZ_PIN
 
 // Variables
+int clock_enable=0;
+int clk = 0;
 int input;
 char mode;
 static int stop = 0;
@@ -72,29 +75,35 @@ int main(void) {
                 // first step : 중간 모터 작동
                 motor_stop(1);
                 motor_operate(2, 0);
-                delay_ms(5000);
+                delay_ms(10000);
                 // second step : 삽 모터 작동
                 motor_stop(2);
-                motor_operate(3,0);
-                delay_ms(5000);
+								motor_operate(3,0);
+                delay_ms(20000);
                 // third step 첫 번째 모터 복귀
                 flag = 1;
+								count += 3000;	// 올라가는 시간 가중치 (중력보상)
                 while(count > 0){
                     motor_operate(1, 0);
                     motor_stop(3);  
                 }
                 flag = 0;
                 // rotate
-
-                // unload
-                // firth step0 : 중간 모터 작동
-                motor_stop(1);
-                motor_operate(2, 1);
-                delay_ms(5000);
-                // sixth step : 삽 모터 작동
-                motor_stop(2);
-                motor_operate(3,1);
-                delay_ms(5000);
+								motor_init();
+                Stepper_step(512, 0, FULL);
+								// unload
+								// firth step0 : 중간 모터 작동
+								motor_stop(1);
+								motor_operate(2, 1);
+								delay_ms(10000+2500);	// 중간 모터 시간 가중치
+								// sixth step : 삽 모터 작동
+								motor_stop(2);
+								motor_operate(3,1);
+								delay_ms(20000+4500);	// 삽 작동 시간 가중치 (중력보상)
+								// rotate
+								motor_init();
+                Stepper_step(400, 1, FULL);
+								delay_ms(1000);
             }
         }
         else if(mode == 'M'){
@@ -108,9 +117,9 @@ int main(void) {
             GPIO_write(GPIOC, DIR_PIN3, dir3);
             PWM_duty(PWM_PIN3, duty3);
         }
-        USART1_write(&BT_Data, 1);
-				printf("%f cm\r\n", distance);
-				printf("%d\r\n",count);
+					USART1_write(&BT_Data, 1);
+					printf("%f cm\r\n", distance);
+					printf("%d\r\n",count);        
     }
 }
 
@@ -130,12 +139,7 @@ void USART1_IRQHandler(){
         }
 
         if(mode == 'A'){
-            if(BT_Data == 'a'){
-                Stepper_step(200, 0, FULL);
-            }
-            else if(BT_Data == 'd'){
-                Stepper_step(200, 1, FULL);
-            }
+            
         }
 
         else if(mode == 'M'){
@@ -240,12 +244,19 @@ void TIM4_IRQHandler(void){
 
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
+			if(clock_enable == 1){
+				clk++;
+			}
+			else if(clock_enable == 0){
+				clk = 0;
+			}
+			
 			if(temp == 1){
 				count++;
 			}
-            if(flag == 1){
-                count--;
-            }
+			if(flag == 1){
+				count--;
+			}
     }
     clear_UIF(TIM3);            // Clear UI flag by writing 0
 }
