@@ -5,6 +5,8 @@ void TIM3_IRQHandler(void);
 void motor_init(void);
 void motor_stop(int motor);
 void motor_operate(int motor, int dir);
+void printState(void);
+
 // ARM Part
 PinName_t PWM_PIN1 = PA_0;
 #define DIR_PIN1 3
@@ -41,8 +43,8 @@ float time2 = 0;
 #define BUZ_PIN
 
 // Variables
-int clock_enable=0;
-int clk = 0;
+char dis[4];
+char start = 0;
 int input;
 char mode;
 static int stop = 0;
@@ -61,7 +63,7 @@ int main(void) {
     while (1) {
         motor_init();
         if(mode == 'A'){
-            distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;    // [mm] -> [cm]
             if(distance > 4){
                 motor_operate(1, 1);
                 motor_stop(2);
@@ -78,35 +80,36 @@ int main(void) {
                 delay_ms(10000);
                 // second step : 삽 모터 작동
                 motor_stop(2);
-								motor_operate(3,0);
+                        motor_operate(3,0);
                 delay_ms(20000);
                 // third step 첫 번째 모터 복귀
                 flag = 1;
-								count += 3000;	// 올라가는 시간 가중치 (중력보상)
+                        count += 3000;   // 올라가는 시간 가중치 (중력보상)
                 while(count > 0){
                     motor_operate(1, 0);
                     motor_stop(3);  
                 }
                 flag = 0;
                 // rotate
-								motor_init();
+                        motor_init();
                 Stepper_step(512, 0, FULL);
-								// unload
-								// firth step0 : 중간 모터 작동
-								motor_stop(1);
-								motor_operate(2, 1);
-								delay_ms(10000+2500);	// 중간 모터 시간 가중치
-								// sixth step : 삽 모터 작동
-								motor_stop(2);
-								motor_operate(3,1);
-								delay_ms(20000+4500);	// 삽 작동 시간 가중치 (중력보상)
-								// rotate
-								motor_init();
+                        // unload
+                        // firth step0 : 중간 모터 작동
+                        motor_stop(1);
+                        motor_operate(2, 1);
+                        delay_ms(10000+2500);   // 중간 모터 시간 가중치
+                        // sixth step : 삽 모터 작동
+                        motor_stop(2);
+                        motor_operate(3,1);
+                        delay_ms(20000+4500);   // 삽 작동 시간 가중치 (중력보상)
+                        // rotate
+                        motor_init();
                 Stepper_step(400, 1, FULL);
-								delay_ms(1000);
+                        delay_ms(1000);
             }
         }
         else if(mode == 'M'){
+                 distance = (float) timeInterval * 340.0 / 2.0 / 10.0;    // [mm] -> [cm]
             // First
             GPIO_write(GPIOC, DIR_PIN1, dir1);
             PWM_duty(PWM_PIN1, duty1);
@@ -117,10 +120,16 @@ int main(void) {
             GPIO_write(GPIOC, DIR_PIN3, dir3);
             PWM_duty(PWM_PIN3, duty3);
         }
-					USART1_write(&BT_Data, 1);
-					printf("%f cm\r\n", distance);
-					printf("%d\r\n",count);        
+               printState();
+               delay_ms(1000);
     }
+}
+
+void printState(void){
+   sprintf(dis, "%f", distance);
+   USART1_write("Distance is ", 12);
+   USART1_write(&dis, 4);
+   USART1_write("\r\n", 2);
 }
 
 void USART1_IRQHandler(){
@@ -139,7 +148,10 @@ void USART1_IRQHandler(){
         }
 
         if(mode == 'A'){
-            
+            if(input == 10 && input == 15 && input == 20){
+                     start = 1;
+                  }
+                  else start = 0;
         }
 
         else if(mode == 'M'){
@@ -226,37 +238,31 @@ void motor_operate(int motor, int dir){
 
 void TIM4_IRQHandler(void){
     if(is_UIF(TIM4)){                     // Update interrupt
-        ovf_cnt++;													// overflow count	        // count for 1sec
-        clear_UIF(TIM4);  							    // clear update interrupt flag
+        ovf_cnt++;                                       // overflow count           // count for 1sec
+        clear_UIF(TIM4);                           // clear update interrupt flag
     }
-    if(is_CCIF(TIM4, 1)){ 								// TIM4_Ch1 (IC1) Capture Flag. Rising Edge Detect
-        time1 = TIM4->CCR1;									// Capture TimeStart
+    if(is_CCIF(TIM4, 1)){                         // TIM4_Ch1 (IC1) Capture Flag. Rising Edge Detect
+        time1 = TIM4->CCR1;                           // Capture TimeStart
         clear_CCIF(TIM4, 1);                // clear capture/compare interrupt flag
     }
-    else if(is_CCIF(TIM4, 2)){ 									// TIM4_Ch2 (IC2) Capture Flag. Falling Edge Detect
-        time2 = TIM4->CCR2;									// Capture TimeEnd
-        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01; 	// (10us * counter pulse -> [msec] unit) Total time of echo pulse
+    else if(is_CCIF(TIM4, 2)){                            // TIM4_Ch2 (IC2) Capture Flag. Falling Edge Detect
+        time2 = TIM4->CCR2;                           // Capture TimeEnd
+        timeInterval = ((time2 - time1) + (TIM4->ARR+1) * ovf_cnt) * 0.01;    // (10us * counter pulse -> [msec] unit) Total time of echo pulse
         ovf_cnt = 0;                        // overflow reset
-        clear_CCIF(TIM4,2);								  // clear capture/compare interrupt flag
+        clear_CCIF(TIM4,2);                          // clear capture/compare interrupt flag
     }
 }
 
 
 void TIM3_IRQHandler(void) {
     if (is_UIF(TIM3)) {            // Check UIF(update interrupt flag)
-			if(clock_enable == 1){
-				clk++;
-			}
-			else if(clock_enable == 0){
-				clk = 0;
-			}
-			
-			if(temp == 1){
-				count++;
-			}
-			if(flag == 1){
-				count--;
-			}
+
+         if(temp == 1){
+            count++;
+         }
+         if(flag == 1){
+            count--;
+         }
     }
     clear_UIF(TIM3);            // Clear UI flag by writing 0
 }
@@ -302,8 +308,8 @@ void setup(void) {
     PWM_period_ms(PWM_PIN3, period);
 
     // Input Capture configuration -----------------------------------------------------------------------
-    ICAP_init(ECHO);    	// PB_6 as input caputre
-    ICAP_counter_us(ECHO, 10);   	// ICAP counter step time as 10us
+    ICAP_init(ECHO);       // PB_6 as input caputre
+    ICAP_counter_us(ECHO, 10);      // ICAP counter step time as 10us
     ICAP_setup(ECHO, 1, IC_RISE);  // TIM4_CH1 as IC1 , rising edge detect
     ICAP_setup(ECHO, 2, IC_FALL);  // TIM4_CH2 as IC2 , falling edge detect
 }

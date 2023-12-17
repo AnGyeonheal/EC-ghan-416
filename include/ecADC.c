@@ -64,9 +64,17 @@ void ADC_init(PinName_t pinName){  // trigmode 0 : SW, 1 : TRGO
     ADC1->CR1 &= ~ADC_CR1_SCAN;               // 0: One-channel mode
 
 // 5. Interrupt Enable
+
+
+    // Enable JEOC interrupt
+    // Enable JEOC(conversion) interrupt.
+    ADC1->CR1 &= ~(1UL<<7);          		// Interrupt reset
+    ADC1->CR1 |= 1UL<<7;           			// Interrupt enable
+/*
     // Enable EOC(conversion) interrupt.
     ADC1->CR1 &= ~ADC_CR1_EOCIE;          // Interrupt reset
     ADC1->CR1 |= 1<<5;           // Interrupt enable
+*/
 
     // Enable ADC_IRQn
     NVIC_SetPriority(ADC_IRQn, 1);             // Set Priority to 2
@@ -186,6 +194,15 @@ void ADC_start(void){
 // ADC value read
 uint32_t ADC_read(void){
     return ADC1->DR;
+}
+
+// JEOC interrupt flag
+uint32_t is_ADC_JEOC(void){
+    return ADC1->SR & ADC_SR_JEOC;
+}
+
+void clear_ADC_JEOC(void){
+    ADC1->SR &= ~ADC_SR_JEOC;
 }
 
 // ADC interrupt flag

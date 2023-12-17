@@ -44,11 +44,25 @@ void setup(void)
 }
 
 
-void ADC_IRQHandler(void){
+/*void ADC_IRQHandler(void){
     if(is_ADC_OVR())
         clear_ADC_OVR();
 
     if(is_ADC_EOC()){      // after finishing sequence
+        if (flag==0)
+            value1 = ADC_read();
+        else if (flag==1)
+            value2 = ADC_read();
+
+        flag =! flag;      // flag toggle
+    }
+}*/
+
+void ADC_IRQHandler(void){
+    if(is_ADC_OVR())
+        clear_ADC_OVR();
+
+    if(is_ADC_JEOC()){      // after finishing sequence
         if (flag==0)
             value1 = ADC_read();
         else if (flag==1)

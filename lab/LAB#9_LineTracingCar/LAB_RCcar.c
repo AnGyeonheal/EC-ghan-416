@@ -15,6 +15,7 @@
 #define DIR_PIN2 3
 PinName_t PWM_PIN1 = PA_0;
 PinName_t PWM_PIN2 = PA_1;
+PinName_t Servo_PIN = PB_10;
 #define TRIG PA_6
 #define ECHO PB_6
 
@@ -85,6 +86,8 @@ void main(){
     PWM_duty(PWM_PIN1, vel1);
     PWM_duty(PWM_PIN2, vel2);
     while(1){
+        PWM_duty(Servo_PIN, (0.5 / period));
+
         if(mode == 'A'){	// Auto mode
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0; 	// [mm] -> [cm]
             if(value1 < 1000 && value2 < 1000){	// Move Straight
@@ -346,6 +349,10 @@ void setup(void){
     // PWM2
     PWM_init(PWM_PIN2);
     PWM_period_us(PWM_PIN2, period);
+
+    // PWM3
+    PWM_init(Servo_PIN);
+    PWM_period_ms(Servo_PIN, 20);
 
     // PWM configuration ---------------------------------------------------------------------
     PWM_init(TRIG);			// PA_6: Ultrasonic trig pulse

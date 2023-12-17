@@ -56,6 +56,8 @@ void ADC_trigger(TIM_TypeDef* TIMx, int msec, int edge);
 // JADC setting
 void JADC_trigger(TIM_TypeDef* TIMx, int msec, int edge);
 
+uint32_t is_ADC_JEOC(void);
+void clear_ADC_JEOC(void);
 
 // Private Function
 void ADC_pinmap(PinName_t pinName, uint32_t *chN);
