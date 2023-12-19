@@ -28,7 +28,6 @@ int dir3 = 0;
 #define NA 5
 #define NB 3
 int RPM = 2;
-int rot_done = 0;
 
 // UltraSonic parameter define
 #define TRIG PA_6
@@ -39,19 +38,15 @@ float timeInterval = 0;
 float time1 = 0;
 float time2 = 0;
 
-// Buzzer define
-#define BUZ_PIN
-
 // Variables
 char dis[4];
 char start = 0;
 int input;
 char mode;
-static int stop = 0;
 uint32_t count = 0;
 int temp = 0;
-int operation = 0;
 int flag = 0;
+
 // Bluetooth Data
 static volatile uint8_t BT_Data = 0;
 
@@ -64,52 +59,63 @@ int main(void) {
         motor_init();
         if(mode == 'A'){
             distance = (float) timeInterval * 340.0 / 2.0 / 10.0;    // [mm] -> [cm]
-            if(distance > 4){
+            if(distance > 4.5 && distance <= 13 && distance >= 30){
                 motor_operate(1, 1);
                 motor_stop(2);
                 motor_stop(3);
-                temp = 1;
+                temp = 1;		// count 시작
+            }
+            else if(distance >= 13){    // 굴삭 종료
+                motor_stop(1);
+                motor_stop(2);
+                motor_stop(3);
+                USART1_write("THE END\r\n", 7);
+                mode = 'M';
             }
             else{
-                temp = 0;
-                // TIM_UI_disable(TIM4);
+                temp = 0;		// count 종료
                 // load
                 // first step : 중간 모터 작동
+                USART1_write("Digging...\r\n", 12);
                 motor_stop(1);
                 motor_operate(2, 0);
                 delay_ms(10000);
                 // second step : 삽 모터 작동
+                USART1_write("Loading...\r\n", 12);
                 motor_stop(2);
-                        motor_operate(3,0);
+                motor_operate(3,0);
                 delay_ms(20000);
                 // third step 첫 번째 모터 복귀
                 flag = 1;
-                        count += 3000;   // 올라가는 시간 가중치 (중력보상)
-                while(count > 0){
+                count += 3000;   // 올라가는 시간 가중치 (중력보상)
+                while(count >= 2870){
                     motor_operate(1, 0);
-                    motor_stop(3);  
+                    motor_stop(3);
                 }
                 flag = 0;
+                motor_stop(1);
                 // rotate
-                        motor_init();
-                Stepper_step(512, 0, FULL);
-                        // unload
-                        // firth step0 : 중간 모터 작동
-                        motor_stop(1);
-                        motor_operate(2, 1);
-                        delay_ms(10000+2500);   // 중간 모터 시간 가중치
-                        // sixth step : 삽 모터 작동
-                        motor_stop(2);
-                        motor_operate(3,1);
-                        delay_ms(20000+4500);   // 삽 작동 시간 가중치 (중력보상)
-                        // rotate
-                        motor_init();
-                Stepper_step(400, 1, FULL);
-                        delay_ms(1000);
+                motor_init();
+                Stepper_step(800, 1, FULL);
+                USART1_write("Unloading...\r\n", 14);
+                // unload
+                // firth step0 : 중간 모터 작동
+                motor_stop(1);
+                motor_operate(2, 1);
+                delay_ms(10000+2500);   // 중간 모터 시간 가중치
+                // sixth step : 삽 모터 작동
+                motor_stop(2);
+                motor_operate(3,1);
+                delay_ms(20000+4500);   // 삽 작동 시간 가중치 (중력보상)
+                // rotate
+                USART1_write("Returnning...\r\n", 15);
+                motor_init();
+                Stepper_step(380, 0, FULL);
+                delay_ms(1000);
             }
         }
         else if(mode == 'M'){
-                 distance = (float) timeInterval * 340.0 / 2.0 / 10.0;    // [mm] -> [cm]
+            distance = (float) timeInterval * 340.0 / 2.0 / 10.0;    // [mm] -> [cm]
             // First
             GPIO_write(GPIOC, DIR_PIN1, dir1);
             PWM_duty(PWM_PIN1, duty1);
@@ -120,8 +126,8 @@ int main(void) {
             GPIO_write(GPIOC, DIR_PIN3, dir3);
             PWM_duty(PWM_PIN3, duty3);
         }
-               printState();
-               delay_ms(1000);
+        printState();
+        delay_ms(1000);
     }
 }
 
@@ -147,14 +153,7 @@ void USART1_IRQHandler(){
             mode = 'A';
         }
 
-        if(mode == 'A'){
-            if(input == 10 && input == 15 && input == 20){
-                     start = 1;
-                  }
-                  else start = 0;
-        }
-
-        else if(mode == 'M'){
+        if(mode == 'M'){
             if(BT_Data == 'u'){
                 dir1 = 0;
                 duty1 = 1;
@@ -308,8 +307,18 @@ void setup(void) {
     PWM_period_ms(PWM_PIN3, period);
 
     // Input Capture configuration -----------------------------------------------------------------------
-    ICAP_init(ECHO);       // PB_6 as input caputre
-    ICAP_counter_us(ECHO, 10);      // ICAP counter step time as 10us
-    ICAP_setup(ECHO, 1, IC_RISE);  // TIM4_CH1 as IC1 , rising edge detect
-    ICAP_setup(ECHO, 2, IC_FALL);  // TIM4_CH2 as IC2 , falling edge detect
+    // PWM:  TIM4_CH2 (PA_6 AFmode)
+    PWM_init(TRIG);
+    GPIO_otype(GPIOA, 6, EC_PUSH_PULL);   //PWM Pin Push-Pull
+    GPIO_pupd(GPIOA, 6, EC_NONE);         //PWM Pin NO Pull-up, Pull-down
+    GPIO_ospeed(GPIOA, 6, EC_FAST);       //PWM Pin Fast
+    PWM_period_us(TRIG, 50000);        // 50 msec PWM period
+    PWM_pulsewidth_us(TRIG,10);        // 10 usec PWM pulse width
+
+    // input Capture:  TIM4_CH1 (PB_6 AFmode)
+    ICAP_init(ECHO);
+    GPIO_pupd(GPIOB, 6, EC_NONE);         //PWM Pin NO Pull-up, Pull-down
+    ICAP_counter_us(PB_6, 10);            //Counter Clock : 0.1MHz (10us)
+    ICAP_setup(PB_6, 1, IC_RISE);         //TI4 -> IC1 (rising edge)
+    ICAP_setup(PB_6, 2, IC_FALL);         //TI4 -> IC2 (falling edge)
 }
